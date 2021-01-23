@@ -6,8 +6,10 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.DriveManualControl;
 import frc.robot.subsystems.Drive.Drive;
 
 /**
@@ -27,6 +29,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    drive.setDefaultCommand(new DriveManualControl());
   }
 
   /**
@@ -39,6 +42,18 @@ public class RobotContainer {
     
   }
 
+  public static double getDriverLeftStickX() {
+    return driver.getX(Hand.kLeft);
+  }
+  public static double getDriverLeftStickY() {
+    return driver.getY(Hand.kLeft);
+  }
+  public static double getDriverRightStickX() {
+    return driver.getX(Hand.kRight);
+  }
+  public static double getDriverRightStickY() {
+    return driver.getY(Hand.kRight);
+  }
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
