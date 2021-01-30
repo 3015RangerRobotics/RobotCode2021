@@ -50,4 +50,16 @@ public final class Constants {
     // Drive Subsystem
     public static final int DRIVE_PIGEON_CHANNEL = 0;
 
+    //Pathfinding
+    public static final double DRIVE_X_CONTROLLER_P = 0;
+    public static final double DRIVE_X_CONTROLLER_I = 0;
+    public static final double DRIVE_X_CONTROLLER_D = 0;
+    public static final double DRIVE_Y_CONTROLLER_P = 0;
+    public static final double DRIVE_Y_CONTROLLER_I = 0;
+    public static final double DRIVE_Y_CONTROLLER_D = 0;
+    public static final double DRIVE_ROTATION_CONTROLLER_P = 0;
+    public static final double DRIVE_ROTATION_CONTROLLER_I = 0;
+    public static final double DRIVE_ROTATION_CONTROLLER_D = 0;
+    public static final double DRIVE_MAX_ROTATION_VELOCITY = 0; //Degrees Per Second
+    public static final double DRIVE_MAX_ROTATION_ACCLERATION = 0; //Degrees Per Second Squared
 }

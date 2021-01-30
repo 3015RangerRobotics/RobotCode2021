@@ -118,4 +118,9 @@ public class Drive extends SubsystemBase {
       drive(new ChassisSpeeds(xVelMeters, yVelMeters, Math.toRadians(degreesPerSecond)));
     }
   }
+  public Pose2d getPoseMeters()
+  {
+    return odometry.getPoseMeters();
+  }
+
 }
