@@ -20,11 +20,12 @@ public class SwervePathController {
 
     /**
      * Construct a SwervePathController
-     * @param xController PIDController for the robot's X position
-     * @param yController PIDController for the robot's Y position
+     *
+     * @param xController        PIDController for the robot's X position
+     * @param yController        PIDController for the robot's Y position
      * @param rotationController ProfiledPIDController for the robot's rotation
      */
-    public SwervePathController(PIDController xController, PIDController yController, ProfiledPIDController rotationController){
+    public SwervePathController(PIDController xController, PIDController yController, ProfiledPIDController rotationController) {
         this.positionError = new Translation2d();
         this.positionTolerance = new Translation2d();
 
@@ -35,28 +36,31 @@ public class SwervePathController {
 
     /**
      * Calculate if the robot is at its goal position
+     *
      * @return Is the robot at its goal position
      */
-    public boolean atGoalPose(){
+    public boolean atGoalPose() {
         return Math.abs(positionError.getX()) < positionTolerance.getX() &&
                 Math.abs(positionError.getY()) < positionTolerance.getY();
     }
 
     /**
      * Set the position tolerance of the controller
+     *
      * @param tolerance The tolerance of the controller
      */
-    public void setPositionTolerance(Translation2d tolerance){
+    public void setPositionTolerance(Translation2d tolerance) {
         this.positionTolerance = tolerance;
     }
 
     /**
      * Calculate the robot's speeds to match the path
+     *
      * @param currentPose Current position of the robot
-     * @param goalState Goal position of the robot
+     * @param goalState   Goal position of the robot
      * @return The calculated speeds and rotation
      */
-    public ChassisSpeeds calculate(Pose2d currentPose, SwervePath.State goalState){
+    public ChassisSpeeds calculate(Pose2d currentPose, SwervePath.State goalState) {
         double xFF = goalState.getXVelocity();
         double yFF = goalState.getYVelocity();
         double rotationFF = rotationController.calculate(currentPose.getRotation().getDegrees(), goalState.getRotation().getDegrees());

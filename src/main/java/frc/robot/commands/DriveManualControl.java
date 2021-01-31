@@ -8,36 +8,39 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class DriveManualControl extends CommandBase {
-  /** Creates a new DriveManualControl. */
-  public DriveManualControl() {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.drive);
-  }
+    /**
+     * Creates a new DriveManualControl.
+     */
+    public DriveManualControl() {
+        // Use addRequirements() here to declare subsystem dependencies.
+        addRequirements(RobotContainer.drive);
+    }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {}
+    // Called when the command is initially scheduled.
+    @Override
+    public void initialize() {
+    }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    double rightStickX = RobotContainer.getDriverRightStickX();
-    double leftStickY = RobotContainer.getDriverLeftStickY();
+    // Called every time the scheduler runs while the command is scheduled.
+    @Override
+    public void execute() {
+        double rightStickX = RobotContainer.getDriverRightStickX();
+        double leftStickY = RobotContainer.getDriverLeftStickY();
 
-    RobotContainer.drive.setModuleRotationVoltage(12.5 * rightStickX);
-    RobotContainer.drive.setModuleDrivePct(leftStickY);
-  }
+        RobotContainer.drive.setModuleRotationVoltage(12.5 * rightStickX);
+        RobotContainer.drive.setModuleDrivePct(leftStickY);
+    }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-    RobotContainer.drive.setModuleRotationVoltage(0);
-    RobotContainer.drive.setModuleDrivePct(0);
-  }
+    // Called once the command ends or is interrupted.
+    @Override
+    public void end(boolean interrupted) {
+        RobotContainer.drive.setModuleRotationVoltage(0);
+        RobotContainer.drive.setModuleDrivePct(0);
+    }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+    // Returns true when the command should end.
+    @Override
+    public boolean isFinished() {
+        return false;
+    }
 }

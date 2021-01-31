@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveManualControl;
-import frc.robot.subsystems.Drive.Drive;
+import frc.robot.subsystems.drive.Drive;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -19,48 +19,54 @@ import frc.robot.subsystems.Drive.Drive;
  * subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
-  public static final Drive drive = new Drive();
+    public static final Drive drive = new Drive();
 
-  private static final XboxController driver = new XboxController(0);
+    private static final XboxController driver = new XboxController(0);
 
-  JoystickButton driverA = new JoystickButton(driver, XboxController.Button.kA.value);
+    JoystickButton driverA = new JoystickButton(driver, XboxController.Button.kA.value);
 
-  /** The container for the robot. Contains subsystems, OI devices, and commands. */
-  public RobotContainer() {
-    // Configure the button bindings
-    configureButtonBindings();
-    drive.setDefaultCommand(new DriveManualControl());
-  }
+    /**
+     * The container for the robot. Contains subsystems, OI devices, and commands.
+     */
+    public RobotContainer() {
+        // Configure the button bindings
+        configureButtonBindings();
+        drive.setDefaultCommand(new DriveManualControl());
+    }
 
-  /**
-   * Use this method to define your button->command mappings. Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
-   * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
-  private void configureButtonBindings() {
-    
-  }
+    /**
+     * Use this method to define your button->command mappings. Buttons can be created by
+     * instantiating a {@link GenericHID} or one of its subclasses ({@link
+     * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
+     * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+     */
+    private void configureButtonBindings() {
 
-  public static double getDriverLeftStickX() {
-    return driver.getX(Hand.kLeft);
-  }
-  public static double getDriverLeftStickY() {
-    return driver.getY(Hand.kLeft);
-  }
-  public static double getDriverRightStickX() {
-    return driver.getX(Hand.kRight);
-  }
-  public static double getDriverRightStickY() {
-    return driver.getY(Hand.kRight);
-  }
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
-  public Command getAutonomousCommand() {
-    // An ExampleCommand will run in autonomous
-    return null;
-  }
+    }
+
+    public static double getDriverLeftStickX() {
+        return driver.getX(Hand.kLeft);
+    }
+
+    public static double getDriverLeftStickY() {
+        return driver.getY(Hand.kLeft);
+    }
+
+    public static double getDriverRightStickX() {
+        return driver.getX(Hand.kRight);
+    }
+
+    public static double getDriverRightStickY() {
+        return driver.getY(Hand.kRight);
+    }
+
+    /**
+     * Use this to pass the autonomous command to the main {@link Robot} class.
+     *
+     * @return the command to run in autonomous
+     */
+    public Command getAutonomousCommand() {
+        // An ExampleCommand will run in autonomous
+        return null;
+    }
 }
