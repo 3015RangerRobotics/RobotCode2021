@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import lib.LookupTable;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -63,11 +65,18 @@ public final class Constants {
     public static final double DRIVE_MAX_ROTATION_VELOCITY = 0; //Degrees Per Second
     public static final double DRIVE_MAX_ROTATION_ACCLERATION = 0; //Degrees Per Second Squared
 
+
+    //Hood Constants
     public static final int HOOD_MOTOR_CHANNEL = 0;
     public static final double HOOD_CONTROLLER_P = 0;
     public static final double HOOD_CONTROLLER_I = 0;
     public static final double HOOD_CONTROLLER_D = 0;
     public static final double HOOD_DEGREES_PER_ROTATION = 0;
+    public static final LookupTable HOOD_AUTO_POSITION_TABLE = new LookupTable();
+
+    static {
+        HOOD_AUTO_POSITION_TABLE.put(0, 0);
+    }
     
     // Carousel Constants
     public static final int CAROUSEL_MOTOR1 = 2; // PWM: VICTOR SP
@@ -108,6 +117,11 @@ public final class Constants {
     public static final double SHOOTER_LAUNCH_ANGLE = 53.28;
     public static final double SHOOTER_TOLERANCE = 25;
     public static final double SHOOTER_BALL_QUALITY_FACTOR = 1.0;
+    public static final LookupTable SHOOTER_AUTO_SPEED_TABLE = new LookupTable();
+
+    static {
+        SHOOTER_AUTO_SPEED_TABLE.put(0, 0);
+    }
     
     // Turret Constants
     // All of this is potentially subject to be removed. Only exists so that the shooter class functions.

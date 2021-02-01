@@ -6,13 +6,13 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.ControlType;
-import com.revrobotics.CANDigitalInput.LimitSwitch;
 import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class Hood extends SubsystemBase {
     private CANSparkMax hoodMotor;
@@ -45,6 +45,11 @@ public class Hood extends SubsystemBase {
 
     public void setHoodPosition(double position) {
         hoodMotor.getPIDController().setReference(position, ControlType.kPosition);
+    }
+
+    public double getAutoPosition() {
+        double d = RobotContainer.limelight.getRobotToTargetDistance();
+        return Constants.HOOD_AUTO_POSITION_TABLE.lookup(d);
     }
 
     public boolean getReverseLimit() {

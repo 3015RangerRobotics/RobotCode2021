@@ -184,7 +184,7 @@ public class Shooter extends SubsystemBase {
 			double d = RobotContainer.limelight.getRobotToTargetDistance();
 			if(!isFender) {
 //           double rpm = 7430.1186 + (-255.07933*d) + (7.2472131*d*d); //Perfect ball
-				return (4222.866701 + (110.34724 * d) + (-1.51320429 * d * d)) * Constants.SHOOTER_BALL_QUALITY_FACTOR; //Average ball
+				return Constants.SHOOTER_AUTO_SPEED_TABLE.lookup(d);
 			}else{
 				
 				if(d <= 8){
