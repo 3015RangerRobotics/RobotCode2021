@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.DriveManualControl;
 import frc.robot.subsystems.Hood;
+import frc.robot.subsystems.Carousel;
+import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Turret;
 import frc.robot.subsystems.drive.Drive;
 
 /**
@@ -22,6 +26,10 @@ import frc.robot.subsystems.drive.Drive;
 public class RobotContainer {
     public static final Drive drive = new Drive();
     public static final Hood hood = new Hood();
+    public static final Carousel carousel = new Carousel();
+    public static final Limelight limelight = new Limelight();
+    public static final Turret turret = new Turret();
+    public static final Shooter shooter = new Shooter();
 
     private static final XboxController driver = new XboxController(0);
 

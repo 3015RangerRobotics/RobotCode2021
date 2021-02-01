@@ -68,10 +68,60 @@ public final class Constants {
     public static final double HOOD_CONTROLLER_I = 0;
     public static final double HOOD_CONTROLLER_D = 0;
     public static final double HOOD_DEGREES_PER_ROTATION = 0;
+    
     // Carousel Constants
     public static final int CAROUSEL_MOTOR1 = 2; // PWM: VICTOR SP
     public static final int CAROUSEL_MOTOR2 = 7; // PWM: VICTOR SP
     public static final int CAROUSEL_MOTOR3 = 6; // PWM: VICTOR SP
     public static final int CAROUSEL_MOTOR4 = 5; // PWM: VICTOR SP
     public static final int CAROUSEL_MOTOR5 = 4; // PWM: VICTOR SP
+    public static final int CAROUSEL_BALL_SENSOR1 = 2; // DIO: BEAM BREAK
+    public static final int CAROUSEL_BALL_SENSOR2 = 3; // DIO: BEAM BREAK
+    public static final int CAROUSEL_BALL_SENSOR3 = 4; // DIO: BEAM BREAK
+    public static final int CAROUSEL_BALL_SENSOR4 = 5; // DIO: BEAM BREAK
+    public static final int CAROUSEL_BALL_SENSOR5 = 6; // DIO: BEAM BREAK
+    public static final double CAROUSEL_IN_SPEED_ACTIVE = 0.3;
+    public static final double CAROUSEL_IN_SPEED_PASSIVE = 1.0;
+    public static final double CAROUSEL_PURGE_SPEED1 = -0.6;
+    public static final double CAROUSEL_PURGE_SPEED2 = -0.7;
+    public static final double CAROUSEL_PURGE_SPEED3 = -0.8;
+    public static final double CAROUSEL_PURGE_SPEED4 = -0.9;
+    public static final double CAROUSEL_PURGE_SPEED5 = -1.0;
+    public static final double CAROUSEL_SHOOT_SPEED = 1.0;
+    
+    // Limelight Constants
+    public static final double LL_TARGET_HEIGHT = 7.58;
+    public static final double LL_MOUNT_HEIGHT = 1.75; //TODO: Update this if redoing speed calculation, it is currently wrong
+    public static final double LL_MOUNT_ANGLE = 20;
+    
+    // Shooter Constants
+    public static final int SHOOTER_MOTOR = 5; // CAN: TALON FX
+    public static final double SHOOTER_P = .5;
+    public static final double SHOOTER_I = 0;
+    public static final double SHOOTER_D = 10;
+    public static final double SHOOTER_F = 0.0468;
+    public static final double SHOOTER_PULSES_PER_ROTATION = 2048 * (2.0/3.0);
+    public static final double SHOOTER_SHOOT_P = 25;
+    public static final double SHOOTER_SHOOT_I = 0;
+    public static final double SHOOTER_SHOOT_D = 60;
+    public static final double SHOOTER_SHOOT_F = SHOOTER_F;
+    public static final double SHOOTER_LAUNCH_ANGLE = 53.28;
+    public static final double SHOOTER_TOLERANCE = 25;
+    public static final double SHOOTER_BALL_QUALITY_FACTOR = 1.0;
+    
+    // Turret Constants
+    // All of this is potentially subject to be removed. Only exists so that the shooter class functions.
+    public static final int TURRET_MOTOR = 6; // CAN: TALON SRX
+    public static final int TURRET_LEFT_LIMIT = 1; // DIO: LIMIT SWITCH
+    public static final int TURRET_RIGHT_LIMIT = 0; // DIO: LIMIT SWITCH
+    public static final double TURRET_P = 0.8;
+    public static final double TURRET_I = 0;
+    public static final double TURRET_D = 20;
+    public static final double TURRET_F = 0;
+    public static final double TURRET_DEGREES_PER_PULSE = 1 / (5600.0 / 90.0);
+    public static final double TURRET_MAX_SPEED = 0.7;
+    public static final double TURRET_MIN_SPEED = 0.1;
+    public static final double TURRET_ALLOWABLE_ERROR = Math.round((1 / Constants.TURRET_DEGREES_PER_PULSE) * 1);
+    public static final int TURRET_HOMING_POSITION_LEFT = (int) Math.round(-110 / TURRET_DEGREES_PER_PULSE);
+    public static final int TURRET_HOMING_POSITION_RIGHT = (int) Math.round(52 / TURRET_DEGREES_PER_PULSE);
 }
