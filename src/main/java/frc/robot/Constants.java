@@ -68,4 +68,10 @@ public final class Constants {
     public static final double HOOD_CONTROLLER_I = 0;
     public static final double HOOD_CONTROLLER_D = 0;
     public static final double HOOD_DEGREES_PER_ROTATION = 0;
+    // Carousel Constants
+    public static final int CAROUSEL_MOTOR1 = 2; // PWM: VICTOR SP
+    public static final int CAROUSEL_MOTOR2 = 7; // PWM: VICTOR SP
+    public static final int CAROUSEL_MOTOR3 = 6; // PWM: VICTOR SP
+    public static final int CAROUSEL_MOTOR4 = 5; // PWM: VICTOR SP
+    public static final int CAROUSEL_MOTOR5 = 4; // PWM: VICTOR SP
 }
