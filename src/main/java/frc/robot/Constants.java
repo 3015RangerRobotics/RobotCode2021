@@ -62,4 +62,10 @@ public final class Constants {
     public static final double DRIVE_ROTATION_CONTROLLER_D = 0;
     public static final double DRIVE_MAX_ROTATION_VELOCITY = 0; //Degrees Per Second
     public static final double DRIVE_MAX_ROTATION_ACCLERATION = 0; //Degrees Per Second Squared
+
+    public static final int HOOD_MOTOR_CHANNEL = 0;
+    public static final double HOOD_CONTROLLER_P = 0;
+    public static final double HOOD_CONTROLLER_I = 0;
+    public static final double HOOD_CONTROLLER_D = 0;
+    public static final double HOOD_DEGREES_PER_ROTATION = 0;
 }
