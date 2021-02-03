@@ -16,6 +16,16 @@ import frc.robot.RobotContainer;
 
 public class Hood extends SubsystemBase {
     private CANSparkMax hoodMotor;
+    private double setPos = 0;
+
+    private enum State {
+        kSetPosition,
+        kAutoPosition,
+        kNeutral,
+        kHoming
+    }
+
+    public State state = State.kNeutral;
 
     public Hood() {
        hoodMotor = new CANSparkMax(Constants.HOOD_MOTOR_CHANNEL, MotorType.kBrushless);
@@ -29,6 +39,8 @@ public class Hood extends SubsystemBase {
        hoodMotor.getEncoder().setInverted(false);
        hoodMotor.setSoftLimit(SoftLimitDirection.kForward, 90);
        hoodMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
+       hoodMotor.enableSoftLimit(SoftLimitDirection.kForward, true);
+       enableReverseSoftLimit(true);
     }
 
     @Override
@@ -37,6 +49,44 @@ public class Hood extends SubsystemBase {
         if (getReverseLimit()){
             hoodMotor.getEncoder().setPosition(0);
         }
+
+        switch (state){
+            case kSetPosition:
+                setHoodPosition(setPos);
+                break;
+            case kAutoPosition:
+                setPos = getAutoPosition();
+                setHoodPosition(setPos);
+                break;
+            case kHoming:
+                setHoodOutputPercentage(-0.2);
+                if(getReverseLimit()){
+                    setStateNeutral();
+                    enableReverseSoftLimit(true);
+                }
+                break;
+            case kNeutral:
+            default:
+                setHoodOutputPercentage(0);
+                break;
+        }
+    }
+
+    public void setStatePosition(double pos){
+        setPos = pos;
+        state = State.kSetPosition;
+    }
+
+    public void setStateAutoPosition(){
+        state = State.kAutoPosition;
+    }
+
+    public void setStateHoming(){
+        state = State.kHoming;
+    }
+
+    public void setStateNeutral(){
+        state = State.kNeutral;
     }
 
     public double getHoodPosition() {
@@ -58,5 +108,9 @@ public class Hood extends SubsystemBase {
 
     public void setHoodOutputPercentage(double percentage){
         hoodMotor.set(percentage);
+    }
+
+    public void enableReverseSoftLimit(boolean enabled){
+        hoodMotor.enableSoftLimit(SoftLimitDirection.kReverse, enabled);
     }
 }

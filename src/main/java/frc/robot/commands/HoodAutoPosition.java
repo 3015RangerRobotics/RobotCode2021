@@ -5,7 +5,6 @@ import frc.robot.RobotContainer;
 
 public class HoodAutoPosition extends CommandBase {
     boolean constantUpdate;
-    double referencePosition = 0;
 
     public HoodAutoPosition() {
         addRequirements(RobotContainer.hood);
@@ -19,22 +18,25 @@ public class HoodAutoPosition extends CommandBase {
 
     @Override
     public void initialize() {
-        referencePosition = RobotContainer.hood.getAutoPosition();
+        if(constantUpdate){
+            RobotContainer.hood.setStateAutoPosition();
+        }else{
+            RobotContainer.hood.setStatePosition(RobotContainer.hood.getAutoPosition());
+        }
     }
 
     @Override
     public void execute() {
-        if (constantUpdate) RobotContainer.hood.setHoodPosition(RobotContainer.hood.getAutoPosition());
-        else RobotContainer.hood.setHoodPosition(referencePosition);
+
     }
 
     @Override
     public void end(boolean interrupted) {
-        RobotContainer.hood.setHoodPosition(0);
+
     }
 
     @Override
     public boolean isFinished() {
-        return false;
+        return true;
     }
 }
