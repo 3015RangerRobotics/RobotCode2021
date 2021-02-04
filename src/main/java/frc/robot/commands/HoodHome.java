@@ -20,6 +20,7 @@ public class HoodHome extends CommandBase {
   public void initialize() {
     RobotContainer.hood.enableReverseSoftLimit(false);
     RobotContainer.hood.setStateHoming();
+    System.out.println("hey");
   }
 
   // Called every time the scheduler runs while the command is scheduled.

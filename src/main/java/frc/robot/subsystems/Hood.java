@@ -10,6 +10,7 @@ import com.revrobotics.CANDigitalInput.LimitSwitchPolarity;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -17,6 +18,7 @@ import frc.robot.RobotContainer;
 public class Hood extends SubsystemBase {
     private CANSparkMax hoodMotor;
     private double setPos = 0;
+    private Timer timer = new Timer();
 
     private enum State {
         kSetPosition,
@@ -35,10 +37,10 @@ public class Hood extends SubsystemBase {
        hoodMotor.getPIDController().setI(Constants.HOOD_CONTROLLER_I);
        hoodMotor.getPIDController().setD(Constants.HOOD_CONTROLLER_D);
        hoodMotor.getPIDController().setOutputRange(-1, 1);
-       hoodMotor.setInverted(false);
-       hoodMotor.getEncoder().setInverted(false);
-       hoodMotor.setSoftLimit(SoftLimitDirection.kForward, 90);
-       hoodMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
+//       hoodMotor.setInverted(false);
+//       hoodMotor.getEncoder().setInverted(false);
+       hoodMotor.setSoftLimit(SoftLimitDirection.kForward, 0);
+       hoodMotor.setSoftLimit(SoftLimitDirection.kReverse, -25);
        hoodMotor.enableSoftLimit(SoftLimitDirection.kForward, true);
        enableReverseSoftLimit(true);
     }
@@ -46,27 +48,28 @@ public class Hood extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
-        if (getReverseLimit()){
-            hoodMotor.getEncoder().setPosition(0);
-        }
 
         switch (state){
             case kSetPosition:
                 setHoodPosition(setPos);
+//                System.out.println(getHoodPosition());
                 break;
             case kAutoPosition:
                 setPos = getAutoPosition();
                 setHoodPosition(setPos);
                 break;
             case kHoming:
-                setHoodOutputPercentage(-0.2);
-                if(getReverseLimit()){
+                setHoodOutputPercentage(-0.1);
+//                System.out.println("howdy");
+                if(Math.abs(hoodMotor.getEncoder().getVelocity() * 60) < 1 && timer.hasElapsed(0.25)){
                     setStateNeutral();
                     enableReverseSoftLimit(true);
+                    timer.stop();
                 }
                 break;
             case kNeutral:
             default:
+//                System.out.println("hello?");
                 setHoodOutputPercentage(0);
                 break;
         }
@@ -83,6 +86,8 @@ public class Hood extends SubsystemBase {
 
     public void setStateHoming(){
         state = State.kHoming;
+        timer.reset();
+        timer.start();
     }
 
     public void setStateNeutral(){
@@ -94,7 +99,7 @@ public class Hood extends SubsystemBase {
       }
 
     public void setHoodPosition(double position) {
-        hoodMotor.getPIDController().setReference(position, ControlType.kPosition);
+        hoodMotor.getPIDController().setReference(-position, ControlType.kPosition);
     }
 
     public double getAutoPosition() {
@@ -107,7 +112,7 @@ public class Hood extends SubsystemBase {
     }
 
     public void setHoodOutputPercentage(double percentage){
-        hoodMotor.set(percentage);
+        hoodMotor.set(-percentage);
     }
 
     public void enableReverseSoftLimit(boolean enabled){

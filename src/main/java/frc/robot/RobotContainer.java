@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.commands.DriveManualControl;
+import frc.robot.commands.*;
 import frc.robot.subsystems.Hood;
 import frc.robot.subsystems.Carousel;
 import frc.robot.subsystems.Limelight;
@@ -85,7 +85,10 @@ public class RobotContainer {
      * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private static void configureButtonBindings() {
-
+        driverB.whenActive(new HoodHome());
+        driverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
+        driverLT.whenActive(new CG_ReadyToFire()).whenInactive(new CG_ShooterDefault());
+        driverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
     }
 
     public static double getDriverLeftStickX() {
@@ -109,7 +112,7 @@ public class RobotContainer {
      *
      * @return the command to run in autonomous
      */
-    public Command getAutonomousCommand() {
+    public static Command getAutonomousCommand() {
         return null;
     }
 

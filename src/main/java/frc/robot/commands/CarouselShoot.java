@@ -16,6 +16,12 @@ public class CarouselShoot extends CommandBase {
         this.fender = false;
     }
 
+    public CarouselShoot(double delay) {
+        addRequirements(RobotContainer.carousel);
+        this.delay = delay;
+        this.fender = false;
+    }
+
     public CarouselShoot(double delay, boolean fender) {
         addRequirements(RobotContainer.carousel);
         this.delay = delay;

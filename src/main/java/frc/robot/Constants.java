@@ -67,11 +67,11 @@ public final class Constants {
 
 
     //Hood Constants
-    public static final int HOOD_MOTOR_CHANNEL = 0;
-    public static final double HOOD_CONTROLLER_P = 0;
+    public static final int HOOD_MOTOR_CHANNEL = 1;
+    public static final double HOOD_CONTROLLER_P = .5;
     public static final double HOOD_CONTROLLER_I = 0;
     public static final double HOOD_CONTROLLER_D = 0;
-    public static final double HOOD_DEGREES_PER_ROTATION = 0;
+    public static final double HOOD_DEGREES_PER_ROTATION = 0.2847;
     public static final LookupTable HOOD_AUTO_POSITION_TABLE = new LookupTable();
 
     static {
