@@ -40,9 +40,9 @@ public class Hood extends SubsystemBase {
 //       hoodMotor.setInverted(false);
 //       hoodMotor.getEncoder().setInverted(false);
        hoodMotor.setSoftLimit(SoftLimitDirection.kForward, 0);
-       hoodMotor.setSoftLimit(SoftLimitDirection.kReverse, -25);
+       hoodMotor.setSoftLimit(SoftLimitDirection.kReverse, -33);
        hoodMotor.enableSoftLimit(SoftLimitDirection.kForward, true);
-       enableReverseSoftLimit(true);
+       enableForwardSoftLimit(true);
     }
 
     @Override
@@ -63,8 +63,9 @@ public class Hood extends SubsystemBase {
 //                System.out.println("howdy");
                 if(Math.abs(hoodMotor.getEncoder().getVelocity() * 60) < 1 && timer.hasElapsed(0.25)){
                     setStateNeutral();
-                    enableReverseSoftLimit(true);
+                    enableForwardSoftLimit(true);
                     timer.stop();
+                    hoodMotor.getEncoder().setPosition(0);
                 }
                 break;
             case kNeutral:
@@ -115,7 +116,7 @@ public class Hood extends SubsystemBase {
         hoodMotor.set(-percentage);
     }
 
-    public void enableReverseSoftLimit(boolean enabled){
-        hoodMotor.enableSoftLimit(SoftLimitDirection.kReverse, enabled);
+    public void enableForwardSoftLimit(boolean enabled){
+        hoodMotor.enableSoftLimit(SoftLimitDirection.kForward, enabled);
     }
 }

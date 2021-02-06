@@ -12,11 +12,7 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.*;
-import frc.robot.subsystems.Hood;
-import frc.robot.subsystems.Carousel;
-import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.Turret;
+import frc.robot.subsystems.*;
 import frc.robot.subsystems.drive.Drive;
 
 /**
@@ -27,6 +23,7 @@ import frc.robot.subsystems.drive.Drive;
  */
 public class RobotContainer {
     public static Drive drive;
+    public static DriveOld driveOld;
     public static Hood hood;
     public static Carousel carousel;
     public static Limelight limelight;
@@ -68,6 +65,7 @@ public class RobotContainer {
 
     public static void init(){
 //        drive = new Drive();
+        driveOld = new DriveOld();
         hood = new Hood();
         carousel = new Carousel();
         limelight = new Limelight();
@@ -75,6 +73,7 @@ public class RobotContainer {
         shooter = new Shooter();
 
 //        drive.setDefaultCommand(new DriveManualControl());
+        driveOld.setDefaultCommand(new DriveWithGamepadOld());
         configureButtonBindings();
     }
 

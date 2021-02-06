@@ -53,6 +53,8 @@ public class Shooter extends SubsystemBase {
 	@Override
 	public void periodic() {
 		SmartDashboard.putNumber("shooter speed", setSpeed);
+		SmartDashboard.putNumber("PIDTarget", setSpeed);
+		SmartDashboard.putNumber("PIDActual", getRPM());
 		
 		if(getRPM() >= 7500){
 			state = State.kOff;

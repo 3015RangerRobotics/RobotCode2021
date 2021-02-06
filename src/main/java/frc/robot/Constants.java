@@ -110,9 +110,9 @@ public final class Constants {
     public static final double SHOOTER_D = 10;
     public static final double SHOOTER_F = 0.0468;
     public static final double SHOOTER_PULSES_PER_ROTATION = 2048 * (2.0/3.0);
-    public static final double SHOOTER_SHOOT_P = 25;
+    public static final double SHOOTER_SHOOT_P = .5;//25
     public static final double SHOOTER_SHOOT_I = 0;
-    public static final double SHOOTER_SHOOT_D = 60;
+    public static final double SHOOTER_SHOOT_D = 10;//60
     public static final double SHOOTER_SHOOT_F = SHOOTER_F;
     public static final double SHOOTER_LAUNCH_ANGLE = 53.28;
     public static final double SHOOTER_TOLERANCE = 25;

@@ -18,9 +18,9 @@ public class HoodHome extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.hood.enableReverseSoftLimit(false);
+    RobotContainer.hood.enableForwardSoftLimit(false);
     RobotContainer.hood.setStateHoming();
-    System.out.println("hey");
+//    System.out.println("hey");
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -12,8 +12,8 @@ public class CG_ReadyToFire extends SequentialCommandGroup {
 //                new ShooterAutoSpeed(),
                 new ShooterSetSpeed(5400),
 //                new HoodAutoPosition(),
-                new HoodSetPosition(8)
-//                new TurretTurnToTargetHold()
+                new HoodSetPosition(30.5),
+                new TurretTurnToTargetHold()
         );
     }
 }
