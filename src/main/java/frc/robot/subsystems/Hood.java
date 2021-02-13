@@ -40,7 +40,7 @@ public class Hood extends SubsystemBase {
 //       hoodMotor.setInverted(false);
 //       hoodMotor.getEncoder().setInverted(false);
        hoodMotor.setSoftLimit(SoftLimitDirection.kForward, 0);
-       hoodMotor.setSoftLimit(SoftLimitDirection.kReverse, -33);
+       hoodMotor.setSoftLimit(SoftLimitDirection.kReverse, -38);
        hoodMotor.enableSoftLimit(SoftLimitDirection.kForward, true);
        enableForwardSoftLimit(true);
     }

@@ -9,15 +9,15 @@ public class CG_Fire extends SequentialCommandGroup {
     public CG_Fire(){
         addCommands(
 //                new ShooterAutoSpeed(),
-                new TurretTurnToTarget(),
+//                new TurretTurnToTarget(),
 //                new TurretWaitUntilOnTarget(),
 //                new ShooterAutoSpeed(false),
-                new ShooterSetSpeed(5400),
+                new ShooterSetSpeed(7000),
 //                new HoodAutoPosition(false),
-                new HoodSetPosition(30.5),
+                new HoodSetPosition(33),
                 new ShooterWaitUntilPrimed(),
                 new ParallelDeadlineGroup(
-                        new CarouselShoot(1)
+                        new CarouselShoot(0.5)
                         //intake
                 )
         );

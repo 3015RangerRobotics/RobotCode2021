@@ -100,17 +100,18 @@ public final class Constants {
     
     // Limelight Constants
     public static final double LL_TARGET_HEIGHT = 7.58;
-    public static final double LL_MOUNT_HEIGHT = 1.75; //TODO: Update this if redoing speed calculation, it is currently wrong
-    public static final double LL_MOUNT_ANGLE = 20;
+    public static final double LL_MOUNT_HEIGHT = 1.65;
+    public static final double LL_MOUNT_ANGLE = 28;
     
     // Shooter Constants
     public static final int SHOOTER_MOTOR = 5; // CAN: TALON FX
-    public static final double SHOOTER_P = .5;
+    public static final int SHOOTER_MOTOR_2 = 10; // CAN: TALON FX
+    public static final double SHOOTER_P = 0.4;//0.5
     public static final double SHOOTER_I = 0;
-    public static final double SHOOTER_D = 10;
-    public static final double SHOOTER_F = 0.0468;
+    public static final double SHOOTER_D = 10;//10
+    public static final double SHOOTER_F = 0.0455;//0.0468
     public static final double SHOOTER_PULSES_PER_ROTATION = 2048 * (2.0/3.0);
-    public static final double SHOOTER_SHOOT_P = .5;//25
+    public static final double SHOOTER_SHOOT_P = .4;//25
     public static final double SHOOTER_SHOOT_I = 0;
     public static final double SHOOTER_SHOOT_D = 10;//60
     public static final double SHOOTER_SHOOT_F = SHOOTER_F;

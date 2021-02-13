@@ -69,7 +69,7 @@ public class RobotContainer {
         hood = new Hood();
         carousel = new Carousel();
         limelight = new Limelight();
-        turret = new Turret();
+//        turret = new Turret();
         shooter = new Shooter();
 
 //        drive.setDefaultCommand(new DriveManualControl());
@@ -88,6 +88,8 @@ public class RobotContainer {
         driverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
         driverLT.whenActive(new CG_ReadyToFire()).whenInactive(new CG_ShooterDefault());
         driverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
+        driverX.whenActive(new HoodSetPosition(90)).whenInactive(new HoodSetPosition(0));
+//        driverA.whenActive(new ShooterSetSpeed(6900)).whenInactive(new ShooterStop());
     }
 
     public static double getDriverLeftStickX() {

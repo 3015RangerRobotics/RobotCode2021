@@ -10,6 +10,7 @@ import frc.robot.RobotContainer;
 
 public class Shooter extends SubsystemBase {
 	private TalonFX shooter;
+	private TalonFX shooterFollower;
 	private double setSpeed;
 	
 	private enum State {
@@ -24,6 +25,10 @@ public class Shooter extends SubsystemBase {
 	
 	public Shooter() {
 		shooter = new TalonFX(Constants.SHOOTER_MOTOR);
+		shooterFollower = new TalonFX(Constants.SHOOTER_MOTOR_2);
+		shooterFollower.setInverted(true);
+		shooterFollower.follow(shooter);
+
 		shooter.configFactoryDefault();
 		
 		shooter.setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 10);
@@ -66,8 +71,8 @@ public class Shooter extends SubsystemBase {
 		For now I'll copy the code for the turret over so this doesn't have errors, but we can remove it later
 		if need be.
 		 */
-		double turretPos = RobotContainer.turret.getPosition() + RobotContainer.limelight.getTargetAngleX();
-		double turretOffset = 2 * Math.abs(turretPos);
+//		double turretPos = RobotContainer.turret.getPosition() + RobotContainer.limelight.getTargetAngleX();
+		double turretOffset = 0;//2 * Math.abs(turretPos);
 		
 		switch(state) {
 			case kSetSpeed:
@@ -210,7 +215,7 @@ public class Shooter extends SubsystemBase {
 	 * @return True if the shooter is primed
 	 */
 	public boolean isPrimed() {
-		double turretPos = RobotContainer.turret.getPosition() + RobotContainer.limelight.getTargetAngleX();
+		double turretPos = 0;//RobotContainer.turret.getPosition() + RobotContainer.limelight.getTargetAngleX();
 		return Math.abs(setSpeed + (2 * Math.abs(turretPos)) - getRPM()) <= Constants.SHOOTER_TOLERANCE;
 	}
 }
