@@ -64,16 +64,16 @@ public class RobotContainer {
     private static final JoystickButton coDriverBack = new JoystickButton(coDriver, XboxController.Button.kBack.value);
 
     public static void init(){
-//        drive = new Drive();
-        driveOld = new DriveOld();
-        hood = new Hood();
-        carousel = new Carousel();
-        limelight = new Limelight();
+        drive = new Drive();
+//        driveOld = new DriveOld();
+//        hood = new Hood();
+//        carousel = new Carousel();
+//        limelight = new Limelight();
 //        turret = new Turret();
-        shooter = new Shooter();
+//        shooter = new Shooter();
 
-//        drive.setDefaultCommand(new DriveManualControl());
-        driveOld.setDefaultCommand(new DriveWithGamepadOld());
+        drive.setDefaultCommand(new DriveManualControl());
+//        driveOld.setDefaultCommand(new DriveWithGamepadOld());
         configureButtonBindings();
     }
 
@@ -84,27 +84,40 @@ public class RobotContainer {
      * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private static void configureButtonBindings() {
-        driverB.whenActive(new HoodHome());
-        driverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
-        driverLT.whenActive(new CG_ReadyToFire()).whenInactive(new CG_ShooterDefault());
-        driverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
-        driverX.whenActive(new HoodSetPosition(90)).whenInactive(new HoodSetPosition(0));
+//        driverB.whenActive(new HoodHome());
+//        driverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
+//        driverLT.whenActive(new CG_ReadyToFire()).whenInactive(new CG_ShooterDefault());
+//        driverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
+//        driverX.whenActive(new HoodSetPosition(90)).whenInactive(new HoodSetPosition(0));
 //        driverA.whenActive(new ShooterSetSpeed(6900)).whenInactive(new ShooterStop());
+        driverA.whenActive(new DriveSetModuleRotation(90)).whenInactive(new DriveSetModuleRotation(0));
     }
 
     public static double getDriverLeftStickX() {
+        if(Math.abs(driver.getX(Hand.kLeft)) < 0.1){
+            return 0;
+        }
         return driver.getX(Hand.kLeft);
     }
 
     public static double getDriverLeftStickY() {
+        if(Math.abs(driver.getY(Hand.kLeft)) < 0.1){
+            return 0;
+        }
         return driver.getY(Hand.kLeft);
     }
 
     public static double getDriverRightStickX() {
+        if(Math.abs(driver.getX(Hand.kRight)) < 0.1){
+            return 0;
+        }
         return driver.getX(Hand.kRight);
     }
 
     public static double getDriverRightStickY() {
+        if(Math.abs(driver.getY(Hand.kRight)) < 0.1){
+            return 0;
+        }
         return driver.getY(Hand.kRight);
     }
 

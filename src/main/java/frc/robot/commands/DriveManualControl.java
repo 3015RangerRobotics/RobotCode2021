@@ -27,14 +27,15 @@ public class DriveManualControl extends CommandBase {
         double rightStickX = RobotContainer.getDriverRightStickX();
         double leftStickY = RobotContainer.getDriverLeftStickY();
 
-        RobotContainer.drive.setModuleRotationVoltage(12.5 * rightStickX);
+//        RobotContainer.drive.setModuleRotationVoltage(12.5 * rightStickX);
+        RobotContainer.drive.setModuleRotationStationary(rightStickX * 180);
         RobotContainer.drive.setModuleDrivePct(leftStickY);
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        RobotContainer.drive.setModuleRotationVoltage(0);
+//        RobotContainer.drive.setModuleRotationVoltage(0);
         RobotContainer.drive.setModuleDrivePct(0);
     }
 

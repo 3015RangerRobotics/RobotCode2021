@@ -37,10 +37,10 @@ public class Drive extends SubsystemBase {
      * Creates a new Drive.
      */
     public Drive() {
-        frontLeftSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_FL, Constants.SWERVE_ROTATION_CHANNEL_FL, Constants.SWERVE_ENCODER0_CHANNEL_FL, Constants.SWERVE_ENCODER1_CHANNEL_FL);
-        frontRightSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_FR, Constants.SWERVE_ROTATION_CHANNEL_FR, Constants.SWERVE_ENCODER0_CHANNEL_FR, Constants.SWERVE_ENCODER1_CHANNEL_FR);
-        backLeftSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_BL, Constants.SWERVE_ROTATION_CHANNEL_BL, Constants.SWERVE_ENCODER0_CHANNEL_BL, Constants.SWERVE_ENCODER1_CHANNEL_BL);
-        backRightSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_BR, Constants.SWERVE_ROTATION_CHANNEL_BR, Constants.SWERVE_ENCODER0_CHANNEL_BR, Constants.SWERVE_ENCODER1_CHANNEL_BR);
+        frontLeftSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_FL, Constants.SWERVE_ROTATION_CHANNEL_FL, 6);
+        frontRightSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_FR, Constants.SWERVE_ROTATION_CHANNEL_FR, 128);
+        backLeftSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_BL, Constants.SWERVE_ROTATION_CHANNEL_BL, 116);
+        backRightSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_BR, Constants.SWERVE_ROTATION_CHANNEL_BR, 55);
         resetEncoders();
 
         imu = new PigeonIMU(Constants.DRIVE_PIGEON_CHANNEL);
@@ -54,6 +54,7 @@ public class Drive extends SubsystemBase {
     @Override
     public void periodic() {
         // This method will be called once per scheduler run
+        System.out.println(frontLeftSwerveModule.getVelocity());
     }
 
     public void resetEncoders() {
@@ -98,11 +99,10 @@ public class Drive extends SubsystemBase {
     }
 
     public void setModuleRotationStationary(double degrees) {
-        SwerveModuleState state = new SwerveModuleState(0, Rotation2d.fromDegrees(degrees));
-        frontLeftSwerveModule.setSwerveModuleState(state);
-        frontRightSwerveModule.setSwerveModuleState(state);
-        backLeftSwerveModule.setSwerveModuleState(state);
-        backRightSwerveModule.setSwerveModuleState(state);
+        frontLeftSwerveModule.setRotationPosition(degrees);
+        frontRightSwerveModule.setRotationPosition(degrees);
+        backLeftSwerveModule.setRotationPosition(degrees);
+        backRightSwerveModule.setRotationPosition(degrees);
     }
 
     public void drive(ChassisSpeeds chassisSpeeds) {
