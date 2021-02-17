@@ -20,6 +20,7 @@ public class DriveWithGamepad extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        RobotContainer.drive.resetIMU();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -29,7 +30,7 @@ public class DriveWithGamepad extends CommandBase {
         double leftStickY = RobotContainer.getDriverLeftStickY();
         double leftStickX = RobotContainer.getDriverLeftStickX();
 
-        RobotContainer.drive.drive(leftStickX * Constants.SWERVE_MAX_VELOCITY, leftStickY * Constants.SWERVE_MAX_VELOCITY, rightStickX * Constants.SWERVE_MAX_ANGULAR_VELOCITY, true);
+        RobotContainer.drive.drive(-leftStickY * Constants.SWERVE_MAX_VELOCITY, leftStickX * Constants.SWERVE_MAX_VELOCITY, rightStickX * Constants.DRIVE_MAX_ANGULAR_VELOCITY, true);
     }
 
     // Called once the command ends or is interrupted.

@@ -72,7 +72,7 @@ public class RobotContainer {
 //        turret = new Turret();
 //        shooter = new Shooter();
 
-        drive.setDefaultCommand(new DriveManualControl());
+        drive.setDefaultCommand(new DriveWithGamepad());
 //        driveOld.setDefaultCommand(new DriveWithGamepadOld());
         configureButtonBindings();
     }
@@ -97,28 +97,36 @@ public class RobotContainer {
         if(Math.abs(driver.getX(Hand.kLeft)) < 0.1){
             return 0;
         }
-        return driver.getX(Hand.kLeft);
+        return squareStickInput(driver.getX(Hand.kLeft));
     }
 
     public static double getDriverLeftStickY() {
         if(Math.abs(driver.getY(Hand.kLeft)) < 0.1){
             return 0;
         }
-        return driver.getY(Hand.kLeft);
+        return squareStickInput(driver.getY(Hand.kLeft));
     }
 
     public static double getDriverRightStickX() {
         if(Math.abs(driver.getX(Hand.kRight)) < 0.1){
             return 0;
         }
-        return driver.getX(Hand.kRight);
+        return squareStickInput(driver.getX(Hand.kRight));
     }
 
     public static double getDriverRightStickY() {
         if(Math.abs(driver.getY(Hand.kRight)) < 0.1){
             return 0;
         }
-        return driver.getY(Hand.kRight);
+        return squareStickInput(driver.getY(Hand.kRight));
+    }
+
+    public static double squareStickInput(double input){
+        if(input < 0){
+            return -(input*input);
+        }else{
+            return input*input;
+        }
     }
 
     /**

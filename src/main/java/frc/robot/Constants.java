@@ -16,19 +16,20 @@ import lib.LookupTable;
  */
 public final class Constants {
 
-    // Swerve Modules
+    // Swerve Module Specific
     public static final double SWERVE_CENTER_DISTANCE = 0.2942971; // Meters
-    public static final double SWERVE_MAX_ANGULAR_VELOCITY = 360; // Degrees per second
-    public static final double SWERVE_MAX_ANGULAR_ACCEL = 180; // Degrees per second squared
     public static final double SWERVE_DEGREES_PER_PULSE = 360.0 / 4096.0;
-    public static final double SWERVE_ROTATION_P = 70;
+    public static final double SWERVE_ROTATION_P = 1.5;
     public static final double SWERVE_ROTATION_I = 0;
-    public static final double SWERVE_ROTATION_D = 3000;
+    public static final double SWERVE_ROTATION_D = 32;
+    public static final double SWERVE_ROTATION_MAX_VELOCITY = 70/SWERVE_DEGREES_PER_PULSE;
+    public static final double SWERVE_ROTATION_MAX_ACCEL = 540/SWERVE_DEGREES_PER_PULSE;
+    public static final double SWERVE_ROTATION_KV = 1023.0/SWERVE_ROTATION_MAX_VELOCITY;
     public static final double SWERVE_MAX_VELOCITY = 4.5;
     public static final double SWERVE_METERS_PER_PULSE = 0.00002226;
-    public static final double SWERVE_DRIVE_P = 0;
-    public static final double SWERVE_DRIVE_I = 0;
-    public static final double SWERVE_DRIVE_D = 0;
+    public static final double SWERVE_DRIVE_P = -1000; //TODO
+    public static final double SWERVE_DRIVE_I = 0; //TODO
+    public static final double SWERVE_DRIVE_D = -25; // TODO
 
     public static final int SWERVE_DRIVE_CHANNEL_FL = 1;
     public static final int SWERVE_ROTATION_CHANNEL_FL = 5;
@@ -41,6 +42,7 @@ public final class Constants {
 
     // Drive Subsystem
     public static final int DRIVE_PIGEON_CHANNEL = 1;
+    public static final double DRIVE_MAX_ANGULAR_VELOCITY = 600;
 
     //Pathfinding
     public static final double DRIVE_X_CONTROLLER_P = 0;

@@ -4,7 +4,10 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class DriveManualControl extends CommandBase {
@@ -27,9 +30,15 @@ public class DriveManualControl extends CommandBase {
         double rightStickX = RobotContainer.getDriverRightStickX();
         double leftStickY = RobotContainer.getDriverLeftStickY();
 
-//        RobotContainer.drive.setModuleRotationVoltage(12.5 * rightStickX);
-        RobotContainer.drive.setModuleRotationStationary(rightStickX * 180);
-        RobotContainer.drive.setModuleDrivePct(leftStickY);
+
+//        RobotContainer.drive.setModuleRotation(rightStickX * 180);
+//        RobotContainer.drive.setBackLeftRotation(135);
+//        RobotContainer.drive.setBackRightRotation(45);
+//        RobotContainer.drive.setFrontLeftRotation(45);
+//        RobotContainer.drive.setFrontRightRotation(-45);
+//        RobotContainer.drive.setModuleDrivePct(leftStickY);
+        ChassisSpeeds test = new ChassisSpeeds(leftStickY * Constants.SWERVE_MAX_VELOCITY, 0, Units.degreesToRadians(rightStickX * Constants.DRIVE_MAX_ANGULAR_VELOCITY));
+        RobotContainer.drive.drive(test);
     }
 
     // Called once the command ends or is interrupted.
