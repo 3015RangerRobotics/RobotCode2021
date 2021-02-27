@@ -97,7 +97,7 @@ public class SwerveModule {
         SwerveModuleState optimizedState = SwerveModuleState.optimize(state, Rotation2d.fromDegrees(getAbsoluteRotation()));
         setRotationPosition(optimizedState.angle.getDegrees());
         setDriveMotor(ControlMode.Velocity, optimizedState.speedMetersPerSecond / Constants.SWERVE_METERS_PER_PULSE);
-        System.out.println(optimizedState.speedMetersPerSecond);
+//        System.out.println(optimizedState.speedMetersPerSecond);
     }
 
 }

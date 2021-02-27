@@ -11,7 +11,7 @@ public class CarouselPurge extends CommandBase {
 
     @Override
     public void initialize() {
-        RobotContainer.carousel.setState(Carousel.State.kPurgeBall5);
+        RobotContainer.carousel.setState(Carousel.State.kPurgeBall3);
         RobotContainer.carousel.setPaused(false);
         RobotContainer.carousel.setBallCounter(0);
     }

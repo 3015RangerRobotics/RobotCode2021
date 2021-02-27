@@ -71,23 +71,17 @@ public final class Constants {
     }
     
     // Carousel Constants
-    public static final int CAROUSEL_MOTOR1 = 2; // PWM: VICTOR SP
-    public static final int CAROUSEL_MOTOR2 = 7; // PWM: VICTOR SP
-    public static final int CAROUSEL_MOTOR3 = 6; // PWM: VICTOR SP
-    public static final int CAROUSEL_MOTOR4 = 5; // PWM: VICTOR SP
-    public static final int CAROUSEL_MOTOR5 = 4; // PWM: VICTOR SP
-    public static final int CAROUSEL_BALL_SENSOR1 = 2; // DIO: BEAM BREAK
-    public static final int CAROUSEL_BALL_SENSOR2 = 3; // DIO: BEAM BREAK
-    public static final int CAROUSEL_BALL_SENSOR3 = 4; // DIO: BEAM BREAK
-    public static final int CAROUSEL_BALL_SENSOR4 = 5; // DIO: BEAM BREAK
-    public static final int CAROUSEL_BALL_SENSOR5 = 6; // DIO: BEAM BREAK
+    public static final int CAROUSEL_MOTOR1 = 0; // PWM: VICTOR SP
+    public static final int CAROUSEL_MOTOR2 = 1; // PWM: VICTOR SP
+    public static final int CAROUSEL_MOTOR3 = 2; // PWM: VICTOR SP
+    public static final int CAROUSEL_BALL_SENSOR1 = 0; // DIO: BEAM BREAK
+    public static final int CAROUSEL_BALL_SENSOR2 = 1; // DIO: BEAM BREAK
+    public static final int CAROUSEL_BALL_SENSOR3 = 2; // DIO: BEAM BREAK
     public static final double CAROUSEL_IN_SPEED_ACTIVE = 0.3;
     public static final double CAROUSEL_IN_SPEED_PASSIVE = 1.0;
-    public static final double CAROUSEL_PURGE_SPEED1 = -0.6;
-    public static final double CAROUSEL_PURGE_SPEED2 = -0.7;
-    public static final double CAROUSEL_PURGE_SPEED3 = -0.8;
-    public static final double CAROUSEL_PURGE_SPEED4 = -0.9;
-    public static final double CAROUSEL_PURGE_SPEED5 = -1.0;
+    public static final double CAROUSEL_PURGE_SPEED1 = -0.8;
+    public static final double CAROUSEL_PURGE_SPEED2 = -0.9;
+    public static final double CAROUSEL_PURGE_SPEED3 = -1;
     public static final double CAROUSEL_SHOOT_SPEED = 1.0;
     
     // Limelight Constants
@@ -96,7 +90,7 @@ public final class Constants {
     public static final double LL_MOUNT_ANGLE = 28;
     
     // Shooter Constants
-    public static final int SHOOTER_MOTOR = 5; // CAN: TALON FX
+    public static final int SHOOTER_MOTOR = 11; // CAN: TALON FX
     public static final int SHOOTER_MOTOR_2 = 10; // CAN: TALON FX
     public static final double SHOOTER_P = 0.4;//0.5
     public static final double SHOOTER_I = 0;

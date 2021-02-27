@@ -22,8 +22,7 @@ public class CarouselDefault extends CommandBase {
     public void execute() {
         Carousel.State currentState = RobotContainer.carousel.getState();
         if (currentState == Carousel.State.kFillTo1 || currentState == Carousel.State.kFillTo2 ||
-                currentState == Carousel.State.kFillTo3 || currentState == Carousel.State.kFillTo4 ||
-                currentState == Carousel.State.kFillTo5) {
+                currentState == Carousel.State.kFillTo3) {
             if (timer.hasElapsed(1.5)) {
                 RobotContainer.carousel.setPaused(true);
             }

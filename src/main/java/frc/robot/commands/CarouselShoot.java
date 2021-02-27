@@ -50,16 +50,6 @@ public class CarouselShoot extends CommandBase {
             RobotContainer.carousel.setState(State.kShootBall3);
             timer.reset();
             timer.start();
-        } else if (RobotContainer.carousel.getState() == State.kShootBall3 && !RobotContainer.carousel.isBall3Present() && timer.hasElapsed(delay)) {
-            //If currently the kShootball3 state is being executed and the third ball is no longer on the third switch, fire ball 4
-            RobotContainer.carousel.setState(State.kShootBall4);
-            timer.reset();
-            timer.start();
-        } else if (RobotContainer.carousel.getState() == State.kShootBall4 && !RobotContainer.carousel.isBall4Present() && timer.hasElapsed(delay)) {
-            //If the currently the kShootball4 state is being executed and the fourth ball is no longer on the fourth switch, fire ball 5
-            RobotContainer.carousel.setState(State.kShootBall5);
-            timer.reset();
-            timer.start();
         }
     }
 
@@ -71,6 +61,6 @@ public class CarouselShoot extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return RobotContainer.carousel.getState() == State.kShootBall5 && timer.hasElapsed(0.5);
+        return RobotContainer.carousel.getState() == State.kShootBall3 && timer.hasElapsed(0.5);
     }
 }

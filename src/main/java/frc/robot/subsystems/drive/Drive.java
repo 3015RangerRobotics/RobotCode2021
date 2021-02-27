@@ -58,6 +58,7 @@ public class Drive extends SubsystemBase {
 //        double [] raw = new double [3];
 //        imu.getRawGyro(raw);
         SmartDashboard.putNumber("gyro", getAngleDegrees());
+        SmartDashboard.putNumber("compass", imu.getCompassHeading());
 //        System.out.println(raw[2]);
     }
 
@@ -74,9 +75,7 @@ public class Drive extends SubsystemBase {
     }
 
     public double getAngleDegrees() {
-        double[] ypr = new double[3];
-        imu.getYawPitchRoll(ypr);
-        double angle = ypr[0] % 360;
+        double angle = imu.getFusedHeading() % 360;
         if(angle > 180){
             angle -= 360;
         }else if(angle <= -180) {
