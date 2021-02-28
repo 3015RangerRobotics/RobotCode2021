@@ -20,7 +20,7 @@ public class DriveWithGamepad extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        RobotContainer.drive.resetIMU();
+//        RobotContainer.drive.resetIMU();
     }
 
     // Called every time the scheduler runs while the command is scheduled.
@@ -36,7 +36,7 @@ public class DriveWithGamepad extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        RobotContainer.drive.drive(0, 0, 0, true);
+//        RobotContainer.drive.drive(0, 0, 0, true);
     }
 
     // Returns true when the command should end.

@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -17,6 +18,12 @@ public class Carousel extends SubsystemBase {
 	private int ballCounter = 0;
 	
 	private static boolean isPaused = false;
+
+	private PIDController motor1PidController;
+
+	private Encoder motor1Encoder;
+
+	private double setVelocity;
 	
 	public enum State {
 		kPurgeBall1,
@@ -43,8 +50,14 @@ public class Carousel extends SubsystemBase {
 		switch3 = new DigitalInput(Constants.CAROUSEL_BALL_SENSOR3); //assigned to motor 3
 		
 		motor1.setInverted(false);
-		motor2.setInverted(true);
-		motor3.setInverted(false);
+		motor2.setInverted(false);
+		motor3.setInverted(true);
+
+		motor1PidController = new PIDController(Constants.CAROUSEL_SHOOT_P, Constants.CAROUSEL_SHOOT_I, Constants.CAROUSEL_SHOOT_D);
+		motor1Encoder = new Encoder(Constants.CAROUSEL_ENCODER1, Constants.CAROUSEL_ENCODER2, Constants.CAROUSEL_ENCODER3);
+//		motor1Encoder.setDistancePerPulse(1.0 / Constants.CAROUSEL_PULSES_PER_ROTATION);
+
+		motor1Encoder.setReverseDirection(true);
 	}
 	
 	@Override
@@ -52,7 +65,10 @@ public class Carousel extends SubsystemBase {
 		SmartDashboard.putBoolean("switch1", isBall1Present());
 		SmartDashboard.putBoolean("switch2", isBall2Present());
 		SmartDashboard.putBoolean("switch3", isBall3Present());
-		
+		SmartDashboard.putNumber("Intake Motor1 Velocity", getMotor1Velocity());
+		SmartDashboard.putNumber("PIDTarget", setVelocity);
+		SmartDashboard.putNumber("PIDActual", getMotor1Velocity());
+
 		switch (state) {
 			case kPurgeBall3:
 				setMotors(0, 0, Constants.CAROUSEL_PURGE_SPEED3);
@@ -74,16 +90,16 @@ public class Carousel extends SubsystemBase {
 				break;
 			
 			case kShootBall1:
-				setMotors(Constants.CAROUSEL_SHOOT_SPEED, 0, 0);
+				setMotorsVelocity(Constants.CAROUSEL_SHOOT_VELOCITY, 0, 0);
 				break;
 			
 			case kShootBall2:
-				setMotors(Constants.CAROUSEL_SHOOT_SPEED, Constants.CAROUSEL_SHOOT_SPEED, 0);
+				setMotorsVelocity(Constants.CAROUSEL_SHOOT_VELOCITY, Constants.CAROUSEL_SHOOT_PERCENTAGE, 0);
 				break;
 			
 			case kShootBall3:
-				setMotors(Constants.CAROUSEL_SHOOT_SPEED, Constants.CAROUSEL_SHOOT_SPEED,
-						Constants.CAROUSEL_SHOOT_SPEED);
+				setMotorsVelocity(Constants.CAROUSEL_SHOOT_VELOCITY, Constants.CAROUSEL_SHOOT_PERCENTAGE,
+						Constants.CAROUSEL_SHOOT_PERCENTAGE);
 				break;
 
 			case kFillTo1:
@@ -178,6 +194,7 @@ public class Carousel extends SubsystemBase {
 	 */
 	private void setMotors(double speed1, double speed2, double speed3) {
 		//set motors for percent ouput
+		setVelocity = 0;
 		if (isPaused()) {
 			motor1.set(0);
 			motor2.set(0);
@@ -187,6 +204,28 @@ public class Carousel extends SubsystemBase {
 			motor2.set(speed2);
 			motor3.set(speed3);
 		}
+	}
+
+	public void setMotorsVelocity(double speed1vel, double speed2pct, double speed3pct) {
+		if (isPaused()) {
+			setVelocity = 0;
+			motor1.set(0);
+			motor2.set(0);
+			motor3.set(0);
+		} else {
+			setVelocity = speed1vel;
+			motor1.set(motor1PidController.calculate(getMotor1Velocity(), speed1vel) + speed1vel * Constants.CAROUSEL_SHOOT_F);
+			motor2.set(speed2pct);
+			motor3.set(speed3pct);
+		}
+	}
+
+	public double getMotor1Velocity() {
+		return motor1Encoder.getRate();
+	}
+
+	public double getMotor1Position() {
+		return motor1Encoder.get();
 	}
 	
 	/**

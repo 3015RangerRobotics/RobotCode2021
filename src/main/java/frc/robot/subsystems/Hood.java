@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -37,10 +38,10 @@ public class Hood extends SubsystemBase {
        hoodMotor.getPIDController().setI(Constants.HOOD_CONTROLLER_I);
        hoodMotor.getPIDController().setD(Constants.HOOD_CONTROLLER_D);
        hoodMotor.getPIDController().setOutputRange(-1, 1);
-//       hoodMotor.setInverted(false);
-//       hoodMotor.getEncoder().setInverted(false);
-       hoodMotor.setSoftLimit(SoftLimitDirection.kForward, 0);
-       hoodMotor.setSoftLimit(SoftLimitDirection.kReverse, -38);
+//       hoodMotor.setInverted(true);
+//       hoodMotor.getEncoder().setInverted(true);
+       hoodMotor.setSoftLimit(SoftLimitDirection.kForward, 42);
+       hoodMotor.setSoftLimit(SoftLimitDirection.kReverse, 0);
        hoodMotor.enableSoftLimit(SoftLimitDirection.kForward, true);
        enableForwardSoftLimit(true);
     }
@@ -59,7 +60,7 @@ public class Hood extends SubsystemBase {
                 setHoodPosition(setPos);
                 break;
             case kHoming:
-                setHoodOutputPercentage(-0.1);
+                setHoodOutputPercentage(-0.05);
 //                System.out.println("howdy");
                 if(Math.abs(hoodMotor.getEncoder().getVelocity() * 60) < 1 && timer.hasElapsed(0.25)){
                     setStateNeutral();
@@ -74,6 +75,7 @@ public class Hood extends SubsystemBase {
                 setHoodOutputPercentage(0);
                 break;
         }
+        SmartDashboard.putNumber("Hood Position", getHoodPosition());
     }
 
     public void setStatePosition(double pos){
@@ -100,7 +102,7 @@ public class Hood extends SubsystemBase {
       }
 
     public void setHoodPosition(double position) {
-        hoodMotor.getPIDController().setReference(-position, ControlType.kPosition);
+        hoodMotor.getPIDController().setReference(position, ControlType.kPosition);
     }
 
     public double getAutoPosition() {
@@ -113,7 +115,7 @@ public class Hood extends SubsystemBase {
     }
 
     public void setHoodOutputPercentage(double percentage){
-        hoodMotor.set(-percentage);
+        hoodMotor.set(percentage);
     }
 
     public void enableForwardSoftLimit(boolean enabled){

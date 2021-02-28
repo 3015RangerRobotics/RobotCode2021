@@ -124,8 +124,8 @@ public class Drive extends SubsystemBase {
 
     public void drive(ChassisSpeeds chassisSpeeds) {
         SwerveModuleState[] moduleStates = kinematics.toSwerveModuleStates(chassisSpeeds);
-        SmartDashboard.putNumber("PIDTarget", moduleStates[0].speedMetersPerSecond);
-        SmartDashboard.putNumber("PIDActual", frontLeftSwerveModule.getVelocity());
+//        SmartDashboard.putNumber("PIDTarget", moduleStates[0].speedMetersPerSecond);
+//        SmartDashboard.putNumber("PIDActual", frontLeftSwerveModule.getVelocity());
         frontLeftSwerveModule.setSwerveModuleState(moduleStates[0]);
         frontRightSwerveModule.setSwerveModuleState(moduleStates[1]);
         backLeftSwerveModule.setSwerveModuleState(moduleStates[2]);
@@ -134,6 +134,7 @@ public class Drive extends SubsystemBase {
 
     public void drive(double xVelMeters, double yVelMeters, double degreesPerSecond, boolean isFieldRelative) {
         if (isFieldRelative) {
+
             drive(ChassisSpeeds.fromFieldRelativeSpeeds(xVelMeters, yVelMeters, Math.toRadians(degreesPerSecond), getAngleRotation2d()));
         } else {
             drive(new ChassisSpeeds(xVelMeters, yVelMeters, Math.toRadians(degreesPerSecond)));
@@ -143,5 +144,7 @@ public class Drive extends SubsystemBase {
     public Pose2d getPoseMeters() {
         return odometry.getPoseMeters();
     }
+
+
 
 }

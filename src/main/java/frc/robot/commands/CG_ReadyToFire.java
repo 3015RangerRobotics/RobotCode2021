@@ -11,8 +11,9 @@ public class CG_ReadyToFire extends SequentialCommandGroup {
                 new LimelightWaitForTarget(),
 //                new ShooterAutoSpeed(),
                 new ShooterSetSpeed(7000),
-//                new HoodAutoPosition(),
-                new HoodSetPosition(33)
+                new HoodAutoPosition(),
+                new DriveAutoRotate()
+//                new HoodSetPosition(9)
 //                new TurretTurnToTargetHold()
         );
     }

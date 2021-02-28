@@ -27,9 +27,9 @@ public final class Constants {
     public static final double SWERVE_ROTATION_KV = 1023.0/SWERVE_ROTATION_MAX_VELOCITY;
     public static final double SWERVE_MAX_VELOCITY = 4.5;
     public static final double SWERVE_METERS_PER_PULSE = 0.00002226;
-    public static final double SWERVE_DRIVE_P = -1000; //TODO
-    public static final double SWERVE_DRIVE_I = 0; //TODO
-    public static final double SWERVE_DRIVE_D = -25; // TODO
+    public static final double SWERVE_DRIVE_P = -1000;
+    public static final double SWERVE_DRIVE_I = 0;
+    public static final double SWERVE_DRIVE_D = -25;
 
     public static final int SWERVE_DRIVE_CHANNEL_FL = 1;
     public static final int SWERVE_ROTATION_CHANNEL_FL = 5;
@@ -43,19 +43,16 @@ public final class Constants {
     // Drive Subsystem
     public static final int DRIVE_PIGEON_CHANNEL = 1;
     public static final double DRIVE_MAX_ANGULAR_VELOCITY = 600;
+    public static final double DRIVE_MAX_ANGULAR_ACCEL = 2400;
 
-    //Pathfinding
-    public static final double DRIVE_X_CONTROLLER_P = 0;
-    public static final double DRIVE_X_CONTROLLER_I = 0;
-    public static final double DRIVE_X_CONTROLLER_D = 0;
-    public static final double DRIVE_Y_CONTROLLER_P = 0;
-    public static final double DRIVE_Y_CONTROLLER_I = 0;
-    public static final double DRIVE_Y_CONTROLLER_D = 0;
-    public static final double DRIVE_ROTATION_CONTROLLER_P = 0;
+    // Path Following
+    public static final double DRIVE_ERROR_CONTROLLER_P = 0;
+    public static final double DRIVE_ERROR_CONTROLLER_I = 0;
+    public static final double DRIVE_ERROR_CONTROLLER_D = 0;
+    public static final double DRIVE_ROTATION_CONTROLLER_P = 7;
     public static final double DRIVE_ROTATION_CONTROLLER_I = 0;
     public static final double DRIVE_ROTATION_CONTROLLER_D = 0;
-    public static final double DRIVE_MAX_ROTATION_VELOCITY = 0; //Degrees Per Second
-    public static final double DRIVE_MAX_ROTATION_ACCLERATION = 0; //Degrees Per Second Squared
+    public static final double DRIVE_ROTATION_MIN_VELOCITY = 25;
 
 
     //Hood Constants
@@ -67,7 +64,19 @@ public final class Constants {
     public static final LookupTable HOOD_AUTO_POSITION_TABLE = new LookupTable();
 
     static {
-        HOOD_AUTO_POSITION_TABLE.put(0, 0);
+        HOOD_AUTO_POSITION_TABLE.put(4.45,  9.00);
+        HOOD_AUTO_POSITION_TABLE.put( 5.0, 11.80);
+        HOOD_AUTO_POSITION_TABLE.put( 6.0, 15.75);
+        HOOD_AUTO_POSITION_TABLE.put( 7.0, 18.00);
+        HOOD_AUTO_POSITION_TABLE.put( 8.0, 21.25);
+        HOOD_AUTO_POSITION_TABLE.put( 9.0, 22.50);
+        HOOD_AUTO_POSITION_TABLE.put(10.4, 24.25);
+        HOOD_AUTO_POSITION_TABLE.put(11.8, 26.00);
+        HOOD_AUTO_POSITION_TABLE.put(14.2, 28.70);
+        HOOD_AUTO_POSITION_TABLE.put(16.5, 28.70);
+        HOOD_AUTO_POSITION_TABLE.put(19.1, 29.00);
+        HOOD_AUTO_POSITION_TABLE.put(21.7, 29.40);
+        HOOD_AUTO_POSITION_TABLE.put(23.9, 29.70);
     }
     
     // Carousel Constants
@@ -77,21 +86,30 @@ public final class Constants {
     public static final int CAROUSEL_BALL_SENSOR1 = 0; // DIO: BEAM BREAK
     public static final int CAROUSEL_BALL_SENSOR2 = 1; // DIO: BEAM BREAK
     public static final int CAROUSEL_BALL_SENSOR3 = 2; // DIO: BEAM BREAK
+    public static final int CAROUSEL_ENCODER1 = 3;
+    public static final int CAROUSEL_ENCODER2 = 4;
+    public static final int CAROUSEL_ENCODER3 = 5;
     public static final double CAROUSEL_IN_SPEED_ACTIVE = 0.3;
     public static final double CAROUSEL_IN_SPEED_PASSIVE = 1.0;
     public static final double CAROUSEL_PURGE_SPEED1 = -0.8;
     public static final double CAROUSEL_PURGE_SPEED2 = -0.9;
     public static final double CAROUSEL_PURGE_SPEED3 = -1;
-    public static final double CAROUSEL_SHOOT_SPEED = 1.0;
-    
+    public static final double CAROUSEL_SHOOT_PERCENTAGE = 1.0;
+    public static final double CAROUSEL_SHOOT_VELOCITY = 50000;
+    public static final double CAROUSEL_SHOOT_P = 0.00002;
+    public static final double CAROUSEL_SHOOT_I = 0;
+    public static final double CAROUSEL_SHOOT_D = 0;
+//    public static final double CAROUSEL_SHOOT_D = 0.00000005;
+    public static final double CAROUSEL_SHOOT_F = 1.0 / 70000;
+
     // Limelight Constants
     public static final double LL_TARGET_HEIGHT = 7.58;
-    public static final double LL_MOUNT_HEIGHT = 1.65;
-    public static final double LL_MOUNT_ANGLE = 28;
+    public static final double LL_MOUNT_HEIGHT = 2.25;
+    public static final double LL_MOUNT_ANGLE = 30;
     
     // Shooter Constants
-    public static final int SHOOTER_MOTOR = 11; // CAN: TALON FX
-    public static final int SHOOTER_MOTOR_2 = 10; // CAN: TALON FX
+    public static final int SHOOTER_MOTOR = 10; // CAN: TALON FX
+    public static final int SHOOTER_MOTOR_2 = 11; // CAN: TALON FX
     public static final double SHOOTER_P = 0.4;//0.5
     public static final double SHOOTER_I = 0;
     public static final double SHOOTER_D = 10;//10

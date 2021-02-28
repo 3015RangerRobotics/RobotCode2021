@@ -26,17 +26,16 @@ public class DriveFollowPath extends CommandBase {
         this.timer = new Timer();
         this.path = SwervePath.fromCSV(pathname);
 
-        PIDController xController = new PIDController(Constants.DRIVE_X_CONTROLLER_P, Constants.DRIVE_X_CONTROLLER_I, Constants.DRIVE_X_CONTROLLER_D);
-        PIDController yController = new PIDController(Constants.DRIVE_Y_CONTROLLER_P, Constants.DRIVE_Y_CONTROLLER_I, Constants.DRIVE_Y_CONTROLLER_D);
+        PIDController xController = new PIDController(Constants.DRIVE_ERROR_CONTROLLER_P, Constants.DRIVE_ERROR_CONTROLLER_I, Constants.DRIVE_ERROR_CONTROLLER_D);
+        PIDController yController = new PIDController(Constants.DRIVE_ERROR_CONTROLLER_P, Constants.DRIVE_ERROR_CONTROLLER_I, Constants.DRIVE_ERROR_CONTROLLER_D);
         ProfiledPIDController rotationController = new ProfiledPIDController(Constants.DRIVE_ROTATION_CONTROLLER_P, Constants.DRIVE_ROTATION_CONTROLLER_I, Constants.DRIVE_ROTATION_CONTROLLER_D,
-                new TrapezoidProfile.Constraints(Constants.DRIVE_MAX_ROTATION_VELOCITY, Constants.DRIVE_MAX_ROTATION_ACCLERATION));
+                new TrapezoidProfile.Constraints(Constants.DRIVE_MAX_ANGULAR_VELOCITY, Constants.DRIVE_MAX_ANGULAR_ACCEL));
         this.pathController = new SwervePathController(xController, yController, rotationController);
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-
         timer.reset();
         timer.start();
         SwervePath.State initialState = path.getInitialState();
@@ -47,7 +46,6 @@ public class DriveFollowPath extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-
         SwervePath.State desiredState = path.sample(timer.get());
         ChassisSpeeds targetSpeeds = pathController.calculate(RobotContainer.drive.getPoseMeters(), desiredState);
         RobotContainer.drive.drive(targetSpeeds);
@@ -56,7 +54,6 @@ public class DriveFollowPath extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-
         timer.stop();
         RobotContainer.drive.drive(0, 0, 0, false);
 

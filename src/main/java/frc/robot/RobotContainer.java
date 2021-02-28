@@ -23,7 +23,6 @@ import frc.robot.subsystems.drive.Drive;
  */
 public class RobotContainer {
     public static Drive drive;
-    public static DriveOld driveOld;
     public static Hood hood;
     public static Carousel carousel;
     public static Limelight limelight;
@@ -65,15 +64,13 @@ public class RobotContainer {
 
     public static void init(){
         drive = new Drive();
-//        driveOld = new DriveOld();
-//        hood = new Hood();
-//        carousel = new Carousel();
-//        limelight = new Limelight();
+        hood = new Hood();
+        carousel = new Carousel();
+        limelight = new Limelight();
 //        turret = new Turret();
-//        shooter = new Shooter();
+        shooter = new Shooter();
 
         drive.setDefaultCommand(new DriveWithGamepad());
-//        driveOld.setDefaultCommand(new DriveWithGamepadOld());
         configureButtonBindings();
     }
 
@@ -84,13 +81,14 @@ public class RobotContainer {
      * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
      */
     private static void configureButtonBindings() {
-//        driverB.whenActive(new HoodHome());
-//        driverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
-//        driverLT.whenActive(new CG_ReadyToFire()).whenInactive(new CG_ShooterDefault());
-//        driverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
-//        driverX.whenActive(new HoodSetPosition(90)).whenInactive(new HoodSetPosition(0));
+        driverB.whenActive(new HoodHome());
+        driverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
+        driverLT.whenActive(new CG_ReadyToFire()).whenInactive(new CG_ShooterDefault());
+        driverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
+        driverX.whenActive(new HoodSetPosition(30)).whenInactive(new HoodSetPosition(0));
 //        driverA.whenActive(new ShooterSetSpeed(6900)).whenInactive(new ShooterStop());
-        driverA.whenActive(new DriveSetModuleRotation(90)).whenInactive(new DriveSetModuleRotation(0));
+//        driverA.whenActive(new DriveSetModuleRotation(90)).whenInactive(new DriveSetModuleRotation(0));
+        driverY.whileActiveContinuous(new CarouselPurge());
     }
 
     public static double getDriverLeftStickX() {
