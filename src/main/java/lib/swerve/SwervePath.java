@@ -4,12 +4,16 @@ import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.geometry.Translation2d;
+import edu.wpi.first.wpilibj.trajectory.Trajectory;
+import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
+import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.util.Units;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Custom version of the wpilib trajectory class that is
@@ -91,6 +95,24 @@ public class SwervePath {
             e.printStackTrace();
         }
         return traj;
+    }
+
+    public static SwervePath generate1D(double x, double y, double rotation, double maxV, double maxA){
+        TrajectoryConfig config = new TrajectoryConfig(maxV, maxA);
+        Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
+                new Pose2d(0, 0, new Rotation2d(0)),
+                List.of(new Translation2d(x/2, y/2)),
+                new Pose2d(x, y, new Rotation2d(0)),
+                config
+        );
+
+        SwervePath path = new SwervePath();
+        for(int i = 0; i < trajectory.getStates().size(); i++){
+            Trajectory.State state = trajectory.getStates().get(i);
+            double lerpFactor = (double) i / (double) trajectory.getStates().size();
+            path.states.add(new State(state.poseMeters, state.velocityMetersPerSecond, state.accelerationMetersPerSecondSq, new Rotation2d(lerp(0, rotation, lerpFactor)), state.timeSeconds));
+        }
+        return path;
     }
 
     private static double lerp(double startVal, double endVal, double t) {

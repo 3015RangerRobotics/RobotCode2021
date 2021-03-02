@@ -46,6 +46,7 @@ public class DriveFollowPath extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
+        RobotContainer.drive.updateOdometry();
         SwervePath.State desiredState = path.sample(timer.get());
         ChassisSpeeds targetSpeeds = pathController.calculate(RobotContainer.drive.getPoseMeters(), desiredState);
         RobotContainer.drive.drive(targetSpeeds);
