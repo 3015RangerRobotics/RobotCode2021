@@ -46,10 +46,10 @@ public final class Constants {
     public static final double DRIVE_MAX_ANGULAR_ACCEL = 2400;
 
     // Path Following
-    public static final double DRIVE_ERROR_CONTROLLER_P = 0;
+    public static final double DRIVE_ERROR_CONTROLLER_P = 20;
     public static final double DRIVE_ERROR_CONTROLLER_I = 0;
-    public static final double DRIVE_ERROR_CONTROLLER_D = 0;
-    public static final double DRIVE_ROTATION_CONTROLLER_P = 7;
+    public static final double DRIVE_ERROR_CONTROLLER_D = 5;
+    public static final double DRIVE_ROTATION_CONTROLLER_P = 12;//7;
     public static final double DRIVE_ROTATION_CONTROLLER_I = 0;
     public static final double DRIVE_ROTATION_CONTROLLER_D = 0;
     public static final double DRIVE_ROTATION_MIN_VELOCITY = 25;
@@ -64,21 +64,22 @@ public final class Constants {
     public static final LookupTable HOOD_AUTO_POSITION_TABLE = new LookupTable();
 
     static {
-        HOOD_AUTO_POSITION_TABLE.put(4.45,  9.00);
-        HOOD_AUTO_POSITION_TABLE.put( 5.0, 11.80);
-        HOOD_AUTO_POSITION_TABLE.put( 6.0, 15.75);
-        HOOD_AUTO_POSITION_TABLE.put( 7.0, 18.00);
-        HOOD_AUTO_POSITION_TABLE.put( 8.0, 21.25);
-        HOOD_AUTO_POSITION_TABLE.put( 9.0, 22.50);
-        HOOD_AUTO_POSITION_TABLE.put(10.4, 24.25);
-        HOOD_AUTO_POSITION_TABLE.put(11.8, 26.00);
-        HOOD_AUTO_POSITION_TABLE.put(14.2, 28.70);
-        HOOD_AUTO_POSITION_TABLE.put(16.5, 28.70);
+//        HOOD_AUTO_POSITION_TABLE.put(4.45,  9.00);
+//        HOOD_AUTO_POSITION_TABLE.put( 5.0, 11.80);
+//        HOOD_AUTO_POSITION_TABLE.put( 6.0, 15.75);
+//        HOOD_AUTO_POSITION_TABLE.put( 7.0, 18.00);
+//        HOOD_AUTO_POSITION_TABLE.put( 8.0, 21.25);
+//        HOOD_AUTO_POSITION_TABLE.put( 9.0, 22.50);
+//        HOOD_AUTO_POSITION_TABLE.put(10.4, 24.25);
+//        HOOD_AUTO_POSITION_TABLE.put(11.8, 26.00);
+//        HOOD_AUTO_POSITION_TABLE.put(14.2, 28.70);
+//        HOOD_AUTO_POSITION_TABLE.put(16.5, 28.70);
+        HOOD_AUTO_POSITION_TABLE.put(17.1, 28.9);
         HOOD_AUTO_POSITION_TABLE.put(19.1, 29.00);
         HOOD_AUTO_POSITION_TABLE.put(21.7, 29.40);
         HOOD_AUTO_POSITION_TABLE.put(23.9, 29.70);
     }
-    
+
     // Carousel Constants
     public static final int CAROUSEL_MOTOR1 = 0; // PWM: VICTOR SP
     public static final int CAROUSEL_MOTOR2 = 1; // PWM: VICTOR SP
@@ -90,7 +91,7 @@ public final class Constants {
     public static final int CAROUSEL_ENCODER2 = 4;
     public static final int CAROUSEL_ENCODER3 = 5;
     public static final double CAROUSEL_IN_SPEED_ACTIVE = 0.3;
-    public static final double CAROUSEL_IN_SPEED_PASSIVE = 1.0;
+    public static final double CAROUSEL_IN_SPEED_PASSIVE = 0.4;
     public static final double CAROUSEL_PURGE_SPEED1 = -0.8;
     public static final double CAROUSEL_PURGE_SPEED2 = -0.9;
     public static final double CAROUSEL_PURGE_SPEED3 = -1;

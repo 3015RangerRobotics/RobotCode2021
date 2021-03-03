@@ -54,7 +54,7 @@ public class SwervePath {
      * @return Total runtime in seconds
      */
     public double getRuntime() {
-        return numStates() * TIME_STEP;
+        return states.get(states.size() - 1).time;
     }
 
     /**
@@ -97,7 +97,7 @@ public class SwervePath {
         return traj;
     }
 
-    public static SwervePath generate1D(double x, double y, double rotation, double maxV, double maxA){
+    public static SwervePath generate1D(double x, double y, double maxV, double maxA){
         TrajectoryConfig config = new TrajectoryConfig(maxV, maxA);
         Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
                 new Pose2d(0, 0, new Rotation2d(0)),
@@ -109,8 +109,7 @@ public class SwervePath {
         SwervePath path = new SwervePath();
         for(int i = 0; i < trajectory.getStates().size(); i++){
             Trajectory.State state = trajectory.getStates().get(i);
-            double lerpFactor = (double) i / (double) trajectory.getStates().size();
-            path.states.add(new State(state.poseMeters, state.velocityMetersPerSecond, state.accelerationMetersPerSecondSq, new Rotation2d(lerp(0, rotation, lerpFactor)), state.timeSeconds));
+            path.states.add(new State(state.poseMeters, state.velocityMetersPerSecond, state.accelerationMetersPerSecondSq, new Rotation2d(0), state.timeSeconds));
         }
         return path;
     }

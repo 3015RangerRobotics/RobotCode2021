@@ -89,6 +89,7 @@ public class RobotContainer {
 //        driverA.whenActive(new ShooterSetSpeed(6900)).whenInactive(new ShooterStop());
 //        driverA.whenActive(new DriveSetModuleRotation(90)).whenInactive(new DriveSetModuleRotation(0));
         driverY.whileActiveContinuous(new CarouselPurge());
+        driverLB.whenActive(new DriveFollowPath(1,0,2,2));
     }
 
     public static double getDriverLeftStickX() {

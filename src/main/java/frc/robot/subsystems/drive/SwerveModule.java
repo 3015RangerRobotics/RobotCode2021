@@ -74,7 +74,7 @@ public class SwerveModule {
     }
 
     public SwerveModuleState getSwerveModuleState() {
-        return new SwerveModuleState(driveMotor.getSelectedSensorVelocity() * 10, Rotation2d.fromDegrees(getAbsoluteRotation()));
+        return new SwerveModuleState(getVelocity(), Rotation2d.fromDegrees(getAbsoluteRotation()));
     }
 
     public double getVelocity(){

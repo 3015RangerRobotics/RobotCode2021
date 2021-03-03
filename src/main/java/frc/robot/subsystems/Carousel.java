@@ -66,8 +66,8 @@ public class Carousel extends SubsystemBase {
 		SmartDashboard.putBoolean("switch2", isBall2Present());
 		SmartDashboard.putBoolean("switch3", isBall3Present());
 		SmartDashboard.putNumber("Intake Motor1 Velocity", getMotor1Velocity());
-		SmartDashboard.putNumber("PIDTarget", setVelocity);
-		SmartDashboard.putNumber("PIDActual", getMotor1Velocity());
+//		SmartDashboard.putNumber("PIDTarget", setVelocity);
+//		SmartDashboard.putNumber("PIDActual", getMotor1Velocity());
 
 		switch (state) {
 			case kPurgeBall3:

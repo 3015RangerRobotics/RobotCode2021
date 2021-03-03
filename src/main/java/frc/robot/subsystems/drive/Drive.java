@@ -74,6 +74,11 @@ public class Drive extends SubsystemBase {
         imu.setYaw(0);
     }
 
+    public void setAngle(double angle) {
+        imu.setFusedHeading(angle);
+        imu.setYaw(angle);
+    }
+
     public double getAngleDegrees() {
         double angle = imu.getFusedHeading() % 360;
         if(angle > 180){

@@ -3,8 +3,10 @@ package lib.swerve;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.util.Units;
 
 /**
  * Custom version of the wpilib HolonomicDriveController that should work
@@ -60,16 +62,17 @@ public class SwervePathController {
      * @param goalState   Goal position of the robot
      * @return The calculated speeds and rotation
      */
-    public ChassisSpeeds calculate(Pose2d currentPose, SwervePath.State goalState) {
+    public ChassisSpeeds calculate(Pose2d currentPose, Rotation2d currentRotation, SwervePath.State goalState) {
         double xFF = goalState.getXVelocity();
         double yFF = goalState.getYVelocity();
-        double rotationFF = rotationController.calculate(currentPose.getRotation().getDegrees(), goalState.getRotation().getDegrees());
+//        System.out.println(goalState.getRotation().getDegrees());
+        double rotationFF = rotationController.calculate(currentRotation.getDegrees(), goalState.getRotation().getDegrees());
 
         this.positionError = goalState.getPose().relativeTo(currentPose).getTranslation();
 
         double xFeedback = xController.calculate(currentPose.getX(), goalState.getPose().getX());
         double yFeedback = yController.calculate(currentPose.getY(), goalState.getPose().getY());
 
-        return ChassisSpeeds.fromFieldRelativeSpeeds(xFF + xFeedback, yFF + yFeedback, rotationFF, currentPose.getRotation());
+        return ChassisSpeeds.fromFieldRelativeSpeeds(xFF + xFeedback, yFF + yFeedback, Units.degreesToRadians(rotationFF), currentPose.getRotation());
     }
 }
