@@ -34,10 +34,10 @@ public class DriveFollowPath extends CommandBase {
         this.pathController = new SwervePathController(xController, yController, rotationController);
     }
 
-    public DriveFollowPath(double x, double y, double maxVelocity, double maxAcceleration) {
+    public DriveFollowPath(double x, double y, double targetAngle, double maxVelocity, double maxAcceleration) {
         addRequirements(RobotContainer.drive);
         this.timer = new Timer();
-        this.path = SwervePath.generate1D(x, y, maxVelocity, maxAcceleration);
+        this.path = SwervePath.generate1D(x, y, targetAngle, maxVelocity, maxAcceleration);
 
         PIDController xController = new PIDController(Constants.DRIVE_ERROR_CONTROLLER_P, Constants.DRIVE_ERROR_CONTROLLER_I, Constants.DRIVE_ERROR_CONTROLLER_D);
         PIDController yController = new PIDController(Constants.DRIVE_ERROR_CONTROLLER_P, Constants.DRIVE_ERROR_CONTROLLER_I, Constants.DRIVE_ERROR_CONTROLLER_D);
@@ -52,16 +52,15 @@ public class DriveFollowPath extends CommandBase {
         timer.reset();
         timer.start();
         SwervePath.State initialState = path.getInitialState();
-//        RobotContainer.drive.setAngle(initialState.getRotation().getDegrees());
-        System.out.println(RobotContainer.drive.getAngleDegrees());
-        RobotContainer.drive.resetOdometry(new Pose2d(initialState.getPose().getTranslation(), initialState.getRotation()));
+        RobotContainer.drive.resetOdometry(new Pose2d(initialState.getPose().getTranslation(), RobotContainer.drive.getAngleRotation2d()));
+        pathController.reset(RobotContainer.drive.getAngleDegrees());
     }
 
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
 //        System.out.println(path.getRuntime());
-        RobotContainer.drive.updateOdometry();
+//        RobotContainer.drive.updateOdometry();
         SwervePath.State desiredState = path.sample(timer.get());
         SmartDashboard.putNumber("PIDTarget", desiredState.getPose().getX());
         SmartDashboard.putNumber("PIDActual", RobotContainer.drive.getPoseMeters().getX());

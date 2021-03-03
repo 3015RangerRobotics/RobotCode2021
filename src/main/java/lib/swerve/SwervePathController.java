@@ -56,6 +56,16 @@ public class SwervePathController {
     }
 
     /**
+     * Reset the state of each PID controller
+     * @param currentRotation The current rotation of the robot in degrees
+     */
+    public void reset(double currentRotation){
+        this.xController.reset();
+        this.yController.reset();
+        this.rotationController.reset(currentRotation);
+    }
+
+    /**
      * Calculate the robot's speeds to match the path
      *
      * @param currentPose Current position of the robot
@@ -65,7 +75,6 @@ public class SwervePathController {
     public ChassisSpeeds calculate(Pose2d currentPose, Rotation2d currentRotation, SwervePath.State goalState) {
         double xFF = goalState.getXVelocity();
         double yFF = goalState.getYVelocity();
-//        System.out.println(goalState.getRotation().getDegrees());
         double rotationFF = rotationController.calculate(currentRotation.getDegrees(), goalState.getRotation().getDegrees());
 
         this.positionError = goalState.getPose().relativeTo(currentPose).getTranslation();
@@ -73,6 +82,6 @@ public class SwervePathController {
         double xFeedback = xController.calculate(currentPose.getX(), goalState.getPose().getX());
         double yFeedback = yController.calculate(currentPose.getY(), goalState.getPose().getY());
 
-        return ChassisSpeeds.fromFieldRelativeSpeeds(xFF + xFeedback, yFF + yFeedback, Units.degreesToRadians(rotationFF), currentPose.getRotation());
+        return ChassisSpeeds.fromFieldRelativeSpeeds(xFF + xFeedback, yFF + yFeedback, Units.degreesToRadians(rotationFF), currentRotation);
     }
 }

@@ -43,7 +43,7 @@ public final class Constants {
     // Drive Subsystem
     public static final int DRIVE_PIGEON_CHANNEL = 1;
     public static final double DRIVE_MAX_ANGULAR_VELOCITY = 600;
-    public static final double DRIVE_MAX_ANGULAR_ACCEL = 2400;
+    public static final double DRIVE_MAX_ANGULAR_ACCEL = 1200;
 
     // Path Following
     public static final double DRIVE_ERROR_CONTROLLER_P = 20;

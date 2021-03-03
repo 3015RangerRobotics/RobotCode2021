@@ -54,6 +54,7 @@ public class Drive extends SubsystemBase {
 
     @Override
     public void periodic() {
+        updateOdometry();
         // This method will be called once per scheduler run
 //        double [] raw = new double [3];
 //        imu.getRawGyro(raw);

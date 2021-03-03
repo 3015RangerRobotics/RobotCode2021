@@ -97,7 +97,7 @@ public class SwervePath {
         return traj;
     }
 
-    public static SwervePath generate1D(double x, double y, double maxV, double maxA){
+    public static SwervePath generate1D(double x, double y, double targetAngle, double maxV, double maxA){
         TrajectoryConfig config = new TrajectoryConfig(maxV, maxA);
         Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
                 new Pose2d(0, 0, new Rotation2d(0)),
@@ -109,7 +109,7 @@ public class SwervePath {
         SwervePath path = new SwervePath();
         for(int i = 0; i < trajectory.getStates().size(); i++){
             Trajectory.State state = trajectory.getStates().get(i);
-            path.states.add(new State(state.poseMeters, state.velocityMetersPerSecond, state.accelerationMetersPerSecondSq, new Rotation2d(0), state.timeSeconds));
+            path.states.add(new State(state.poseMeters, state.velocityMetersPerSecond, state.accelerationMetersPerSecondSq, Rotation2d.fromDegrees(targetAngle), state.timeSeconds));
         }
         return path;
     }
