@@ -81,15 +81,15 @@ public class SwervePath {
             while ((line = br.readLine()) != null) {
                 String[] point = line.split(",");
 
-                double xPos = Units.feetToMeters(Double.parseDouble(point[0]));
-                double yPos = Units.feetToMeters(Double.parseDouble(point[1]));
-                double vel = Units.feetToMeters(Double.parseDouble(point[2]));
-                double acc = Units.feetToMeters(Double.parseDouble(point[3]));
+                double xPos = Double.parseDouble(point[0]);
+                double yPos = Double.parseDouble(point[1]);
+                double vel = Double.parseDouble(point[2]);
+                double acc = Double.parseDouble(point[3]);
                 double heading = Double.parseDouble(point[4]);
                 double rotation = Double.parseDouble(point[5]);
 
-                Pose2d pose = new Pose2d(new Translation2d(xPos, yPos), new Rotation2d(heading));
-                traj.states.add(new State(pose, vel, acc, new Rotation2d(rotation), (traj.numStates() + 1) * TIME_STEP));
+                Pose2d pose = new Pose2d(new Translation2d(xPos, yPos), Rotation2d.fromDegrees(heading));
+                traj.states.add(new State(pose, vel, acc, Rotation2d.fromDegrees(rotation), (traj.numStates() + 1) * TIME_STEP));
             }
         } catch (Exception e) {
             e.printStackTrace();

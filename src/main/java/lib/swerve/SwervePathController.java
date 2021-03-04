@@ -20,6 +20,8 @@ public class SwervePathController {
     private final PIDController yController;
     private final ProfiledPIDController rotationController;
 
+    private boolean doPID;
+
     /**
      * Construct a SwervePathController
      *
@@ -34,6 +36,8 @@ public class SwervePathController {
         this.xController = xController;
         this.yController = yController;
         this.rotationController = rotationController;
+
+        doPID = true;
     }
 
     /**
@@ -76,12 +80,19 @@ public class SwervePathController {
         double xFF = goalState.getXVelocity();
         double yFF = goalState.getYVelocity();
         double rotationFF = rotationController.calculate(currentRotation.getDegrees(), goalState.getRotation().getDegrees());
-
         this.positionError = goalState.getPose().relativeTo(currentPose).getTranslation();
 
         double xFeedback = xController.calculate(currentPose.getX(), goalState.getPose().getX());
         double yFeedback = yController.calculate(currentPose.getY(), goalState.getPose().getY());
+        if(!doPID) {
+            xFeedback = 0;
+            yFeedback = 0;
+        }
 
         return ChassisSpeeds.fromFieldRelativeSpeeds(xFF + xFeedback, yFF + yFeedback, Units.degreesToRadians(rotationFF), currentRotation);
+    }
+
+    public void setPID(boolean doPID) {
+        this.doPID = doPID;
     }
 }

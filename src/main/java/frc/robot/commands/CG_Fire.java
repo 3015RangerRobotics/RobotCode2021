@@ -8,18 +8,15 @@ import frc.robot.subsystems.Limelight;
 public class CG_Fire extends SequentialCommandGroup {
     public CG_Fire(){
         addCommands(
-//                new ShooterAutoSpeed(),
-//                new TurretTurnToTarget(),
-//                new TurretWaitUntilOnTarget(),
-//                new ShooterAutoSpeed(false),
                 new ShooterSetSpeed(7000),
-                new HoodAutoPosition(true),
-                new HoodSetPosition(26.6),
-//                new ShooterWaitUntilPrimed(),
+//                new HoodAutoPosition(false),
+                new HoodSetPosition(29),
                 new ParallelDeadlineGroup(
-                        new CarouselShoot(1)
+                        new SequentialCommandGroup(
+//                                new ShooterWaitUntilPrimed(),
+                                new CarouselShoot(1)
+                        )
 //                        new DriveAutoRotate()
-                        //intake
                 )
         );
     }

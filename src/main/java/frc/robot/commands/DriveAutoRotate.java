@@ -21,7 +21,7 @@ public class DriveAutoRotate extends CommandBase {
 
     @Override
     public void initialize() {
-        rotationController.reset(RobotContainer.drive.getAngleDegrees());
+        rotationController.reset(-RobotContainer.limelight.getTargetAngleX());
     }
 
     @Override

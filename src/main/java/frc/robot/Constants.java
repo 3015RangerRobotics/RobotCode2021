@@ -23,11 +23,11 @@ public final class Constants {
     public static final double SWERVE_ROTATION_I = 0;
     public static final double SWERVE_ROTATION_D = 32;
     public static final double SWERVE_ROTATION_MAX_VELOCITY = 70/SWERVE_DEGREES_PER_PULSE;
-    public static final double SWERVE_ROTATION_MAX_ACCEL = 540/SWERVE_DEGREES_PER_PULSE;
+    public static final double SWERVE_ROTATION_MAX_ACCEL = 810/SWERVE_DEGREES_PER_PULSE;
     public static final double SWERVE_ROTATION_KV = 1023.0/SWERVE_ROTATION_MAX_VELOCITY;
     public static final double SWERVE_MAX_VELOCITY = 4.5;
     public static final double SWERVE_METERS_PER_PULSE = 0.00002226;
-    public static final double SWERVE_DRIVE_P = -1000;
+    public static final double SWERVE_DRIVE_P = -1000; // For some reason this doesn't work with positive constants
     public static final double SWERVE_DRIVE_I = 0;
     public static final double SWERVE_DRIVE_D = -25;
 
@@ -46,10 +46,10 @@ public final class Constants {
     public static final double DRIVE_MAX_ANGULAR_ACCEL = 1200;
 
     // Path Following
-    public static final double DRIVE_ERROR_CONTROLLER_P = 20;
+    public static final double DRIVE_ERROR_CONTROLLER_P = 15;
     public static final double DRIVE_ERROR_CONTROLLER_I = 0;
-    public static final double DRIVE_ERROR_CONTROLLER_D = 5;
-    public static final double DRIVE_ROTATION_CONTROLLER_P = 12;//7;
+    public static final double DRIVE_ERROR_CONTROLLER_D = 0.71; // 0.71
+    public static final double DRIVE_ROTATION_CONTROLLER_P = 9; //4
     public static final double DRIVE_ROTATION_CONTROLLER_I = 0;
     public static final double DRIVE_ROTATION_CONTROLLER_D = 0;
     public static final double DRIVE_ROTATION_MIN_VELOCITY = 25;
@@ -64,17 +64,17 @@ public final class Constants {
     public static final LookupTable HOOD_AUTO_POSITION_TABLE = new LookupTable();
 
     static {
-//        HOOD_AUTO_POSITION_TABLE.put(4.45,  9.00);
-//        HOOD_AUTO_POSITION_TABLE.put( 5.0, 11.80);
-//        HOOD_AUTO_POSITION_TABLE.put( 6.0, 15.75);
-//        HOOD_AUTO_POSITION_TABLE.put( 7.0, 18.00);
-//        HOOD_AUTO_POSITION_TABLE.put( 8.0, 21.25);
-//        HOOD_AUTO_POSITION_TABLE.put( 9.0, 22.50);
-//        HOOD_AUTO_POSITION_TABLE.put(10.4, 24.25);
-//        HOOD_AUTO_POSITION_TABLE.put(11.8, 26.00);
-//        HOOD_AUTO_POSITION_TABLE.put(14.2, 28.70);
-//        HOOD_AUTO_POSITION_TABLE.put(16.5, 28.70);
-        HOOD_AUTO_POSITION_TABLE.put(17.1, 28.9);
+        HOOD_AUTO_POSITION_TABLE.put(4.45,  9.00);
+        HOOD_AUTO_POSITION_TABLE.put( 5.0, 11.80);
+        HOOD_AUTO_POSITION_TABLE.put( 6.0, 15.75);
+        HOOD_AUTO_POSITION_TABLE.put( 7.0, 18.00);
+        HOOD_AUTO_POSITION_TABLE.put( 8.0, 21.25);
+        HOOD_AUTO_POSITION_TABLE.put( 9.0, 22.50);
+        HOOD_AUTO_POSITION_TABLE.put(10.4, 24.25);
+        HOOD_AUTO_POSITION_TABLE.put(11.8, 26.00);
+        HOOD_AUTO_POSITION_TABLE.put(14.2, 28.70);
+        HOOD_AUTO_POSITION_TABLE.put(16.5, 28.70);
+//        HOOD_AUTO_POSITION_TABLE.put(17.1, 28.9);
         HOOD_AUTO_POSITION_TABLE.put(19.1, 29.00);
         HOOD_AUTO_POSITION_TABLE.put(21.7, 29.40);
         HOOD_AUTO_POSITION_TABLE.put(23.9, 29.70);
@@ -100,7 +100,6 @@ public final class Constants {
     public static final double CAROUSEL_SHOOT_P = 0.00002;
     public static final double CAROUSEL_SHOOT_I = 0;
     public static final double CAROUSEL_SHOOT_D = 0;
-//    public static final double CAROUSEL_SHOOT_D = 0.00000005;
     public static final double CAROUSEL_SHOOT_F = 1.0 / 70000;
 
     // Limelight Constants
@@ -116,13 +115,12 @@ public final class Constants {
     public static final double SHOOTER_D = 10;//10
     public static final double SHOOTER_F = 0.0455;//0.0468
     public static final double SHOOTER_PULSES_PER_ROTATION = 2048 * (2.0/3.0);
-    public static final double SHOOTER_SHOOT_P = .4;//25
-    public static final double SHOOTER_SHOOT_I = 0;
-    public static final double SHOOTER_SHOOT_D = 10;//60
+    public static final double SHOOTER_SHOOT_P = SHOOTER_P;//25
+    public static final double SHOOTER_SHOOT_I = SHOOTER_I;
+    public static final double SHOOTER_SHOOT_D = SHOOTER_D;//60
     public static final double SHOOTER_SHOOT_F = SHOOTER_F;
     public static final double SHOOTER_LAUNCH_ANGLE = 53.28;
     public static final double SHOOTER_TOLERANCE = 25;
-    public static final double SHOOTER_BALL_QUALITY_FACTOR = 1.0;
     public static final LookupTable SHOOTER_AUTO_SPEED_TABLE = new LookupTable();
 
     static {
