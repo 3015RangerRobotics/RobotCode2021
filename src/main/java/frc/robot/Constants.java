@@ -46,9 +46,15 @@ public final class Constants {
     public static final double DRIVE_MAX_ANGULAR_ACCEL = 1200;
 
     // Path Following
-    public static final double DRIVE_ERROR_CONTROLLER_P = 15;
-    public static final double DRIVE_ERROR_CONTROLLER_I = 0;
-    public static final double DRIVE_ERROR_CONTROLLER_D = 0.71; // 0.71
+//    public static final double DRIVE_ERROR_CONTROLLER_P = 15;
+//    public static final double DRIVE_ERROR_CONTROLLER_I = 0;
+//    public static final double DRIVE_ERROR_CONTROLLER_D = 0.71; // 0.71
+    public static final double DRIVE_POS_ERROR_CONTROLLER_P = 0;
+    public static final double DRIVE_POS_ERROR_CONTROLLER_I = 0;
+    public static final double DRIVE_POS_ERROR_CONTROLLER_D = 0;
+    public static final double DRIVE_HEADING_ERROR_CONTROLLER_P = 0;
+    public static final double DRIVE_HEADING_ERROR_CONTROLLER_I = 0;
+    public static final double DRIVE_HEADING_ERROR_CONTROLLER_D = 0;
     public static final double DRIVE_ROTATION_CONTROLLER_P = 9; //4
     public static final double DRIVE_ROTATION_CONTROLLER_I = 0;
     public static final double DRIVE_ROTATION_CONTROLLER_D = 0;

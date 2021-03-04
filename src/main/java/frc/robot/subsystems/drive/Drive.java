@@ -55,12 +55,7 @@ public class Drive extends SubsystemBase {
     @Override
     public void periodic() {
         updateOdometry();
-        // This method will be called once per scheduler run
-//        double [] raw = new double [3];
-//        imu.getRawGyro(raw);
         SmartDashboard.putNumber("gyro", getAngleDegrees());
-        SmartDashboard.putNumber("compass", imu.getCompassHeading());
-//        System.out.println(raw[2]);
     }
 
     public void resetEncoders() {
@@ -130,8 +125,6 @@ public class Drive extends SubsystemBase {
 
     public void drive(ChassisSpeeds chassisSpeeds) {
         SwerveModuleState[] moduleStates = kinematics.toSwerveModuleStates(chassisSpeeds);
-//        SmartDashboard.putNumber("PIDTarget", moduleStates[0].speedMetersPerSecond);
-//        SmartDashboard.putNumber("PIDActual", frontLeftSwerveModule.getVelocity());
         frontLeftSwerveModule.setSwerveModuleState(moduleStates[0]);
         frontRightSwerveModule.setSwerveModuleState(moduleStates[1]);
         backLeftSwerveModule.setSwerveModuleState(moduleStates[2]);

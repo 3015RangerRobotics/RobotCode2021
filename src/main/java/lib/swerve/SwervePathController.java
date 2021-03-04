@@ -7,92 +7,83 @@ import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.util.Units;
+import frc.robot.RobotContainer;
 
-/**
- * Custom version of the wpilib HolonomicDriveController that should work
- * better with paths created with PathPlanner
- */
 public class SwervePathController {
-    private Translation2d positionError;
-    private Translation2d positionTolerance;
-
-    private final PIDController xController;
-    private final PIDController yController;
+    private final PIDController posErrorController;
+    private final PIDController headingErrorController;
     private final ProfiledPIDController rotationController;
 
-    private boolean doPID;
+    private Translation2d lastPosition;
+    private double totalDistance;
+    private Rotation2d currentHeading;
 
     /**
      * Construct a SwervePathController
      *
-     * @param xController        PIDController for the robot's X position
-     * @param yController        PIDController for the robot's Y position
-     * @param rotationController ProfiledPIDController for the robot's rotation
+     * @param posErrorController     PIDController for the robot's position
+     * @param headingErrorController PIDController for the robot's heading
+     * @param rotationController     ProfiledPIDController for the robot's rotation
      */
-    public SwervePathController(PIDController xController, PIDController yController, ProfiledPIDController rotationController) {
-        this.positionError = new Translation2d();
-        this.positionTolerance = new Translation2d();
-
-        this.xController = xController;
-        this.yController = yController;
+    public SwervePathController(PIDController posErrorController, PIDController headingErrorController, ProfiledPIDController rotationController) {
+        this.posErrorController = posErrorController;
+        this.headingErrorController = headingErrorController;
         this.rotationController = rotationController;
-
-        doPID = true;
+        this.lastPosition = new Translation2d();
+        this.totalDistance = 0;
+        this.currentHeading = new Rotation2d(0);
     }
 
     /**
-     * Calculate if the robot is at its goal position
+     * Reset the state of the path controller
      *
-     * @return Is the robot at its goal position
+     * @param currentPose The current pose of the robot
      */
-    public boolean atGoalPose() {
-        return Math.abs(positionError.getX()) < positionTolerance.getX() &&
-                Math.abs(positionError.getY()) < positionTolerance.getY();
+    public void reset(Pose2d currentPose) {
+        this.posErrorController.reset();
+        this.headingErrorController.reset();
+        this.rotationController.reset(currentPose.getRotation().getDegrees());
+        this.lastPosition = currentPose.getTranslation();
+        this.totalDistance = 0;
+        this.currentHeading = new Rotation2d(0);
     }
 
-    /**
-     * Set the position tolerance of the controller
-     *
-     * @param tolerance The tolerance of the controller
-     */
-    public void setPositionTolerance(Translation2d tolerance) {
-        this.positionTolerance = tolerance;
+    public double getTotalDistance(){
+        return this.totalDistance;
     }
 
-    /**
-     * Reset the state of each PID controller
-     * @param currentRotation The current rotation of the robot in degrees
-     */
-    public void reset(double currentRotation){
-        this.xController.reset();
-        this.yController.reset();
-        this.rotationController.reset(currentRotation);
+    public Rotation2d getCurrentHeading(){
+        return this.currentHeading;
     }
 
     /**
      * Calculate the robot's speeds to match the path
      *
-     * @param currentPose Current position of the robot
-     * @param goalState   Goal position of the robot
+     * @param currentPose     Current pose of the robot
+     * @param goalState       Goal state of the robot
      * @return The calculated speeds and rotation
      */
-    public ChassisSpeeds calculate(Pose2d currentPose, Rotation2d currentRotation, SwervePath.State goalState) {
-        double xFF = goalState.getXVelocity();
-        double yFF = goalState.getYVelocity();
-        double rotationFF = rotationController.calculate(currentRotation.getDegrees(), goalState.getRotation().getDegrees());
-        this.positionError = goalState.getPose().relativeTo(currentPose).getTranslation();
+    public ChassisSpeeds calculate(Pose2d currentPose, SwervePath.State goalState, double deltaTime) {
+        Translation2d currentPos = currentPose.getTranslation();
+        Rotation2d currentRotation = currentPose.getRotation();
 
-        double xFeedback = xController.calculate(currentPose.getX(), goalState.getPose().getX());
-        double yFeedback = yController.calculate(currentPose.getY(), goalState.getPose().getY());
-        if(!doPID) {
-            xFeedback = 0;
-            yFeedback = 0;
-        }
+        totalDistance += lastPosition.getDistance(currentPos);
+        double xV = (currentPos.getX() - lastPosition.getX()) / deltaTime;
+        double yV = (currentPos.getY() - lastPosition.getY()) / deltaTime;
+        this.currentHeading = new Rotation2d(Math.atan2(yV, xV));
 
-        return ChassisSpeeds.fromFieldRelativeSpeeds(xFF + xFeedback, yFF + yFeedback, Units.degreesToRadians(rotationFF), currentRotation);
-    }
+        double vel = goalState.getVelocity();
+        Rotation2d heading = goalState.getHeading();
+        double rotSpeed = rotationController.calculate(currentRotation.getDegrees(), goalState.getRotation().getDegrees());
 
-    public void setPID(boolean doPID) {
-        this.doPID = doPID;
+        vel += posErrorController.calculate(totalDistance, goalState.getPos());
+        heading.plus(Rotation2d.fromDegrees(headingErrorController.calculate(this.currentHeading.getDegrees(), goalState.getHeading().getDegrees())));
+
+        double xVel = vel * heading.getCos();
+        double yVel = vel * heading.getSin();
+
+        this.lastPosition = currentPos;
+
+        return ChassisSpeeds.fromFieldRelativeSpeeds(xVel, yVel, Units.degreesToRadians(rotSpeed), currentRotation);
     }
 }

@@ -81,15 +81,13 @@ public class SwervePath {
             while ((line = br.readLine()) != null) {
                 String[] point = line.split(",");
 
-                double xPos = Double.parseDouble(point[0]);
-                double yPos = Double.parseDouble(point[1]);
-                double vel = Double.parseDouble(point[2]);
-                double acc = Double.parseDouble(point[3]);
-                double heading = Double.parseDouble(point[4]);
-                double rotation = Double.parseDouble(point[5]);
+                double pos = Double.parseDouble(point[0]);
+                double vel = Double.parseDouble(point[1]);
+                double acc = Double.parseDouble(point[2]);
+                double heading = -Double.parseDouble(point[3]);
+                double rotation = Double.parseDouble(point[4]);
 
-                Pose2d pose = new Pose2d(new Translation2d(xPos, yPos), Rotation2d.fromDegrees(heading));
-                traj.states.add(new State(pose, vel, acc, Rotation2d.fromDegrees(rotation), (traj.numStates() + 1) * TIME_STEP));
+                traj.states.add(new State(pos, Rotation2d.fromDegrees(heading), vel, acc, Rotation2d.fromDegrees(rotation), (traj.numStates() + 1) * TIME_STEP));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,28 +95,11 @@ public class SwervePath {
         return traj;
     }
 
-    public static SwervePath generate1D(double x, double y, double targetAngle, double maxV, double maxA){
-        TrajectoryConfig config = new TrajectoryConfig(maxV, maxA);
-        Trajectory trajectory = TrajectoryGenerator.generateTrajectory(
-                new Pose2d(0, 0, new Rotation2d(0)),
-                List.of(new Translation2d(x/2, y/2)),
-                new Pose2d(x, y, new Rotation2d(0)),
-                config
-        );
-
-        SwervePath path = new SwervePath();
-        for(int i = 0; i < trajectory.getStates().size(); i++){
-            Trajectory.State state = trajectory.getStates().get(i);
-            path.states.add(new State(state.poseMeters, state.velocityMetersPerSecond, state.accelerationMetersPerSecondSq, Rotation2d.fromDegrees(targetAngle), state.timeSeconds));
-        }
-        return path;
-    }
-
     private static double lerp(double startVal, double endVal, double t) {
         return startVal + (endVal - startVal) * t;
     }
 
-    private static Pose2d lerp(Pose2d startVal, Pose2d endVal, double t) {
+    private static Translation2d lerp(Translation2d startVal, Translation2d endVal, double t) {
         return startVal.plus((endVal.minus(startVal)).times(t));
     }
 
@@ -164,7 +145,8 @@ public class SwervePath {
     }
 
     public static class State {
-        private final Pose2d pose;
+        private final double pos;
+        private final Rotation2d heading;
         private final double velocity;
         private final double acceleration;
         private final Rotation2d rotation;
@@ -173,42 +155,37 @@ public class SwervePath {
         /**
          * Construct a State
          *
-         * @param pose         Pose2d holding the robot's xPos, yPos, and heading
+         * @param pos          Translation2d holding the robot's position on the field
+         * @param heading      Rotation2d representing the direction of robot motion
          * @param velocity     Velocity of the robot
          * @param acceleration Acceleration of the robot
          * @param rotation     Rotation of the robot
          * @param time         Time this state represents
          */
-        public State(Pose2d pose, double velocity, double acceleration, Rotation2d rotation, double time) {
-            this.pose = pose;
+        public State(double pos, Rotation2d heading, double velocity, double acceleration, Rotation2d rotation, double time) {
+            this.pos = pos;
+            this.heading = heading;
             this.velocity = velocity;
             this.acceleration = acceleration;
             this.rotation = rotation;
             this.time = time;
         }
 
-        public Pose2d getPose() {
-            return this.pose;
+
+        public double getPos() {
+            return this.pos;
         }
 
-        public double getXVelocity() {
-            return this.velocity * pose.getRotation().getCos();
-        }
-
-        public double getYVelocity() {
-            return this.velocity * pose.getRotation().getSin();
-        }
-
-        public double getXAcceleration() {
-            return this.acceleration * pose.getRotation().getCos();
-        }
-
-        public double getYAcceleration() {
-            return this.acceleration * pose.getRotation().getSin();
+        public double getVelocity() {
+            return this.velocity;
         }
 
         public Rotation2d getRotation() {
             return this.rotation;
+        }
+
+        public Rotation2d getHeading(){
+            return this.heading;
         }
 
         public double getTime() {
@@ -226,10 +203,11 @@ public class SwervePath {
             double newV = velocity + (acceleration * deltaT);
             double newS = (velocity * deltaT) + (0.5 * acceleration * Math.pow(deltaT, 2));
 
-            double interpolationFrac = newS / endVal.pose.getTranslation().getDistance(pose.getTranslation());
+            double interpolationFrac = newS / (pos - endVal.pos);
 
             return new State(
-                    lerp(pose, endVal.pose, interpolationFrac),
+                    lerp(pos, endVal.pos, interpolationFrac),
+                    lerp(heading, endVal.heading, interpolationFrac),
                     newV,
                     acceleration,
                     lerp(rotation, endVal.rotation, interpolationFrac),
