@@ -9,14 +9,14 @@ public class CG_Fire extends SequentialCommandGroup {
     public CG_Fire(){
         addCommands(
                 new ShooterSetSpeed(7000),
-//                new HoodAutoPosition(false),
-                new HoodSetPosition(29),
+                new HoodAutoPosition(true),
+//                new HoodSetPosition(29),
                 new ParallelDeadlineGroup(
                         new SequentialCommandGroup(
-//                                new ShooterWaitUntilPrimed(),
-                                new CarouselShoot(1)
-                        )
-//                        new DriveAutoRotate()
+                                new ShooterWaitUntilPrimed(),
+                                new CarouselShoot(.5)
+                        ),
+                        new DriveAutoRotate()
                 )
         );
     }
