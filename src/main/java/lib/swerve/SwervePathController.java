@@ -28,7 +28,9 @@ public class SwervePathController {
     public SwervePathController(PIDController posErrorController, PIDController headingErrorController, ProfiledPIDController rotationController) {
         this.posErrorController = posErrorController;
         this.headingErrorController = headingErrorController;
+        this.headingErrorController.enableContinuousInput(-180, 180);
         this.rotationController = rotationController;
+        this.rotationController.enableContinuousInput(-180, 180);
         this.lastPosition = new Translation2d();
         this.totalDistance = 0;
         this.currentHeading = new Rotation2d(0);
