@@ -42,8 +42,8 @@ public class DriveFollowPath extends CommandBase {
     public void initialize() {
         timer.reset();
         timer.start();
-//        SwervePath.State initialState = path.getInitialState();
-//        RobotContainer.drive.resetOdometry(new Pose2d(RobotContainer.drive.getPoseMeters().getTranslation(), initialState.getRotation()));
+        SwervePath.State initialState = path.getInitialState();
+        RobotContainer.drive.resetOdometry(new Pose2d(RobotContainer.drive.getPoseMeters().getTranslation(), initialState.getRotation()));
         pathController.reset(RobotContainer.drive.getPoseMeters());
         lastTime = 0;
     }
@@ -54,18 +54,18 @@ public class DriveFollowPath extends CommandBase {
         double time = timer.get();
         SwervePath.State desiredState = path.sample(time);
 
-        ChassisSpeeds targetSpeeds = pathController.calculate(RobotContainer.drive.getPoseMeters(), desiredState, time - lastTime);
+        ChassisSpeeds targetSpeeds = pathController.calculate(RobotContainer.drive.getPoseMeters(), desiredState, time - lastTime, timer.hasElapsed(0.1));
         RobotContainer.drive.drive(targetSpeeds);
 
         lastTime = time;
 
         // Position Graph
-        SmartDashboard.putNumber("PIDTarget", desiredState.getPos());
-        SmartDashboard.putNumber("PIDActual", pathController.getTotalDistance());
+//        SmartDashboard.putNumber("PIDTarget", desiredState.getPos());
+//        SmartDashboard.putNumber("PIDActual", pathController.getTotalDistance());
 
         // Heading Graph
-//        SmartDashboard.putNumber("PIDTarget", desiredState.getHeading().getDegrees());
-//        SmartDashboard.putNumber("PIDActual", pathController.getCurrentHeading().getDegrees());
+        SmartDashboard.putNumber("PIDTarget", desiredState.getHeading().getDegrees());
+        SmartDashboard.putNumber("PIDActual", pathController.getCurrentHeading().getDegrees());
 
         // Rotation Graph
 //        SmartDashboard.putNumber("PIDTarget", desiredState.getRotation().getDegrees());

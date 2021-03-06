@@ -65,7 +65,7 @@ public class SwervePathController {
      * @param goalState       Goal state of the robot
      * @return The calculated speeds and rotation
      */
-    public ChassisSpeeds calculate(Pose2d currentPose, SwervePath.State goalState, double deltaTime) {
+    public ChassisSpeeds calculate(Pose2d currentPose, SwervePath.State goalState, double deltaTime, boolean doHeading) {
         Translation2d currentPos = currentPose.getTranslation();
         Rotation2d currentRotation = currentPose.getRotation();
 
@@ -79,7 +79,9 @@ public class SwervePathController {
         double rotSpeed = rotationController.calculate(currentRotation.getDegrees(), goalState.getRotation().getDegrees());
 
         vel += posErrorController.calculate(totalDistance, goalState.getPos());
-        heading.plus(Rotation2d.fromDegrees(headingErrorController.calculate(this.currentHeading.getDegrees(), goalState.getHeading().getDegrees())));
+        if(doHeading) {
+            heading = heading.plus(Rotation2d.fromDegrees(headingErrorController.calculate(this.currentHeading.getDegrees(), goalState.getHeading().getDegrees())));
+        }
 
         double xVel = vel * heading.getCos();
         double yVel = vel * heading.getSin();

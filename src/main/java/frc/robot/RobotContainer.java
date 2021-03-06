@@ -85,11 +85,15 @@ public class RobotContainer {
         driverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
         driverLT.whenActive(new CG_ReadyToFire()).whenInactive(new CG_ShooterDefault());
         driverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
-        driverX.whenActive(new HoodSetPosition(30)).whenInactive(new HoodSetPosition(0));
-//        driverA.whenActive(new ShooterSetSpeed(6900)).whenInactive(new ShooterStop());
-//        driverA.whenActive(new DriveSetModuleRotation(90)).whenInactive(new DriveSetModuleRotation(0));
         driverY.whileActiveContinuous(new CarouselPurge());
-        driverLB.whenActive(new DriveFollowPath("path"));
+
+        coDriverB.whenActive(new HoodHome());
+        coDriverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
+        coDriverLT.whenActive(new CG_ReadyToFire()).whenInactive(new CG_ShooterDefault());
+        coDriverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
+        coDriverY.whileActiveContinuous(new CarouselPurge());
+
+//        driverLB.whenActive(new DriveFollowPath("barrel_racing2"));
     }
 
     public static double getDriverLeftStickX() {
