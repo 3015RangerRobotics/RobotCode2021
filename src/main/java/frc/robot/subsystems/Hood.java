@@ -75,7 +75,7 @@ public class Hood extends SubsystemBase {
                 setHoodOutputPercentage(0);
                 break;
         }
-        SmartDashboard.putNumber("Hood Position", getHoodPosition());
+        //SmartDashboard.putNumber("Hood Position", getHoodPosition());
     }
 
     public void setStatePosition(double pos){

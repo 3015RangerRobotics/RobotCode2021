@@ -28,7 +28,7 @@ public class DriveAutoRotate extends CommandBase {
     public void execute() {
         double leftStickY = RobotContainer.getDriverLeftStickY();
         double leftStickX = RobotContainer.getDriverLeftStickX();
-        double rightStickX = RobotContainer.getDriverRightStickX();
+        double rightStickX = RobotContainer.getDriverRightStickX() * 0.75;
 
         double output = rotationController.calculate(-RobotContainer.limelight.getTargetAngleX(), 0);
         if(!rotationController.atSetpoint() && leftStickX == 0 && leftStickY == 0) {

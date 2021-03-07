@@ -93,7 +93,7 @@ public class RobotContainer {
 //        coDriverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
 //        coDriverY.whileActiveContinuous(new CarouselPurge());
 
-        driverLB.whenActive(new DriveFollowPath("barrel_racing2"));
+        driverLB.whenActive(new CG_Bounce());
     }
 
     public static double getDriverLeftStickX() {

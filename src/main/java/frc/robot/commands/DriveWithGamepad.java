@@ -27,7 +27,7 @@ public class DriveWithGamepad extends CommandBase {
     @Override
     public void execute() {
 //        System.out.println("YOOOOOOOOOO");
-        double rightStickX = RobotContainer.getDriverRightStickX();
+        double rightStickX = RobotContainer.getDriverRightStickX() ;
         double leftStickY = RobotContainer.getDriverLeftStickY();
         double leftStickX = RobotContainer.getDriverLeftStickX();
 

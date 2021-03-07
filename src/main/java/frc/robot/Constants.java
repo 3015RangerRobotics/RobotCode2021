@@ -87,9 +87,10 @@ public final class Constants {
     }
 
     // Carousel Constants
-    public static final int CAROUSEL_MOTOR1 = 0; // PWM: VICTOR SP
-    public static final int CAROUSEL_MOTOR2 = 1; // PWM: VICTOR SP
-    public static final int CAROUSEL_MOTOR3 = 2; // PWM: VICTOR SP
+    public static final int CAROUSEL_MOTOR1 = 0; // PWM: VICTOR SPX
+    public static final int CAROUSEL_MOTOR2 = 1; // PWM: VICTOR SPX
+    public static final int CAROUSEL_MOTOR3 = 2; // PWM: VICTOR SPX
+    public static final int CAROUSEL_INTAKE_MOTOR = 3; // PWM: VICTOR SP
     public static final int CAROUSEL_BALL_SENSOR1 = 0; // DIO: BEAM BREAK
     public static final int CAROUSEL_BALL_SENSOR2 = 1; // DIO: BEAM BREAK
     public static final int CAROUSEL_BALL_SENSOR3 = 2; // DIO: BEAM BREAK

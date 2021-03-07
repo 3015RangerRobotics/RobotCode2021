@@ -10,7 +10,8 @@ public class Carousel extends SubsystemBase {
 	private PWMVictorSPX motor1;
 	private PWMVictorSPX motor2;
 	private PWMVictorSPX motor3;
-	
+	private VictorSP intake;
+
 	private DigitalInput switch1;
 	private DigitalInput switch2;
 	private DigitalInput switch3;
@@ -44,6 +45,7 @@ public class Carousel extends SubsystemBase {
 		motor1 = new PWMVictorSPX(Constants.CAROUSEL_MOTOR1); //Motor closest to shooter, used to push balls up to turret
 		motor2 = new PWMVictorSPX(Constants.CAROUSEL_MOTOR2); //2nd motor closest to shooter
 		motor3 = new PWMVictorSPX(Constants.CAROUSEL_MOTOR3); //3rd motor closest to shooter
+		intake = new VictorSP(Constants.CAROUSEL_INTAKE_MOTOR);
 		
 		switch1 = new DigitalInput(Constants.CAROUSEL_BALL_SENSOR1); //assigned to motor 1
 		switch2 = new DigitalInput(Constants.CAROUSEL_BALL_SENSOR2); //assigned to motor 2
@@ -52,6 +54,7 @@ public class Carousel extends SubsystemBase {
 		motor1.setInverted(false);
 		motor2.setInverted(false);
 		motor3.setInverted(true);
+		intake.setInverted(false);
 
 		motor1PidController = new PIDController(Constants.CAROUSEL_SHOOT_P, Constants.CAROUSEL_SHOOT_I, Constants.CAROUSEL_SHOOT_D);
 		motor1Encoder = new Encoder(Constants.CAROUSEL_ENCODER1, Constants.CAROUSEL_ENCODER2, Constants.CAROUSEL_ENCODER3);
@@ -199,10 +202,12 @@ public class Carousel extends SubsystemBase {
 			motor1.set(0);
 			motor2.set(0);
 			motor3.set(0);
+			intake.set(0);
 		} else {
 			motor1.set(speed1);
 			motor2.set(speed2);
 			motor3.set(speed3);
+			intake.set(Math.signum(speed3));
 		}
 	}
 
