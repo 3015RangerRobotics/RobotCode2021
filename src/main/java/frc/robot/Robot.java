@@ -49,6 +49,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
+        RobotContainer.drive.enableBrakeMode(true);
     }
 
     @Override
@@ -60,6 +61,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
+        RobotContainer.drive.enableBrakeMode(true);
         m_autonomousCommand = RobotContainer.getAutonomousCommand();
 
         // schedule the autonomous command (example)
@@ -77,6 +79,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void teleopInit() {
+        RobotContainer.drive.enableBrakeMode(true);
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove

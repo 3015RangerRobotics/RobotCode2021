@@ -96,8 +96,8 @@ public final class Constants {
     public static final int CAROUSEL_ENCODER1 = 3;
     public static final int CAROUSEL_ENCODER2 = 4;
     public static final int CAROUSEL_ENCODER3 = 5;
-    public static final double CAROUSEL_IN_SPEED_ACTIVE = 0.3;
-    public static final double CAROUSEL_IN_SPEED_PASSIVE = 0.4;
+    public static final double CAROUSEL_IN_SPEED_ACTIVE = 0.4;
+    public static final double CAROUSEL_IN_SPEED_PASSIVE = 0.5;
     public static final double CAROUSEL_PURGE_SPEED1 = -0.8;
     public static final double CAROUSEL_PURGE_SPEED2 = -0.9;
     public static final double CAROUSEL_PURGE_SPEED3 = -1;

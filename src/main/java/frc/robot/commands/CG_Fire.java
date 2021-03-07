@@ -14,7 +14,7 @@ public class CG_Fire extends SequentialCommandGroup {
                 new ParallelDeadlineGroup(
                         new SequentialCommandGroup(
                                 new ShooterWaitUntilPrimed(),
-                                new CarouselShoot(.5)
+                                new CarouselShoot(0.25) // Was 0.5
                         ),
                         new DriveAutoRotate()
                 )

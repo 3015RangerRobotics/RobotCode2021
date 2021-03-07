@@ -35,7 +35,7 @@ public class SwerveModule {
         driveMotor.config_kF(0, 1023.0 / (Constants.SWERVE_MAX_VELOCITY / Constants.SWERVE_METERS_PER_PULSE));
         driveMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 10);
         driveMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 10);
-        driveMotor.setNeutralMode(NeutralMode.Coast);
+//        driveMotor.setNeutralMode(NeutralMode.Coast);
 
         rotationMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 1, 10);
         rotationMotor.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
@@ -58,6 +58,14 @@ public class SwerveModule {
         rotationMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_12_Feedback1, 10);
     }
 
+    public void enableBrakeMode(boolean enable){
+        if (enable){
+            driveMotor.setNeutralMode(NeutralMode.Brake);
+        }
+        else {
+            driveMotor.setNeutralMode(NeutralMode.Coast);
+        }
+    }
     public void resetEncoders() {
         rotationMotor.setSelectedSensorPosition(0);
         driveMotor.setSelectedSensorPosition(0);

@@ -60,12 +60,12 @@ public class DriveFollowPath extends CommandBase {
         lastTime = time;
 
         // Position Graph
-//        SmartDashboard.putNumber("PIDTarget", desiredState.getPos());
-//        SmartDashboard.putNumber("PIDActual", pathController.getTotalDistance());
+        SmartDashboard.putNumber("PIDTarget", desiredState.getPos());
+        SmartDashboard.putNumber("PIDActual", pathController.getTotalDistance());
 
         // Heading Graph
-        SmartDashboard.putNumber("PIDTarget", desiredState.getHeading().getDegrees());
-        SmartDashboard.putNumber("PIDActual", pathController.getCurrentHeading().getDegrees());
+//        SmartDashboard.putNumber("PIDTarget", desiredState.getHeading().getDegrees());
+//        SmartDashboard.putNumber("PIDActual", pathController.getCurrentHeading().getDegrees());
 
         // Rotation Graph
 //        SmartDashboard.putNumber("PIDTarget", desiredState.getRotation().getDegrees());
@@ -75,6 +75,7 @@ public class DriveFollowPath extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        System.out.println(timer.get());
         timer.stop();
         RobotContainer.drive.drive(0, 0, 0, true);
     }

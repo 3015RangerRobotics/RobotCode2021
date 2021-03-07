@@ -65,6 +65,13 @@ public class Drive extends SubsystemBase {
         backRightSwerveModule.resetEncoders();
     }
 
+    public void enableBrakeMode(boolean enable){
+        frontLeftSwerveModule.enableBrakeMode(enable);
+        frontRightSwerveModule.enableBrakeMode(enable);
+        backLeftSwerveModule.enableBrakeMode(enable);
+        backRightSwerveModule.enableBrakeMode(enable);
+    }
+
     public void resetIMU() {
         imu.setFusedHeading(0);
         imu.setYaw(0);
