@@ -1,1 +1,1 @@
-{"points":[[1.03,2.05],[1.79,2.02],[1.94,1.93],[1.95,0.87]],"velocities":[-1,-1],"holonomicAngles":[0,90],"reversed":false,"maxVel":4,"maxAcc":5.25,"csvHeader":""}
+{"points":[[1.04,2.05],[1.99,2.5],[1.94,1.83],[1.95,0.77]],"velocities":[-1,-1],"holonomicAngles":[0,90],"reversed":false,"maxVel":4,"maxAcc":5.25,"csvHeader":""}
