@@ -138,7 +138,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public static Command getAutonomousCommand() {
-        return null;
+        return new DriveFollowPath("barrel_racing2");
     }
 
     private static class TriggerButton extends Trigger {

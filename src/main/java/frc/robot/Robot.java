@@ -49,7 +49,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void disabledInit() {
-        RobotContainer.drive.enableBrakeMode(true);
+        RobotContainer.drive.enableBrakeMode(false);
     }
 
     @Override
