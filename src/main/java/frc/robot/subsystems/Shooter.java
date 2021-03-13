@@ -61,7 +61,7 @@ public class Shooter extends SubsystemBase {
 //		SmartDashboard.putNumber("PIDTarget", setSpeed);
 //		SmartDashboard.putNumber("PIDActual", getRPM());
 		
-		if(getRPM() >= 7500){
+		if(getRPM() >= 8500){
 			state = State.kOff;
 		}
 		

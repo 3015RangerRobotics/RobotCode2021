@@ -70,7 +70,6 @@ public final class Constants {
     public static final LookupTable HOOD_AUTO_POSITION_TABLE = new LookupTable();
 
     static {
-        HOOD_AUTO_POSITION_TABLE.put(4.45,  9.00);
         HOOD_AUTO_POSITION_TABLE.put( 5.0, 12);
         HOOD_AUTO_POSITION_TABLE.put( 6.0, 15);
         HOOD_AUTO_POSITION_TABLE.put( 7.0, 19);

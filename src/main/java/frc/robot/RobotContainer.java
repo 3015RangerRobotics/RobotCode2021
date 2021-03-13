@@ -83,15 +83,17 @@ public class RobotContainer {
     private static void configureButtonBindings() {
         driverB.whenActive(new HoodHome());
         driverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
-        driverLT.whenActive(new CG_ReadyToFire()).whenInactive(new CG_ShooterDefault());
-        driverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
+        driverLT.whenActive(new CG_ReadyToFire());
+        driverLB.whenActive(new CG_ShooterDefault());
+        driverRT.whenActive(new CarouselShoot(.1));
         driverY.whileActiveContinuous(new CarouselPurge());
         driverStart.and(driverBack).whenActive(new DriveZero());
 
         coDriverB.whenActive(new HoodHome());
         coDriverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
-        coDriverLT.whenActive(new CG_ReadyToFire()).whenInactive(new CG_ShooterDefault());
-        coDriverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
+        coDriverLT.whenActive(new CG_ReadyToFire());
+        coDriverLB.whenActive(new CG_ShooterDefault());
+        coDriverRT.whenActive(new CarouselShoot(.1));
         coDriverY.whileActiveContinuous(new CarouselPurge());
 //        driverLB.whenActive(new DriveFollowPath("slalom"));
     }
