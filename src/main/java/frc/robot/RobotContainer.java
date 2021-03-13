@@ -86,12 +86,14 @@ public class RobotContainer {
         driverLT.whenActive(new CG_ReadyToFire()).whenInactive(new CG_ShooterDefault());
         driverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
         driverY.whileActiveContinuous(new CarouselPurge());
+        driverStart.and(driverBack).whenActive(new DriveZero());
 
 //        coDriverB.whenActive(new HoodHome());
 //        coDriverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
 //        coDriverLT.whenActive(new CG_ReadyToFire()).whenInactive(new CG_ShooterDefault());
 //        coDriverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
 //        coDriverY.whileActiveContinuous(new CarouselPurge());
+        coDriverStart.and(coDriverBack).whenActive(new DriveZero());
 
         driverLB.whenActive(new DriveFollowPath("slalom"));
     }
