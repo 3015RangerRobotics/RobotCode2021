@@ -87,13 +87,13 @@ public class RobotContainer {
         driverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
         driverY.whileActiveContinuous(new CarouselPurge());
 
-//        coDriverB.whenActive(new HoodHome());
-//        coDriverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
-//        coDriverLT.whenActive(new CG_ReadyToFire()).whenInactive(new CG_ShooterDefault());
-//        coDriverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
-//        coDriverY.whileActiveContinuous(new CarouselPurge());
+        coDriverB.whenActive(new HoodHome());
+        coDriverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
+        coDriverLT.whenActive(new CG_ReadyToFire()).whenInactive(new CG_ShooterDefault());
+        coDriverRT.whileActiveOnce(new CG_Fire()).whenInactive(new CG_ShooterDefault());
+        coDriverY.whileActiveContinuous(new CarouselPurge());
 
-        driverLB.whenActive(new DriveFollowPath("slalom"));
+//        driverLB.whenActive(new DriveFollowPath("slalom"));
     }
 
     public static double getDriverLeftStickX() {
@@ -138,7 +138,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public static Command getAutonomousCommand() {
-        return new DriveFollowPath("slalom");
+        return null;
     }
 
     private static class TriggerButton extends Trigger {
