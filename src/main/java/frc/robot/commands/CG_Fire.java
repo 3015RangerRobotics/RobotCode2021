@@ -10,11 +10,11 @@ public class CG_Fire extends SequentialCommandGroup {
         addCommands(
                 new ShooterSetSpeed(7000),
                 new HoodAutoPosition(true),
-//                new HoodSetPosition(29),
+//                new HoodSetPosition(28),
                 new ParallelDeadlineGroup(
                         new SequentialCommandGroup(
                                 new ShooterWaitUntilPrimed(),
-                                new CarouselShoot(0.25) // Was 0.5
+                                new CarouselShoot(0.5) // Was 0.5
                         ),
                         new DriveAutoRotate()
                 )

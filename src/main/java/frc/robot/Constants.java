@@ -73,8 +73,8 @@ public final class Constants {
         HOOD_AUTO_POSITION_TABLE.put(4.45,  9.00);
         HOOD_AUTO_POSITION_TABLE.put( 5.0, 12);
         HOOD_AUTO_POSITION_TABLE.put( 6.0, 15);
-        HOOD_AUTO_POSITION_TABLE.put( 7.0, 18.1);
-        HOOD_AUTO_POSITION_TABLE.put( 8.0, 20.9);
+        HOOD_AUTO_POSITION_TABLE.put( 7.0, 19);
+        HOOD_AUTO_POSITION_TABLE.put( 8.0, 21);
         HOOD_AUTO_POSITION_TABLE.put( 9.0, 23);
         HOOD_AUTO_POSITION_TABLE.put(10.4, 25);
         HOOD_AUTO_POSITION_TABLE.put(11.8, 28);
