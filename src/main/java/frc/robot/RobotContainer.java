@@ -85,7 +85,7 @@ public class RobotContainer {
         driverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
         driverLT.whenActive(new CG_ReadyToFire());
         driverLB.whenActive(new CG_ShooterDefault());
-        driverRT.whenActive(new CarouselShoot(.1));
+        driverRT.whenActive(new CarouselShoot(.51));
         driverY.whileActiveContinuous(new CarouselPurge());
         driverStart.and(driverBack).whenActive(new DriveZero());
 
@@ -95,7 +95,7 @@ public class RobotContainer {
         coDriverLB.whenActive(new CG_ShooterDefault());
         coDriverRT.whenActive(new CarouselShoot(.1));
         coDriverY.whileActiveContinuous(new CarouselPurge());
-//        driverLB.whenActive(new DriveFollowPath("slalom"));
+        driverLB.whenActive(new CG_SearchARed());
     }
 
     public static double getDriverLeftStickX() {

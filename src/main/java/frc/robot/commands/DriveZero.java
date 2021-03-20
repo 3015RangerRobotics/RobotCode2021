@@ -21,8 +21,8 @@ public class DriveZero extends CommandBase {
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
-        RobotContainer.drive.resetIMU();
-        RobotContainer.drive.resetEncoders();
+//        RobotContainer.drive.resetIMU();
+//        RobotContainer.drive.resetEncoders();
         RobotContainer.drive.resetOdometry(new Pose2d(new Translation2d(0, 0), new Rotation2d(0)));
     }
 

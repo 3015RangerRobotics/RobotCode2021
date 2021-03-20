@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
@@ -40,9 +41,9 @@ public class DriveWithGamepad extends CommandBase {
         double leftStickX = RobotContainer.getDriverLeftStickX();
 
         double rotationOutput = rightStickX;
-        if(Math.abs(rotationOutput) == 0 && (Math.abs(leftStickX)!= 0 || Math.abs(leftStickY) != 0)){
+        if(Math.abs(rotationOutput) == 0){
             rotationOutput = rotationController.calculate(RobotContainer.drive.getAngleDegrees(), currentAngle);
-            if(Math.abs(rotationOutput) < 5) rotationOutput = 0;
+            if((Math.abs(leftStickX) == 0 && Math.abs(leftStickY) == 0)) rotationOutput = 0;
 //            SmartDashboard.putNumber("PIDTarget", currentAngle);
 //            SmartDashboard.putNumber("PIDActual", RobotContainer.drive.getAngleDegrees());
         }else{
@@ -57,7 +58,7 @@ public class DriveWithGamepad extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-//        RobotContainer.drive.drive(0, 0, 0, true);
+        RobotContainer.drive.drive(0, 0, 0, true);
     }
 
     // Returns true when the command should end.

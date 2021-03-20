@@ -14,6 +14,7 @@ public class CG_ReadyToFire extends SequentialCommandGroup {
                         new SequentialCommandGroup(
                                 new LimelightWaitForTarget(),
                                 new HoodAutoPosition()
+                                
                         ),
                         new DriveAutoRotate()
                 )
