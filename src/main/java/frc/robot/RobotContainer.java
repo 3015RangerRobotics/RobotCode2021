@@ -95,7 +95,7 @@ public class RobotContainer {
         coDriverLB.whenActive(new CG_ShooterDefault());
         coDriverRT.whenActive(new CarouselShoot(.1));
         coDriverY.whileActiveContinuous(new CarouselPurge());
-        driverLB.whenActive(new CG_SearchARed());
+        driverLB.whenActive(new CG_SearchBBlue());
     }
 
     public static double getDriverLeftStickX() {
@@ -140,7 +140,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public static Command getAutonomousCommand() {
-        return null;
+        return new CG_SearchBBlue();
     }
 
     private static class TriggerButton extends Trigger {
