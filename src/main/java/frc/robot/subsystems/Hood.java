@@ -19,6 +19,7 @@ import frc.robot.RobotContainer;
 public class Hood extends SubsystemBase {
     private CANSparkMax hoodMotor;
     private double setPos = 0;
+    private boolean holdAutoPos = false;
     private Timer timer = new Timer();
 
     private enum State {
@@ -56,7 +57,8 @@ public class Hood extends SubsystemBase {
 //                System.out.println(getHoodPosition());
                 break;
             case kAutoPosition:
-                setPos = getAutoPosition();
+                if(!holdAutoPos)
+                    setPos = getAutoPosition();
                 setHoodPosition(setPos);
                 break;
             case kHoming:
@@ -81,6 +83,10 @@ public class Hood extends SubsystemBase {
     public void setStatePosition(double pos){
         setPos = pos;
         state = State.kSetPosition;
+    }
+
+    public void setHoldAutoPos(boolean hold){
+        this.holdAutoPos = hold;
     }
 
     public void setStateAutoPosition(){

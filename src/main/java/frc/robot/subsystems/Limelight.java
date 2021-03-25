@@ -69,7 +69,7 @@ public class Limelight extends SubsystemBase {
 	
 	@Override
 	public void periodic() {
-		SmartDashboard.putNumber("Distance to Target", getRobotToTargetDistance());
+		SmartDashboard.putNumber("Distance to Target", Math.round(getRobotToTargetDistance() * 10) / 10.0);
 	}
 	
 	/**

@@ -93,15 +93,15 @@ public class Carousel extends SubsystemBase {
 				break;
 			
 			case kShootBall1:
-				setMotorsVelocity(Constants.CAROUSEL_SHOOT_VELOCITY, 0, 0);
+				setMotorsVelocity(Constants.CAROUSEL_SHOOT_PERCENTAGE, 0, 0);
 				break;
 			
 			case kShootBall2:
-				setMotorsVelocity(Constants.CAROUSEL_SHOOT_VELOCITY, Constants.CAROUSEL_SHOOT_PERCENTAGE, 0);
+				setMotorsVelocity(Constants.CAROUSEL_SHOOT_PERCENTAGE, Constants.CAROUSEL_SHOOT_PERCENTAGE, 0);
 				break;
 			
 			case kShootBall3:
-				setMotorsVelocity(Constants.CAROUSEL_SHOOT_VELOCITY, Constants.CAROUSEL_SHOOT_PERCENTAGE,
+				setMotorsVelocity(Constants.CAROUSEL_SHOOT_PERCENTAGE, Constants.CAROUSEL_SHOOT_PERCENTAGE,
 						Constants.CAROUSEL_SHOOT_PERCENTAGE);
 				break;
 
@@ -219,7 +219,7 @@ public class Carousel extends SubsystemBase {
 			motor3.set(0);
 		} else {
 			setVelocity = speed1vel;
-			motor1.set(motor1PidController.calculate(getMotor1Velocity(), speed1vel) + speed1vel * Constants.CAROUSEL_SHOOT_F);
+			motor1.set(speed1vel);
 			motor2.set(speed2pct);
 			motor3.set(speed3pct);
 		}

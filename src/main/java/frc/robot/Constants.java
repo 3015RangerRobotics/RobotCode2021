@@ -70,19 +70,23 @@ public final class Constants {
     public static final LookupTable HOOD_AUTO_POSITION_TABLE = new LookupTable();
 
     static {
-        HOOD_AUTO_POSITION_TABLE.put( 5.0, 12);
-        HOOD_AUTO_POSITION_TABLE.put( 6.0, 15);
-        HOOD_AUTO_POSITION_TABLE.put( 7.0, 19);
-        HOOD_AUTO_POSITION_TABLE.put( 8.0, 21);
-        HOOD_AUTO_POSITION_TABLE.put( 9.0, 23);
-        HOOD_AUTO_POSITION_TABLE.put(10.4, 25);
-        HOOD_AUTO_POSITION_TABLE.put(11.8, 28);
-        HOOD_AUTO_POSITION_TABLE.put(14.2, 29.5);
-        HOOD_AUTO_POSITION_TABLE.put(16.5, 29.5);//31
-        HOOD_AUTO_POSITION_TABLE.put(17.1, 29.5);//31.5
-        HOOD_AUTO_POSITION_TABLE.put(19.1, 30.5);//32
-        HOOD_AUTO_POSITION_TABLE.put(21.7, 33);
-        HOOD_AUTO_POSITION_TABLE.put(23.9, 29.70);
+//        HOOD_AUTO_POSITION_TABLE.put( 5.0, 12);
+//        HOOD_AUTO_POSITION_TABLE.put( 6.0, 15);
+//        HOOD_AUTO_POSITION_TABLE.put( 7.0, 19);
+//        HOOD_AUTO_POSITION_TABLE.put( 8.0, 21);
+//        HOOD_AUTO_POSITION_TABLE.put( 9.0, 23);
+//        HOOD_AUTO_POSITION_TABLE.put(10.4, 25);
+//        HOOD_AUTO_POSITION_TABLE.put(11.8, 28);
+//        HOOD_AUTO_POSITION_TABLE.put(14.2, 29.5);
+//        HOOD_AUTO_POSITION_TABLE.put(16.5, 29.5);//31
+//        HOOD_AUTO_POSITION_TABLE.put(17.1, 29.5);//31.5
+//        HOOD_AUTO_POSITION_TABLE.put(19.1, 30);//32
+//        HOOD_AUTO_POSITION_TABLE.put(21.7, 33);
+//        HOOD_AUTO_POSITION_TABLE.put(23.3, 29.70);
+        HOOD_AUTO_POSITION_TABLE.put(5,15);
+        HOOD_AUTO_POSITION_TABLE.put(9,26);
+        HOOD_AUTO_POSITION_TABLE.put(14,32.5);
+        HOOD_AUTO_POSITION_TABLE.put(18,34.2);
     }
 
     // Carousel Constants
