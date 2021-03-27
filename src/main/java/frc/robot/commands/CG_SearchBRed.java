@@ -9,7 +9,7 @@ public class CG_SearchBRed extends ParallelDeadlineGroup {
     public CG_SearchBRed(){
         super(
                 new SequentialCommandGroup(
-                        new WaitCommand(0.25),
+                        new WaitCommand(0.125),
                         new DriveFollowPath("search_b_red")
                 ),
                 new CarouselIntake()

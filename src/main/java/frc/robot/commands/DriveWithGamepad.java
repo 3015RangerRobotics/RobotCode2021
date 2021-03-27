@@ -6,14 +6,17 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
+import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import lib.swerve.ObstacleAvoidance;
 
 public class DriveWithGamepad extends CommandBase {
     ProfiledPIDController rotationController;
+    ObstacleAvoidance roomba;
     double currentAngle;
 
     /**
@@ -24,6 +27,12 @@ public class DriveWithGamepad extends CommandBase {
         rotationController = new ProfiledPIDController(Constants.DRIVE_ROTATION_CONTROLLER_P, Constants.DRIVE_ROTATION_CONTROLLER_I, Constants.DRIVE_ROTATION_CONTROLLER_D,
                 new TrapezoidProfile.Constraints(Constants.DRIVE_MAX_ANGULAR_VELOCITY, Constants.DRIVE_MAX_ANGULAR_ACCEL));
         rotationController.enableContinuousInput(-180, 180);
+        roomba = new ObstacleAvoidance(0.5, 3,
+                new ObstacleAvoidance.RestrictedArea(new Translation2d(1, -0.5), new Translation2d(2, 0.5)),
+                new ObstacleAvoidance.RestrictedArea(new Translation2d(-2, -0.5), new Translation2d(-1, 0.5)),
+                new ObstacleAvoidance.RestrictedArea(new Translation2d(-0.5, 1), new Translation2d(0.5, 2)),
+                new ObstacleAvoidance.RestrictedArea(new Translation2d(-0.5, -2), new Translation2d(0.5, -1))
+        );
     }
 
     // Called when the command is initially scheduled.
@@ -37,8 +46,8 @@ public class DriveWithGamepad extends CommandBase {
     @Override
     public void execute() {
         double rightStickX = RobotContainer.getDriverRightStickX();
-        double leftStickY = RobotContainer.getDriverLeftStickY() * (RobotContainer.getDriverRightTrigger() > 0.5 ? 0.85 : 0.5);
-        double leftStickX = RobotContainer.getDriverLeftStickX() * (RobotContainer.getDriverRightTrigger() > 0.5 ? 0.85 : 0.5);
+        double leftStickY = RobotContainer.getDriverLeftStickY() * (RobotContainer.getDriverRightTrigger() > 0.5 ? 1 : 0.6);
+        double leftStickX = RobotContainer.getDriverLeftStickX() * (RobotContainer.getDriverRightTrigger() > 0.5 ? 1 : 0.6);
 
         double rotationOutput = rightStickX;
         if(Math.abs(rotationOutput) == 0){
@@ -52,7 +61,13 @@ public class DriveWithGamepad extends CommandBase {
             rotationOutput *= Constants.DRIVE_MAX_ANGULAR_VELOCITY;
         }
 
-        RobotContainer.drive.drive(-leftStickY * Constants.SWERVE_MAX_VELOCITY, leftStickX * Constants.SWERVE_MAX_VELOCITY, rotationOutput, true);
+        double xVel = -leftStickY * Constants.SWERVE_MAX_VELOCITY;
+        double yVel = leftStickX * Constants.SWERVE_MAX_VELOCITY;
+
+//        Translation2d corrections = roomba.calculateMaxVelocities(RobotContainer.drive.getPoseMeters(), xVel, yVel);
+        Translation2d corrections = new Translation2d(xVel, yVel);
+
+        RobotContainer.drive.drive(corrections.getX(), corrections.getY(), rotationOutput, true);
     }
 
     // Called once the command ends or is interrupted.

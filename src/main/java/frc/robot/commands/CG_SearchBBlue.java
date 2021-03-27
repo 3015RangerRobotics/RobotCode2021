@@ -8,7 +8,7 @@ public class CG_SearchBBlue extends ParallelDeadlineGroup {
     public CG_SearchBBlue(){
         super(
                 new SequentialCommandGroup(
-                        new WaitCommand(0.25),
+                        new WaitCommand(0.125),
                         new DriveFollowPath("search_b_blue")
                 ),
                 new CarouselIntake()

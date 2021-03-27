@@ -146,7 +146,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public static Command getAutonomousCommand() {
-        return null;
+        return new CG_SearchARed();
     }
 
     private static class TriggerButton extends Trigger {
