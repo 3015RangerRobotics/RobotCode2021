@@ -36,9 +36,9 @@ public class DriveWithGamepad extends CommandBase {
     // Called every time the scheduler runs while the command is scheduled.
     @Override
     public void execute() {
-        double rightStickX = RobotContainer.getDriverRightStickX() ;
-        double leftStickY = RobotContainer.getDriverLeftStickY();
-        double leftStickX = RobotContainer.getDriverLeftStickX();
+        double rightStickX = RobotContainer.getDriverRightStickX();
+        double leftStickY = RobotContainer.getDriverLeftStickY() * (RobotContainer.getDriverRightTrigger() > 0.5 ? 0.85 : 0.5);
+        double leftStickX = RobotContainer.getDriverLeftStickX() * (RobotContainer.getDriverRightTrigger() > 0.5 ? 0.85 : 0.5);
 
         double rotationOutput = rightStickX;
         if(Math.abs(rotationOutput) == 0){

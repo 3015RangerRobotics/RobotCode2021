@@ -86,7 +86,7 @@ public class RobotContainer {
         driverLT.whenActive(new CG_ReadyToFire());
         driverLB.whenActive(new CG_ShooterDefault());
         driverRB.whenActive(new CG_FireReload());
-        driverRT.whenActive(new CarouselShoot(.1));
+//        driverRT.whenActive(new CarouselShoot(0.1));
         driverY.whileActiveContinuous(new CarouselPurge());
         driverStart.and(driverBack).whenActive(new DriveZero());
 
@@ -95,7 +95,7 @@ public class RobotContainer {
         coDriverLT.whenActive(new CG_ReadyToFire());
         coDriverLB.whenActive(new CG_ShooterDefault());
         coDriverRB.whenActive(new CG_FireReload());
-        coDriverRT.whenActive(new CarouselShoot(.1));
+        coDriverRT.whenActive(new CarouselShoot(0.1));
         coDriverY.whileActiveContinuous(new CarouselPurge());
 //        driverLB.whenActive(new CG_SearchBBlue());
     }
@@ -134,6 +134,10 @@ public class RobotContainer {
         }else{
             return input*input;
         }
+    }
+
+    public static double getDriverRightTrigger(){
+        return driver.getTriggerAxis(Hand.kRight);
     }
 
     /**

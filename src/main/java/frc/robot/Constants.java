@@ -55,7 +55,7 @@ public final class Constants {
     public static final double DRIVE_HEADING_ERROR_CONTROLLER_P = 0; //1.05
     public static final double DRIVE_HEADING_ERROR_CONTROLLER_I = 0;
     public static final double DRIVE_HEADING_ERROR_CONTROLLER_D = 0; //0.02
-    public static final double DRIVE_ROTATION_CONTROLLER_P = 9;
+    public static final double DRIVE_ROTATION_CONTROLLER_P = 10;//9
     public static final double DRIVE_ROTATION_CONTROLLER_I = 0;
     public static final double DRIVE_ROTATION_CONTROLLER_D = 0;
     public static final double DRIVE_ROTATION_MIN_VELOCITY = 25;
@@ -70,23 +70,20 @@ public final class Constants {
     public static final LookupTable HOOD_AUTO_POSITION_TABLE = new LookupTable();
 
     static {
-//        HOOD_AUTO_POSITION_TABLE.put( 5.0, 12);
-//        HOOD_AUTO_POSITION_TABLE.put( 6.0, 15);
-//        HOOD_AUTO_POSITION_TABLE.put( 7.0, 19);
-//        HOOD_AUTO_POSITION_TABLE.put( 8.0, 21);
-//        HOOD_AUTO_POSITION_TABLE.put( 9.0, 23);
-//        HOOD_AUTO_POSITION_TABLE.put(10.4, 25);
-//        HOOD_AUTO_POSITION_TABLE.put(11.8, 28);
-//        HOOD_AUTO_POSITION_TABLE.put(14.2, 29.5);
-//        HOOD_AUTO_POSITION_TABLE.put(16.5, 29.5);//31
-//        HOOD_AUTO_POSITION_TABLE.put(17.1, 29.5);//31.5
-//        HOOD_AUTO_POSITION_TABLE.put(19.1, 30);//32
-//        HOOD_AUTO_POSITION_TABLE.put(21.7, 33);
-//        HOOD_AUTO_POSITION_TABLE.put(23.3, 29.70);
-        HOOD_AUTO_POSITION_TABLE.put(5,15);
-        HOOD_AUTO_POSITION_TABLE.put(9,26);
-        HOOD_AUTO_POSITION_TABLE.put(14,32.5);
-        HOOD_AUTO_POSITION_TABLE.put(18,34.2);
+        // Interstellar Accuracy Table
+//        HOOD_AUTO_POSITION_TABLE.put(5,15);
+//        HOOD_AUTO_POSITION_TABLE.put(9,26);
+//        HOOD_AUTO_POSITION_TABLE.put(14,32.5);
+//        HOOD_AUTO_POSITION_TABLE.put(18,34.2);
+        // Powerport Table
+        HOOD_AUTO_POSITION_TABLE.put(8, 22.5);
+        HOOD_AUTO_POSITION_TABLE.put(9, 25);
+        HOOD_AUTO_POSITION_TABLE.put(10, 27.4);
+        HOOD_AUTO_POSITION_TABLE.put(11, 28.25);
+        HOOD_AUTO_POSITION_TABLE.put(12, 29);
+        HOOD_AUTO_POSITION_TABLE.put(13, 30.5);
+        HOOD_AUTO_POSITION_TABLE.put(14, 31.8);
+        HOOD_AUTO_POSITION_TABLE.put(15.2, 31);
     }
 
     // Carousel Constants
@@ -114,8 +111,8 @@ public final class Constants {
 
     // Limelight Constants
     public static final double LL_TARGET_HEIGHT = 7.58;
-    public static final double LL_MOUNT_HEIGHT = 2.25;
-    public static final double LL_MOUNT_ANGLE = 30;
+    public static final double LL_MOUNT_HEIGHT = 1.625;
+    public static final double LL_MOUNT_ANGLE = 28;
     
     // Shooter Constants
     public static final int SHOOTER_MOTOR = 10; // CAN: TALON FX

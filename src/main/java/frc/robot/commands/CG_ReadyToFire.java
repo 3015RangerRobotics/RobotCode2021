@@ -9,11 +9,11 @@ public class CG_ReadyToFire extends SequentialCommandGroup {
         addCommands(
                 new LimelightSwitchLEDMode(Limelight.LEDMode.LED_ON),
                 new ShooterSetSpeed(6000),
-//                new HoodSetPosition(15),
+                new HoodSetPosition(30.7),
                 new ParallelCommandGroup(
                         new SequentialCommandGroup(
-                                new LimelightWaitForTarget(),
-                                new HoodAutoPosition()
+                                new LimelightWaitForTarget()
+//                                new HoodAutoPosition()
                                 
                         ),
                         new DriveAutoRotate()
