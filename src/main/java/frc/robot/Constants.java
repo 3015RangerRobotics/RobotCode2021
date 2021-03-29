@@ -19,12 +19,13 @@ public final class Constants {
     // Swerve Module Specific
     public static final double SWERVE_CENTER_DISTANCE = 0.2942971; // Meters
     public static final double SWERVE_DEGREES_PER_PULSE = 360.0 / 4096.0;
-    public static final double SWERVE_ROTATION_P = 1.5;
-    public static final double SWERVE_ROTATION_I = 0;
-    public static final double SWERVE_ROTATION_D = 32;
-    public static final double SWERVE_ROTATION_MAX_VELOCITY = 70/SWERVE_DEGREES_PER_PULSE;
-    public static final double SWERVE_ROTATION_MAX_ACCEL = 810/SWERVE_DEGREES_PER_PULSE;
-    public static final double SWERVE_ROTATION_KV = 1023.0/SWERVE_ROTATION_MAX_VELOCITY;
+    public static final double SWERVE_ROTATION_P = 16; //16
+    public static final double SWERVE_ROTATION_I = .04; //0.02
+    public static final double SWERVE_ROTATION_I_ZONE = 10 / SWERVE_DEGREES_PER_PULSE;
+    public static final double SWERVE_ROTATION_D = 1600; //500
+//    public static final double SWERVE_ROTATION_MAX_VELOCITY = 70/SWERVE_DEGREES_PER_PULSE;
+//    public static final double SWERVE_ROTATION_MAX_ACCEL = 810/SWERVE_DEGREES_PER_PULSE;
+//    public static final double SWERVE_ROTATION_KV = 1023.0/SWERVE_ROTATION_MAX_VELOCITY;
     public static final double SWERVE_MAX_VELOCITY = 4.5;
     public static final double SWERVE_METERS_PER_PULSE = 0.00002226;
     public static final double SWERVE_DRIVE_P = -1000; // For some reason this doesn't work with positive constants

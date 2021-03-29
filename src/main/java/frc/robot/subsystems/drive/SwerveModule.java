@@ -48,11 +48,12 @@ public class SwerveModule {
         rotationMotor.setSensorPhase(true);
         rotationMotor.config_kP(0, Constants.SWERVE_ROTATION_P);
         rotationMotor.config_kI(0, Constants.SWERVE_ROTATION_I);
+        rotationMotor.config_IntegralZone(0, Constants.SWERVE_ROTATION_I_ZONE);
         rotationMotor.config_kD(0, Constants.SWERVE_ROTATION_D);
-        rotationMotor.config_kF(0, Constants.SWERVE_ROTATION_KV);
-        rotationMotor.configMotionCruiseVelocity(Constants.SWERVE_ROTATION_MAX_VELOCITY);
-        rotationMotor.configMotionAcceleration(Constants.SWERVE_ROTATION_MAX_ACCEL);
-        rotationMotor.configAllowableClosedloopError(0, 0.5/Constants.SWERVE_DEGREES_PER_PULSE);
+//        rotationMotor.config_kF(0, Constants.SWERVE_ROTATION_KV);
+//        rotationMotor.configMotionCruiseVelocity(Constants.SWERVE_ROTATION_MAX_VELOCITY);
+//        rotationMotor.configMotionAcceleration(Constants.SWERVE_ROTATION_MAX_ACCEL);
+//        rotationMotor.configAllowableClosedloopError(0, 1/Constants.SWERVE_DEGREES_PER_PULSE);
         rotationMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_1_General, 10);
         rotationMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 10);
         rotationMotor.setStatusFramePeriod(StatusFrameEnhanced.Status_12_Feedback1, 10);
@@ -100,7 +101,7 @@ public class SwerveModule {
         }else if(delta < -180){
             delta += 360;
         }
-        rotationMotor.set(ControlMode.MotionMagic, (currentPosRel + delta) / Constants.SWERVE_DEGREES_PER_PULSE);
+        rotationMotor.set(ControlMode.Position, (currentPosRel + delta) / Constants.SWERVE_DEGREES_PER_PULSE);
     }
 
     public void setSwerveModuleState(SwerveModuleState state) {
