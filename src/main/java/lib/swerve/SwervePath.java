@@ -149,7 +149,7 @@ public class SwervePath {
         private final Rotation2d heading;
         private final double velocity;
         private final double acceleration;
-        private final Rotation2d rotation;
+        public Rotation2d rotation;
         private final double time;
 
         /**

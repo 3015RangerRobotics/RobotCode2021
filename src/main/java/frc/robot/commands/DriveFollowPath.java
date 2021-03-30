@@ -24,6 +24,7 @@ public class DriveFollowPath extends CommandBase {
     SwervePath path;
     SwervePathController pathController;
     double lastTime;
+    boolean ignoreHeading;
 
     public DriveFollowPath(String pathname) {
         addRequirements(RobotContainer.drive);
@@ -35,6 +36,20 @@ public class DriveFollowPath extends CommandBase {
         ProfiledPIDController rotationController = new ProfiledPIDController(Constants.DRIVE_ROTATION_CONTROLLER_P, Constants.DRIVE_ROTATION_CONTROLLER_I, Constants.DRIVE_ROTATION_CONTROLLER_D,
                 new TrapezoidProfile.Constraints(Constants.DRIVE_MAX_ANGULAR_VELOCITY, Constants.DRIVE_MAX_ANGULAR_ACCEL));
         this.pathController = new SwervePathController(posController, headingController, rotationController);
+        this.ignoreHeading = false;
+    }
+
+    public DriveFollowPath(String pathname, boolean ignoreHeading) {
+        addRequirements(RobotContainer.drive);
+        this.timer = new Timer();
+        this.path = SwervePath.fromCSV(pathname);
+
+        PIDController posController = new PIDController(Constants.DRIVE_POS_ERROR_CONTROLLER_P, Constants.DRIVE_POS_ERROR_CONTROLLER_I, Constants.DRIVE_POS_ERROR_CONTROLLER_D);
+        PIDController headingController = new PIDController(Constants.DRIVE_HEADING_ERROR_CONTROLLER_P, Constants.DRIVE_HEADING_ERROR_CONTROLLER_I, Constants.DRIVE_HEADING_ERROR_CONTROLLER_D);
+        ProfiledPIDController rotationController = new ProfiledPIDController(Constants.DRIVE_ROTATION_CONTROLLER_P, Constants.DRIVE_ROTATION_CONTROLLER_I, Constants.DRIVE_ROTATION_CONTROLLER_D,
+                new TrapezoidProfile.Constraints(Constants.DRIVE_MAX_ANGULAR_VELOCITY, Constants.DRIVE_MAX_ANGULAR_ACCEL));
+        this.pathController = new SwervePathController(posController, headingController, rotationController);
+        this.ignoreHeading = ignoreHeading;
     }
 
     // Called when the command is initially scheduled.
@@ -53,6 +68,8 @@ public class DriveFollowPath extends CommandBase {
     public void execute() {
         double time = timer.get();
         SwervePath.State desiredState = path.sample(time);
+
+        if(ignoreHeading) desiredState.rotation = new Rotation2d(0);
 
         ChassisSpeeds targetSpeeds = pathController.calculate(RobotContainer.drive.getPoseMeters(), desiredState, time - lastTime, timer.hasElapsed(0.1));
         RobotContainer.drive.drive(targetSpeeds);

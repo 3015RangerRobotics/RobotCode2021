@@ -86,7 +86,7 @@ public class RobotContainer {
         driverLT.whenActive(new CG_ReadyToFire());
         driverLB.whenActive(new CG_ShooterDefault());
         driverRB.whenActive(new CG_FireReload());
-//        driverRT.whenActive(new CarouselShoot(0.1));
+        driverRT.whenActive(new CarouselShoot(0.1));
         driverY.whileActiveContinuous(new CarouselPurge());
         driverStart.and(driverBack).whenActive(new DriveZero());
 //        driverX.whileActiveOnce(new DriveSetModuleRotation(90));
@@ -98,7 +98,7 @@ public class RobotContainer {
         coDriverRB.whenActive(new CG_FireReload());
         coDriverRT.whenActive(new CarouselShoot(0.1));
         coDriverY.whileActiveContinuous(new CarouselPurge());
-        driverLB.whenActive(new CG_SearchARed());
+//        driverLB.whenActive(new CG_SearchARed());
     }
 
     public static double getDriverLeftStickX() {
@@ -147,7 +147,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public static Command getAutonomousCommand() {
-        return new CG_SearchBRed();
+        return new DriveFollowPath("barrel_racing3", true);
     }
 
     private static class TriggerButton extends Trigger {

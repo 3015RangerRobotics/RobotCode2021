@@ -27,11 +27,8 @@ public class DriveWithGamepad extends CommandBase {
         rotationController = new ProfiledPIDController(Constants.DRIVE_ROTATION_CONTROLLER_P, Constants.DRIVE_ROTATION_CONTROLLER_I, Constants.DRIVE_ROTATION_CONTROLLER_D,
                 new TrapezoidProfile.Constraints(Constants.DRIVE_MAX_ANGULAR_VELOCITY, Constants.DRIVE_MAX_ANGULAR_ACCEL));
         rotationController.enableContinuousInput(-180, 180);
-        roomba = new ObstacleAvoidance(0.5, 3,
-                new ObstacleAvoidance.RestrictedArea(new Translation2d(1, -0.5), new Translation2d(2, 0.5)),
-                new ObstacleAvoidance.RestrictedArea(new Translation2d(-2, -0.5), new Translation2d(-1, 0.5)),
-                new ObstacleAvoidance.RestrictedArea(new Translation2d(-0.5, 1), new Translation2d(0.5, 2)),
-                new ObstacleAvoidance.RestrictedArea(new Translation2d(-0.5, -2), new Translation2d(0.5, -1))
+        roomba = new ObstacleAvoidance(0.45, 4,
+                new ObstacleAvoidance.RestrictedArea(new Translation2d(0.5, -5), new Translation2d(2, 5))
         );
     }
 
