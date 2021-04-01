@@ -43,8 +43,8 @@ public class DriveWithGamepad extends CommandBase {
     @Override
     public void execute() {
         double rightStickX = RobotContainer.getDriverRightStickX();
-        double leftStickY = RobotContainer.getDriverLeftStickY() * (RobotContainer.getDriverRightTrigger() > 0.5 ? 0.9 : 0.68);
-        double leftStickX = RobotContainer.getDriverLeftStickX() * (RobotContainer.getDriverRightTrigger() > 0.5 ? 0.9 : 0.68);
+        double leftStickY = RobotContainer.getDriverLeftStickY() * (RobotContainer.getDriverRightTrigger() > 1 ? 0.9 : 0.68);
+        double leftStickX = RobotContainer.getDriverLeftStickX() * (RobotContainer.getDriverRightTrigger() > 1 ? 0.9 : 0.68);
 
         double rotationOutput = rightStickX;
         if(Math.abs(rotationOutput) == 0){

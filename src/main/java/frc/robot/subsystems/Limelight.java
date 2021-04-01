@@ -7,8 +7,11 @@ import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
+import java.util.ArrayList;
+
 public class Limelight extends SubsystemBase {
 	NetworkTable limelight;
+	ArrayList<Double> avgDistance = new ArrayList<>();
 	
 	public enum LEDMode {
 		PIPELINE(0),
@@ -63,13 +66,26 @@ public class Limelight extends SubsystemBase {
 	 */
 	public Limelight() {
 		limelight = NetworkTableInstance.getDefault().getTable("limelight");
+
 		setLEDMode(LEDMode.LED_OFF);
 		setStreamingMode(StreamingMode.STANDARD);
 	}
 	
 	@Override
 	public void periodic() {
-		SmartDashboard.putNumber("Distance to Target", Math.round(getRobotToTargetDistance() * 10) / 10.0);
+		SmartDashboard.putNumber("Distance to Target", Math.round(getAvgDistance() * 10) / 10.0);
+		avgDistance.add(getRobotToTargetDistance());
+		if(avgDistance.size() == 11){
+			avgDistance.remove(0);
+		}
+	}
+
+	public double getAvgDistance(){
+		double total = 0;
+		for(double d : avgDistance){
+			total += d;
+		}
+		return total / avgDistance.size();
 	}
 	
 	/**

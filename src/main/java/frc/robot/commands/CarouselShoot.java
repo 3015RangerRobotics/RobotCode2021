@@ -36,6 +36,10 @@ public class CarouselShoot extends CommandBase {
         timer.reset();
         timer.start();
         RobotContainer.carousel.setBallCounter(0);
+        if(RobotContainer.jankTimer.get() > 60 || RobotContainer.jankTimer.get() == 0){
+            RobotContainer.jankTimer.reset();
+            RobotContainer.jankTimer.start();
+        }
     }
 
     @Override

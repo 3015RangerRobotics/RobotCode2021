@@ -28,6 +28,7 @@ public class Robot extends TimedRobot {
         // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
         // autonomous chooser on the dashboard.
         RobotContainer.init();
+        m_autonomousCommand = RobotContainer.getAutonomousCommand();
     }
 
     /**
@@ -45,6 +46,7 @@ public class Robot extends TimedRobot {
         // block in order for anything in the Command-based framework to work.
         CommandScheduler.getInstance().run();
         SmartDashboard.putString("alliance", DriverStation.getInstance().getAlliance().toString().toLowerCase());
+        SmartDashboard.putNumber("time", 60 - Math.round(RobotContainer.jankTimer.get()));
     }
 
     /**
@@ -53,6 +55,9 @@ public class Robot extends TimedRobot {
     @Override
     public void disabledInit() {
         RobotContainer.drive.enableBrakeMode(false);
+        RobotContainer.jankTimer.stop();
+        RobotContainer.jankTimer.reset();
+        RobotContainer.setDriverRumble(0);
     }
 
     @Override
@@ -65,7 +70,7 @@ public class Robot extends TimedRobot {
     @Override
     public void autonomousInit() {
         RobotContainer.drive.enableBrakeMode(true);
-        m_autonomousCommand = RobotContainer.getAutonomousCommand();
+
 
         // schedule the autonomous command (example)
         if (m_autonomousCommand != null) {
@@ -97,6 +102,29 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopPeriodic() {
+        if(RobotContainer.jankTimer.hasElapsed(60)){
+            RobotContainer.setDriverRumble(1);
+        }else if(RobotContainer.jankTimer.hasElapsed(59.5)){
+            RobotContainer.setDriverRumble(0);
+        }else if(RobotContainer.jankTimer.hasElapsed(59)){
+            RobotContainer.setDriverRumble(1);
+        }else if(RobotContainer.jankTimer.hasElapsed(58.5)){
+            RobotContainer.setDriverRumble(0);
+        }else if(RobotContainer.jankTimer.hasElapsed(58)){
+            RobotContainer.setDriverRumble(1);
+        }else if(RobotContainer.jankTimer.hasElapsed(57.5)){
+            RobotContainer.setDriverRumble(0);
+        }else if(RobotContainer.jankTimer.hasElapsed(57)){
+            RobotContainer.setDriverRumble(1);
+        }else if(RobotContainer.jankTimer.hasElapsed(56.5)){
+            RobotContainer.setDriverRumble(0);
+        }else if(RobotContainer.jankTimer.hasElapsed(56)){
+            RobotContainer.setDriverRumble(1);
+        }else if(RobotContainer.jankTimer.hasElapsed(55.5)){
+            RobotContainer.setDriverRumble(0);
+        }else if(RobotContainer.jankTimer.hasElapsed(55)){
+            RobotContainer.setDriverRumble(1);
+        }
     }
 
     @Override

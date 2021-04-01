@@ -112,7 +112,7 @@ public class Hood extends SubsystemBase {
     }
 
     public double getAutoPosition() {
-        double d = RobotContainer.limelight.getRobotToTargetDistance();
+        double d = RobotContainer.limelight.getAvgDistance();
         return Constants.HOOD_AUTO_POSITION_TABLE.lookup(d);
     }
 

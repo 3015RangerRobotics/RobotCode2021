@@ -26,6 +26,7 @@ public class SwerveModule {
         driveMotor.configFactoryDefault();
         rotationMotor = new TalonSRX(rotationChannel);
         rotationMotor.configFactoryDefault();
+        rotationMotor.setNeutralMode(NeutralMode.Coast);
 
         driveMotor.setInverted(false);
         driveMotor.setSensorPhase(false);

@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -62,6 +63,8 @@ public class RobotContainer {
     private static final JoystickButton coDriverStart = new JoystickButton(coDriver, XboxController.Button.kStart.value);
     private static final JoystickButton coDriverBack = new JoystickButton(coDriver, XboxController.Button.kBack.value);
 
+    public static Timer jankTimer = new Timer();
+
     public static void init(){
         drive = new Drive();
         hood = new Hood();
@@ -99,6 +102,11 @@ public class RobotContainer {
         coDriverRT.whenActive(new CarouselShoot(0.1));
         coDriverY.whileActiveContinuous(new CarouselPurge());
 //        driverLB.whenActive(new CG_SearchARed());
+    }
+
+    public static void setDriverRumble(double rumble){
+        driver.setRumble(GenericHID.RumbleType.kLeftRumble, rumble);
+        driver.setRumble(GenericHID.RumbleType.kRightRumble, rumble);
     }
 
     public static double getDriverLeftStickX() {
@@ -147,7 +155,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public static Command getAutonomousCommand() {
-        return new DriveFollowPath("barrel_racing3", true);
+        return new CG_Bounce();
     }
 
     private static class TriggerButton extends Trigger {

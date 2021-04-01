@@ -78,14 +78,14 @@ public final class Constants {
 //        HOOD_AUTO_POSITION_TABLE.put(14,32.5);
 //        HOOD_AUTO_POSITION_TABLE.put(18,34.2);
         // Powerport Table
-        HOOD_AUTO_POSITION_TABLE.put(8, 22.5);
-        HOOD_AUTO_POSITION_TABLE.put(9, 25);
-        HOOD_AUTO_POSITION_TABLE.put(10, 27.4);
-        HOOD_AUTO_POSITION_TABLE.put(11, 28.25);
-        HOOD_AUTO_POSITION_TABLE.put(12, 29);
-        HOOD_AUTO_POSITION_TABLE.put(13, 30.5);
-        HOOD_AUTO_POSITION_TABLE.put(14, 31.8);
-        HOOD_AUTO_POSITION_TABLE.put(15.2, 31);
+        HOOD_AUTO_POSITION_TABLE.put(6.7, 12);
+        HOOD_AUTO_POSITION_TABLE.put(8.5, 17);
+        HOOD_AUTO_POSITION_TABLE.put(10.3, 20.6);
+        HOOD_AUTO_POSITION_TABLE.put(11.8, 23);
+        HOOD_AUTO_POSITION_TABLE.put(12.9, 23.7);
+        HOOD_AUTO_POSITION_TABLE.put(14.4, 25);
+        HOOD_AUTO_POSITION_TABLE.put(15.7, 27);
+        HOOD_AUTO_POSITION_TABLE.put(17.6, 28);
     }
 
     // Carousel Constants
