@@ -59,8 +59,11 @@ public final class Constants {
     public static final double DRIVE_ROTATION_CONTROLLER_P = 10;//9
     public static final double DRIVE_ROTATION_CONTROLLER_I = 0;
     public static final double DRIVE_ROTATION_CONTROLLER_D = 0;
-    public static final double DRIVE_ROTATION_MIN_VELOCITY = 25;
-    public static final double DRIVE_ROTATION_I_ZONE = 10;
+    public static final double DRIVE_TARGETING_CONTROLLER_P = 13;//9
+    public static final double DRIVE_TARGETING_CONTROLLER_I = 0;
+    public static final double DRIVE_TARGETING_CONTROLLER_D = 0.5;
+    public static final double DRIVE_ROTATION_MIN_VELOCITY = 22;
+    public static final double DRIVE_TARGETING_I_ZONE = 2;
 
 
     //Hood Constants
@@ -72,12 +75,7 @@ public final class Constants {
     public static final LookupTable HOOD_AUTO_POSITION_TABLE = new LookupTable();
 
     static {
-        // Interstellar Accuracy Table
-//        HOOD_AUTO_POSITION_TABLE.put(5,15);
-//        HOOD_AUTO_POSITION_TABLE.put(9,26);
-//        HOOD_AUTO_POSITION_TABLE.put(14,32.5);
-//        HOOD_AUTO_POSITION_TABLE.put(18,34.2);
-        // Powerport Table
+        // Powerport Table (6000 rpm, close position)
         HOOD_AUTO_POSITION_TABLE.put(6.7, 12);
         HOOD_AUTO_POSITION_TABLE.put(8.5, 17);
         HOOD_AUTO_POSITION_TABLE.put(10.3, 20.6);
@@ -86,6 +84,9 @@ public final class Constants {
         HOOD_AUTO_POSITION_TABLE.put(14.4, 25);
         HOOD_AUTO_POSITION_TABLE.put(15.7, 27);
         HOOD_AUTO_POSITION_TABLE.put(17.6, 28);
+
+        // Powerport Table (6900 rpm, far position)
+//        HOOD_AUTO_POSITION_TABLE.put(26.6, 29);
     }
 
     // Carousel Constants
@@ -100,7 +101,7 @@ public final class Constants {
     public static final int CAROUSEL_ENCODER2 = 4;
     public static final int CAROUSEL_ENCODER3 = 5;
     public static final double CAROUSEL_IN_SPEED_ACTIVE = 0.4;
-    public static final double CAROUSEL_IN_SPEED_PASSIVE = 0.5;
+    public static final double CAROUSEL_IN_SPEED_PASSIVE = 1;
     public static final double CAROUSEL_PURGE_SPEED1 = -0.8;
     public static final double CAROUSEL_PURGE_SPEED2 = -0.9;
     public static final double CAROUSEL_PURGE_SPEED3 = -1;
@@ -114,12 +115,12 @@ public final class Constants {
     // Limelight Constants
     public static final double LL_TARGET_HEIGHT = 7.58;
     public static final double LL_MOUNT_HEIGHT = 1.625;
-    public static final double LL_MOUNT_ANGLE = 28;
+    public static final double LL_MOUNT_ANGLE = 30;
     
     // Shooter Constants
     public static final int SHOOTER_MOTOR = 10; // CAN: TALON FX
     public static final int SHOOTER_MOTOR_2 = 11; // CAN: TALON FX
-    public static final double SHOOTER_P = 0.4;//0.5
+    public static final double SHOOTER_P = 0.4;//0.4
     public static final double SHOOTER_I = 0;
     public static final double SHOOTER_D = 10;//10
     public static final double SHOOTER_F = 0.0455;//0.0468
