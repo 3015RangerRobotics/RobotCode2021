@@ -38,10 +38,10 @@ public class Drive extends SubsystemBase {
      * Creates a new Drive.
      */
     public Drive() {
-        frontLeftSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_FL, Constants.SWERVE_ROTATION_CHANNEL_FL, 142); //originally -4
-        frontRightSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_FR, Constants.SWERVE_ROTATION_CHANNEL_FR, 55); //originally 56
-        backLeftSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_BL, Constants.SWERVE_ROTATION_CHANNEL_BL, -118); //originally -118
-        backRightSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_BR, Constants.SWERVE_ROTATION_CHANNEL_BR, 72); //originally 125
+        frontLeftSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_FL, Constants.SWERVE_ROTATION_CHANNEL_FL, 140);
+        frontRightSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_FR, Constants.SWERVE_ROTATION_CHANNEL_FR, 56);
+        backLeftSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_BL, Constants.SWERVE_ROTATION_CHANNEL_BL, -117);
+        backRightSwerveModule = new SwerveModule(Constants.SWERVE_DRIVE_CHANNEL_BR, Constants.SWERVE_ROTATION_CHANNEL_BR, 72);
         resetEncoders();
 
         imu = new PigeonIMU(Constants.DRIVE_PIGEON_CHANNEL);
@@ -145,6 +145,10 @@ public class Drive extends SubsystemBase {
         } else {
             drive(new ChassisSpeeds(xVelMeters, yVelMeters, Math.toRadians(degreesPerSecond)));
         }
+    }
+
+    public void driveFieldRelativeCheese(double xVelMeters, double yVelMeters, double degreesPerSecond, double rotOffset){
+        drive(ChassisSpeeds.fromFieldRelativeSpeeds(xVelMeters, yVelMeters, Math.toRadians(degreesPerSecond), getAngleRotation2d().plus(Rotation2d.fromDegrees(rotOffset))));
     }
 
     public Pose2d getPoseMeters() {

@@ -43,13 +43,14 @@ public class DriveWithGamepad extends CommandBase {
     @Override
     public void execute() {
         double rightStickX = RobotContainer.getDriverRightStickX();
-        double leftStickY = RobotContainer.getDriverLeftStickY() * (RobotContainer.getDriverRightTrigger() > 1 ? 0.9 : 0.68);
-        double leftStickX = RobotContainer.getDriverLeftStickX() * (RobotContainer.getDriverRightTrigger() > 1 ? 0.9 : 0.68);
+        double leftStickY = RobotContainer.getDriverLeftStickY() * (RobotContainer.getDriverRightTrigger() > 0.5 ? 1 : 1);
+        double leftStickX = RobotContainer.getDriverLeftStickX() * (RobotContainer.getDriverRightTrigger() > 0.5 ? 1 : 1);
 
         double rotationOutput = rightStickX;
         if(Math.abs(rotationOutput) == 0){
-            rotationOutput = rotationController.calculate(RobotContainer.drive.getAngleDegrees(), currentAngle);
-            if((Math.abs(leftStickX) == 0 && Math.abs(leftStickY) == 0)) rotationOutput = 0;
+            double rot = (RobotContainer.getDriverLeftTrigger() > 0.5) ? currentAngle - 25 : currentAngle;
+            rotationOutput = rotationController.calculate(RobotContainer.drive.getAngleDegrees(), rot);
+            if((Math.abs(leftStickX) == 0 && Math.abs(leftStickY) == 0) && RobotContainer.getDriverLeftTrigger() <= 0.5) rotationOutput = 0;
 //            SmartDashboard.putNumber("PIDTarget", currentAngle);
 //            SmartDashboard.putNumber("PIDActual", RobotContainer.drive.getAngleDegrees());
         }else{
@@ -64,7 +65,8 @@ public class DriveWithGamepad extends CommandBase {
 //        Translation2d corrections = roomba.calculateMaxVelocities(RobotContainer.drive.getPoseMeters(), xVel, yVel);
         Translation2d corrections = new Translation2d(xVel, yVel);
 
-        RobotContainer.drive.drive(corrections.getX(), corrections.getY(), rotationOutput, true);
+//        RobotContainer.drive.drive(corrections.getX(), corrections.getY(), rotationOutput, true);
+        RobotContainer.drive.driveFieldRelativeCheese(corrections.getX(), corrections.getY(), rotationOutput, RobotContainer.getDriverLeftTrigger() > 0.5 ? 25 : 0);
     }
 
     // Called once the command ends or is interrupted.
