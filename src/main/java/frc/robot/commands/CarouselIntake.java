@@ -39,6 +39,6 @@ public class CarouselIntake extends CommandBase {
 
     @Override
     public boolean isFinished() {
-        return false;
+        return RobotContainer.carousel.getState() == Carousel.State.kOff;
     }
 }

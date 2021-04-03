@@ -36,6 +36,17 @@ public class SwervePathController {
         this.currentHeading = new Rotation2d(0);
     }
 
+    public SwervePathController(PIDController posErrorController, PIDController headingErrorController) {
+        this.posErrorController = posErrorController;
+        this.headingErrorController = headingErrorController;
+        this.headingErrorController.enableContinuousInput(-180, 180);
+        this.rotationController = null;
+//        this.rotationController.enableContinuousInput(-180, 180);
+        this.lastPosition = new Translation2d();
+        this.totalDistance = 0;
+        this.currentHeading = new Rotation2d(0);
+    }
+
     /**
      * Reset the state of the path controller
      *
@@ -44,7 +55,7 @@ public class SwervePathController {
     public void reset(Pose2d currentPose) {
         this.posErrorController.reset();
         this.headingErrorController.reset();
-        this.rotationController.reset(currentPose.getRotation().getDegrees());
+        if(rotationController != null) this.rotationController.reset(currentPose.getRotation().getDegrees());
         this.lastPosition = currentPose.getTranslation();
         this.totalDistance = 0;
         this.currentHeading = new Rotation2d(0);
@@ -76,7 +87,7 @@ public class SwervePathController {
 
         double vel = goalState.getVelocity();
         Rotation2d heading = goalState.getHeading();
-        double rotSpeed = rotationController.calculate(currentRotation.getDegrees(), goalState.getRotation().getDegrees());
+        double rotSpeed = (rotationController != null) ? rotationController.calculate(currentRotation.getDegrees(), goalState.getRotation().getDegrees()) : 0;
 
         vel += posErrorController.calculate(totalDistance, goalState.getPos());
         if(doHeading) {
