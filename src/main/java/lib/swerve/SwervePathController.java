@@ -47,6 +47,10 @@ public class SwervePathController {
         this.currentHeading = new Rotation2d(0);
     }
 
+    public double getPosError(){
+        return posErrorController.getPositionError();
+    }
+
     /**
      * Reset the state of the path controller
      *

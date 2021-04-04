@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -29,6 +30,7 @@ public class Robot extends TimedRobot {
         // autonomous chooser on the dashboard.
         RobotContainer.init();
         m_autonomousCommand = RobotContainer.getAutonomousCommand();
+        SmartDashboard.putData("PDP", new PowerDistributionPanel());
     }
 
     /**

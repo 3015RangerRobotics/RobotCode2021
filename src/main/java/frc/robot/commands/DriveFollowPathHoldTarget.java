@@ -53,8 +53,6 @@ public class DriveFollowPathHoldTarget extends CommandBase {
         double time = timer.get();
         SwervePath.State desiredState = path.sample(time);
 
-        Pose2d robotPose = new Pose2d(RobotContainer.drive.getPoseMeters().getTranslation(), Rotation2d.fromDegrees(-RobotContainer.limelight.getTargetAngleX()));
-
         ChassisSpeeds targetSpeeds = pathController.calculate(RobotContainer.drive.getPoseMeters(), desiredState, time - lastTime, timer.hasElapsed(0.1));
 
         double output = rotationController.calculate(-RobotContainer.limelight.getTargetAngleX(), 0);

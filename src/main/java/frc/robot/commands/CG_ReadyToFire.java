@@ -8,7 +8,7 @@ public class CG_ReadyToFire extends SequentialCommandGroup {
     public CG_ReadyToFire(){
         addCommands(
                 new LimelightSwitchLEDMode(Limelight.LEDMode.LED_ON),
-                new ShooterSetSpeed(4500),
+                new ShooterSetSpeed(4200),
 //                new HoodSetPosition(29.5),
                 new ParallelCommandGroup(
                         new SequentialCommandGroup(

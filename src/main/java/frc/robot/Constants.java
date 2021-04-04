@@ -62,7 +62,7 @@ public final class Constants {
     public static final double DRIVE_TARGETING_CONTROLLER_P = 13;//9
     public static final double DRIVE_TARGETING_CONTROLLER_I = 0;
     public static final double DRIVE_TARGETING_CONTROLLER_D = 0.5;
-    public static final double DRIVE_ROTATION_MIN_VELOCITY = 22;
+    public static final double DRIVE_ROTATION_MIN_VELOCITY = 25;
     public static final double DRIVE_TARGETING_I_ZONE = 2;
 
 

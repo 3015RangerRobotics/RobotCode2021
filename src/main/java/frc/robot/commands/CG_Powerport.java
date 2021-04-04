@@ -21,8 +21,7 @@ public class CG_Powerport extends SequentialCommandGroup {
                 new ParallelDeadlineGroup(
                         new WaitCommand(60.5),
                         // Wait for go-ahead
-                        new LoopingSequentialGroup(
-                                1,
+                        new SequentialCommandGroup(
                                 new CarouselShoot(0.1),
                                 new DriveFollowPathHoldTarget("power_reverse"),
                                 new ParallelDeadlineGroup(
@@ -32,7 +31,40 @@ public class CG_Powerport extends SequentialCommandGroup {
                                 new ParallelDeadlineGroup(
                                         new DriveFollowPathHoldTarget("power"),
                                         new CarouselIntake()
-                                )
+                                ),
+                                new ParallelDeadlineGroup(
+                                        new LimelightWaitUntilOnTarget(),
+                                        new DriveAutoRotate()
+                                ),
+                                new CarouselShoot(0.1),
+                                new DriveFollowPathHoldTarget("power_reverse"),
+                                new ParallelDeadlineGroup(
+                                        new WaitForButtonCommand(RobotContainer.driverX),
+                                        new CarouselIntake()
+                                ),
+                                new ParallelDeadlineGroup(
+                                        new DriveFollowPathHoldTarget("power"),
+                                        new CarouselIntake()
+                                ),
+                                new ParallelDeadlineGroup(
+                                        new LimelightWaitUntilOnTarget(),
+                                        new DriveAutoRotate()
+                                ),
+                                new CarouselShoot(0.1),
+                                new DriveFollowPathHoldTarget("power_reverse"),
+                                new ParallelDeadlineGroup(
+                                        new WaitForButtonCommand(RobotContainer.driverX),
+                                        new CarouselIntake()
+                                ),
+                                new ParallelDeadlineGroup(
+                                        new DriveFollowPathHoldTarget("power"),
+                                        new CarouselIntake()
+                                ),
+                                new ParallelDeadlineGroup(
+                                        new LimelightWaitUntilOnTarget(),
+                                        new DriveAutoRotate()
+                                ),
+                                new CarouselShoot(0.1)
                         )
                         // Wait for third ball
 //                        new LoopingSequentialCommandGroup(
