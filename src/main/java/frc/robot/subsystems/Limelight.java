@@ -75,7 +75,7 @@ public class Limelight extends SubsystemBase {
 	public void periodic() {
 		SmartDashboard.putNumber("Distance to Target", Math.round(getAvgDistance() * 10) / 10.0);
 		avgDistance.add(getRobotToTargetDistance());
-		if(avgDistance.size() == 11){
+		if(avgDistance.size() == 10){
 			avgDistance.remove(0);
 		}
 	}

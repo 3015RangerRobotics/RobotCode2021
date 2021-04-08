@@ -86,10 +86,10 @@ public class RobotContainer {
     private static void configureButtonBindings() {
         driverB.whenActive(new HoodHome());
         driverA.whenActive(new CarouselIntake()).whenInactive(new CarouselDefault());
-//        driverLT.whenActive(new CG_ReadyToFire());
-//        driverLB.whenActive(new CG_ShooterDefault());
+        driverLT.whenActive(new CG_ReadyToFire());
+        driverLB.whenActive(new CG_ShooterDefault());
 //        driverRB.whenActive(new CG_FireReload());
-//        driverRT.whenActive(new CarouselShoot(0.1));
+        driverRT.whenActive(new CarouselShoot(0.075));
         driverY.whileActiveContinuous(new CarouselPurge());
         driverStart.and(driverBack).whenActive(new CG_Powerport());
 //        driverX.whenActive(new DriveFollowPath("power_reverse")).whenInactive(new DriveFollowPath("power"));
@@ -160,7 +160,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public static Command getAutonomousCommand() {
-        return new DriveFollowPath("barrel_racing3", true);
+        return new CG_SearchBBlue();
     }
 
     private static class TriggerButton extends Trigger {

@@ -48,8 +48,8 @@ public class DriveWithGamepad extends CommandBase {
 
         double rotationOutput = rightStickX;
         if(Math.abs(rotationOutput) == 0){
-            double rot = (RobotContainer.getDriverLeftTrigger() > 0.5) ? currentAngle - 25 : currentAngle;
-            rotationOutput = rotationController.calculate(RobotContainer.drive.getAngleDegrees(), rot);
+//            double rot = (RobotContainer.getDriverLeftTrigger() > 0.5) ? currentAngle - 25 : currentAngle;
+            rotationOutput = rotationController.calculate(RobotContainer.drive.getAngleDegrees(), currentAngle);
             if((Math.abs(leftStickX) == 0 && Math.abs(leftStickY) == 0) && RobotContainer.getDriverLeftTrigger() <= 0.5) rotationOutput = 0;
 //            SmartDashboard.putNumber("PIDTarget", currentAngle);
 //            SmartDashboard.putNumber("PIDActual", RobotContainer.drive.getAngleDegrees());
