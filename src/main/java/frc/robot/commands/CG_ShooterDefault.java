@@ -8,7 +8,6 @@ public class CG_ShooterDefault extends SequentialCommandGroup {
         addCommands(
                 new LimelightSwitchLEDMode(Limelight.LEDMode.LED_OFF),
                 new HoodSetPosition(0),
-//                new TurretToDefaultPosition(),
                 new ShooterStop()
         );
     }

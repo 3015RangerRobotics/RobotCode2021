@@ -7,25 +7,24 @@ package frc.robot;
 import lib.LookupTable;
 
 /**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
- * constants. This class should not be used for any other purpose. All constants should be declared
- * globally (i.e. public static). Do not put anything functional in this class.
+ * The Constants class provides a convenient place for teams to hold robot-wide
+ * numerical or boolean constants. This class should not be used for any other
+ * purpose. All constants should be declared globally (i.e. public static). Do
+ * not put anything functional in this class.
  *
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
- * constants are needed, to reduce verbosity.
+ * <p>
+ * It is advised to statically import this class (or one of its inner classes)
+ * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
 
     // Swerve Module Specific
     public static final double SWERVE_CENTER_DISTANCE = 0.2942971; // Meters
     public static final double SWERVE_DEGREES_PER_PULSE = 360.0 / 4096.0;
-    public static final double SWERVE_ROTATION_P = 16; //16
-    public static final double SWERVE_ROTATION_I = .04; //0.02
+    public static final double SWERVE_ROTATION_P = 16; // 16
+    public static final double SWERVE_ROTATION_I = .04; // 0.02
     public static final double SWERVE_ROTATION_I_ZONE = 10 / SWERVE_DEGREES_PER_PULSE;
-    public static final double SWERVE_ROTATION_D = 1600; //500
-//    public static final double SWERVE_ROTATION_MAX_VELOCITY = 70/SWERVE_DEGREES_PER_PULSE;
-//    public static final double SWERVE_ROTATION_MAX_ACCEL = 810/SWERVE_DEGREES_PER_PULSE;
-//    public static final double SWERVE_ROTATION_KV = 1023.0/SWERVE_ROTATION_MAX_VELOCITY;
+    public static final double SWERVE_ROTATION_D = 1600; // 500
     public static final double SWERVE_MAX_VELOCITY = 4.5;
     public static final double SWERVE_METERS_PER_PULSE = 0.00002226;
     public static final double SWERVE_DRIVE_P = -1000; // For some reason this doesn't work with positive constants
@@ -47,26 +46,22 @@ public final class Constants {
     public static final double DRIVE_MAX_ANGULAR_ACCEL = 6000;
 
     // Path Following
-//    public static final double DRIVE_ERROR_CONTROLLER_P = 15;
-//    public static final double DRIVE_ERROR_CONTROLLER_I = 0;
-//    public static final double DRIVE_ERROR_CONTROLLER_D = 0.71; // 0.71
-    public static final double DRIVE_POS_ERROR_CONTROLLER_P = 12; //10
+    public static final double DRIVE_POS_ERROR_CONTROLLER_P = 12; // 10
     public static final double DRIVE_POS_ERROR_CONTROLLER_I = 0;
     public static final double DRIVE_POS_ERROR_CONTROLLER_D = 0.05;
-    public static final double DRIVE_HEADING_ERROR_CONTROLLER_P = 0; //1.05
+    public static final double DRIVE_HEADING_ERROR_CONTROLLER_P = 0; // 1.05
     public static final double DRIVE_HEADING_ERROR_CONTROLLER_I = 0;
-    public static final double DRIVE_HEADING_ERROR_CONTROLLER_D = 0; //0.02
-    public static final double DRIVE_ROTATION_CONTROLLER_P = 10;//9
+    public static final double DRIVE_HEADING_ERROR_CONTROLLER_D = 0; // 0.02
+    public static final double DRIVE_ROTATION_CONTROLLER_P = 10;// 9
     public static final double DRIVE_ROTATION_CONTROLLER_I = 0;
     public static final double DRIVE_ROTATION_CONTROLLER_D = 0;
-    public static final double DRIVE_TARGETING_CONTROLLER_P = 13;//9
+    public static final double DRIVE_TARGETING_CONTROLLER_P = 13;// 9
     public static final double DRIVE_TARGETING_CONTROLLER_I = 0;
     public static final double DRIVE_TARGETING_CONTROLLER_D = 0.5;
     public static final double DRIVE_ROTATION_MIN_VELOCITY = 25;
     public static final double DRIVE_TARGETING_I_ZONE = 2;
 
-
-    //Hood Constants
+    // Hood Constants
     public static final int HOOD_MOTOR_CHANNEL = 1;
     public static final double HOOD_CONTROLLER_P = .5;
     public static final double HOOD_CONTROLLER_I = 0;
@@ -75,7 +70,8 @@ public final class Constants {
     public static final LookupTable HOOD_AUTO_POSITION_TABLE = new LookupTable();
 
     static {
-        // Powerport Table (6000 rpm, close position)
+        // Mapping from distance to target to hood angle necessary
+        // to make a shot.
         HOOD_AUTO_POSITION_TABLE.put(6.7, 12);
         HOOD_AUTO_POSITION_TABLE.put(8.5, 17);
         HOOD_AUTO_POSITION_TABLE.put(10.3, 20.6);
@@ -84,9 +80,6 @@ public final class Constants {
         HOOD_AUTO_POSITION_TABLE.put(14.4, 25);
         HOOD_AUTO_POSITION_TABLE.put(15.7, 27);
         HOOD_AUTO_POSITION_TABLE.put(17.6, 28);
-
-        // Powerport Table (6900 rpm, far position)
-//        HOOD_AUTO_POSITION_TABLE.put(26.6, 29);
     }
 
     // Carousel Constants
@@ -116,18 +109,18 @@ public final class Constants {
     public static final double LL_TARGET_HEIGHT = 7.58;
     public static final double LL_MOUNT_HEIGHT = 1.625;
     public static final double LL_MOUNT_ANGLE = 30;
-    
+
     // Shooter Constants
     public static final int SHOOTER_MOTOR = 10; // CAN: TALON FX
     public static final int SHOOTER_MOTOR_2 = 11; // CAN: TALON FX
-    public static final double SHOOTER_P = 0.4;//0.4
+    public static final double SHOOTER_P = 0.4;// 0.4
     public static final double SHOOTER_I = 0;
-    public static final double SHOOTER_D = 10;//10
-    public static final double SHOOTER_F = 0.0455;//0.0468
-    public static final double SHOOTER_PULSES_PER_ROTATION = 2048 * (2.0/3.0);
-    public static final double SHOOTER_SHOOT_P = SHOOTER_P;//25
+    public static final double SHOOTER_D = 10;// 10
+    public static final double SHOOTER_F = 0.0455;// 0.0468
+    public static final double SHOOTER_PULSES_PER_ROTATION = 2048 * (2.0 / 3.0);
+    public static final double SHOOTER_SHOOT_P = SHOOTER_P;// 25
     public static final double SHOOTER_SHOOT_I = SHOOTER_I;
-    public static final double SHOOTER_SHOOT_D = SHOOTER_D;//60
+    public static final double SHOOTER_SHOOT_D = SHOOTER_D;// 60
     public static final double SHOOTER_SHOOT_F = SHOOTER_F;
     public static final double SHOOTER_LAUNCH_ANGLE = 53.28;
     public static final double SHOOTER_TOLERANCE = 25;
@@ -136,9 +129,8 @@ public final class Constants {
     static {
         SHOOTER_AUTO_SPEED_TABLE.put(0, 0);
     }
-    
+
     // Turret Constants
-    // All of this is potentially subject to be removed. Only exists so that the shooter class functions.
     public static final int TURRET_MOTOR = 6; // CAN: TALON SRX
     public static final int TURRET_LEFT_LIMIT = 1; // DIO: LIMIT SWITCH
     public static final int TURRET_RIGHT_LIMIT = 0; // DIO: LIMIT SWITCH

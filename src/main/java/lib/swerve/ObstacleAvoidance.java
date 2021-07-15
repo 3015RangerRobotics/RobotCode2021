@@ -7,8 +7,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Fancy code and math that should be able to prevent a swerve drive
- * robot from entering specified restricted areas.
+ * Fancy code and math that should be able to prevent a swerve drive robot from
+ * entering specified restricted areas.
+ * 
+ * This does technically work but errors in odomotry compound and prevent it
+ * from being useful beyond a few seconds of driving.
  */
 public class ObstacleAvoidance {
     private final double bufferWidth;
@@ -18,9 +21,12 @@ public class ObstacleAvoidance {
     /**
      * Construct an obstacle avoidance object
      *
-     * @param bufferWidth            Width of the buffer around the robot that should stay out of restricted areas
-     * @param assistanceAcceleration The acceleration that will be used to determine the stopping distance of the robot
-     * @param restrictedAreas        The restricted areas that the robot should avoid
+     * @param bufferWidth            Width of the buffer around the robot that
+     *                               should stay out of restricted areas
+     * @param assistanceAcceleration The acceleration that will be used to determine
+     *                               the stopping distance of the robot
+     * @param restrictedAreas        The restricted areas that the robot should
+     *                               avoid
      */
     public ObstacleAvoidance(double bufferWidth, double assistanceAcceleration, RestrictedArea... restrictedAreas) {
         this.bufferWidth = bufferWidth;

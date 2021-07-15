@@ -27,7 +27,6 @@ public class RobotContainer {
     public static Hood hood;
     public static Carousel carousel;
     public static Limelight limelight;
-    public static Turret turret;
     public static Shooter shooter;
 
     private static final XboxController driver = new XboxController(0);
@@ -70,7 +69,6 @@ public class RobotContainer {
         hood = new Hood();
         carousel = new Carousel();
         limelight = new Limelight();
-//        turret = new Turret();
         shooter = new Shooter();
 
         drive.setDefaultCommand(new DriveWithGamepad());
@@ -160,7 +158,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public static Command getAutonomousCommand() {
-        return new CG_SearchBBlue();
+        return null;
     }
 
     private static class TriggerButton extends Trigger {

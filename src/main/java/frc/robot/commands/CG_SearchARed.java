@@ -9,7 +9,6 @@ public class CG_SearchARed extends ParallelCommandGroup {
         addCommands(
                 new CarouselIntake(),
                 new SequentialCommandGroup(
-                        new WaitCommand(0),
                         new DriveFollowPath("search_a_red")
                 )
         );
