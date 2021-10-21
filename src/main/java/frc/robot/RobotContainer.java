@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
@@ -28,6 +29,8 @@ public class RobotContainer {
     public static Carousel carousel;
     public static Limelight limelight;
     public static Shooter shooter;
+
+    public static PowerDistributionPanel pdp = new PowerDistributionPanel(0);
 
     private static final XboxController driver = new XboxController(0);
     private static final XboxController coDriver = new XboxController(1);

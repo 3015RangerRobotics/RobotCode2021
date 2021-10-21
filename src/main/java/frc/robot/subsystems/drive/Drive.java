@@ -130,6 +130,22 @@ public class Drive extends SubsystemBase {
         backRightSwerveModule.setRotationPosition(degrees);
     }
 
+    public double getFrontLeftRotation() {
+        return frontLeftSwerveModule.getRelativeRotation();
+    }
+
+    public double getFrontRightRotation() {
+        return frontRightSwerveModule.getRelativeRotation();
+    }
+
+    public double getBackLeftRotation() {
+        return backLeftSwerveModule.getRelativeRotation();
+    }
+
+    public double getBackRightRotation() {
+        return backRightSwerveModule.getRelativeRotation();
+    }
+
     public void drive(ChassisSpeeds chassisSpeeds) {
         SwerveModuleState[] moduleStates = kinematics.toSwerveModuleStates(chassisSpeeds);
         frontLeftSwerveModule.setSwerveModuleState(moduleStates[0]);
